@@ -1,0 +1,9 @@
+@import './../../config/_styles.scss';
+
+.navigation_container{
+    background-color: $red !important;
+    &_menu_icon{
+        color:white;
+    }
+
+}
