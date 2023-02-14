@@ -4,10 +4,7 @@ export default function Home(props) {
     return (
         <>
             <Header/>
-            <Carousel
-       
-    >
-    </Carousel>
+            <Carousel/>
         </>
     );
 }

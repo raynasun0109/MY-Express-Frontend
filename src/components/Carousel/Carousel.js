@@ -3,16 +3,12 @@ import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
-function Item(props)
+import "./Carousel.scss";
+function Slide(props)
 {
     return (
-        <Paper>
-            <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p>
-
-            <Button className="CheckButton">
-                Check it out!
-            </Button>
+        <Paper className={'slide_container'}>
+            <img src={props.item.url}/>
         </Paper>
     )
 }
@@ -21,22 +17,27 @@ export default function CarouselComponent(props)
     var items = [
         {
             name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!"
+            description: "Probably the most random thing you have ever seen!",
+            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676386969/myshopaholic/banner_hrgdeh.jpg"
         },
         {
             name: "Random Name #2",
-            description: "Hello World!"
+            description: "Hello World!",
+            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676386969/myshopaholic/banner_hrgdeh.jpg"
+
         }
     ]
 
     return (
         <Carousel
+            className={'carousel_container'}
+        fullHeightHover={false}
             indicators={false}
             PrevIcon={<NavigateBeforeRoundedIcon/>}
             NextIcon={<NavigateNextRoundedIcon/>}
         >
             {
-                items.map( (item, i) => <Item key={i} item={item} /> )
+                items.map( (item, i) => <Slide key={i} item={item} /> )
             }
         </Carousel>
     )

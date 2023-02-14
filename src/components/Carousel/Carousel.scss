@@ -1,2 +1,13 @@
 @import './../../config/_styles.scss';
 
+.carousel_container{
+    width: 100%;
+}
+
+.slide_container{
+    width: 100%;
+    img{
+        width: 100%;
+
+    }
+}
