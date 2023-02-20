@@ -1,7 +1,8 @@
 import * as router from "./Router";
-import HttpUtils from "../utils/HttpUtils";
+import axios from 'axios';
 
-export function allProducts() {
-    return HttpUtils.getRequest(`${router.baseUrl}${router.allProducts}`)
+export function allProducts (){
+    return axios.get(`${router.baseUrl}${router.allProducts}`).then(res => {
+        return res;
+    });
 }
-
