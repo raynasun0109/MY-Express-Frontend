@@ -22,7 +22,8 @@ const handleUrl = (url) => (params) => {
             paramsArray.push(key + "=" + encodeURIComponent(params[key]))
         );
         if (url.search(/\?/) === -1) {
-            typeof params === "object" ? (url += "?" + paramsArray.join("&")) : url;
+            //eslint-disable-next-line no-unused-expressions
+            typeof params === "object" ? (url += "?" + paramsArray.join("&")) : url
         } else {
             url += "&" + paramsArray.join("&");
         }

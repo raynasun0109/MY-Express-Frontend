@@ -23,7 +23,7 @@ export default function CarouselComponent(props)
         {
             name: "Random Name #2",
             description: "Hello World!",
-            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676386969/myshopaholic/banner_hrgdeh.jpg"
+            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676901729/myshopaholic/6_re2lhh.jpg"
 
         }
     ]

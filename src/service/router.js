@@ -1,1 +1,3 @@
-export const base_url="localhost:3001";
+export const baseUrl="localhost:3001";
+
+export const allProducts="/products/all";
