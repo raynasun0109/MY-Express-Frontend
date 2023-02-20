@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Carousel:https://www.npmjs.com/package/react-material-ui-carousel
+clould: https://cloudinary.com/console/c-fe050415a00cc41ba09f8345ea2120/media_library/folders/c3282dacc38879196ae5c661c6fd1dc72a
+image resource: 
