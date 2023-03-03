@@ -6,3 +6,9 @@ export function allProducts (){
         return res;
     });
 }
+
+export function latestProducts (params){
+    return axios.post(`${router.baseUrl}${router.latestProducts}`,params).then(res => {
+        return res;
+    });
+}

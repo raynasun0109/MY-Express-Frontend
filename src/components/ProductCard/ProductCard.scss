@@ -1,0 +1,28 @@
+@import './../../config/_styles.scss';
+
+.product_card_container{
+    width: 100%;
+    height: 100%;
+    padding: 7px;
+    
+    img{
+        border-radius: $border-radius_card;
+        width:200px;
+        height:200px;
+    }
+    .product_name{
+        @extend .small_font;
+        margin: 10px 5px 5px;
+        height: 20px;
+        font-weight: 700;
+        
+    
+    }
+    .product_price{
+        @extend .middle_font;
+        color:$red;
+        margin:5px;
+        
+        
+    }
+}

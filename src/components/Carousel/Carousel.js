@@ -25,6 +25,9 @@ export default function CarouselComponent(props)
             description: "Hello World!",
             url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676901729/myshopaholic/6_re2lhh.jpg"
 
+        },
+        {
+            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1677075948/myshopaholic/27546418_molhgj.jpg"
         }
     ]
 

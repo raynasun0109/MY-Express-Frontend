@@ -1,27 +1,45 @@
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header.js';
 import Carousel from '../../components/Carousel/Carousel.js';
-import {allProducts} from '../../service/ProductService';
-import React, { useEffect,useState } from "react";
+import {allProducts,latestProducts} from '../../service/ProductService';
+import ProductCard from '../../components/ProductCard/ProductCard.js';
+import './Home.scss';
 
 export default function Home() {
-    const [products, setProducts] = useState([]);
+   const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        allProducts().then(res => {
-            setProducts(res.data)
+        latestProducts({number:5}).then(res => {
+            setProducts(res.data);
       });
     }, []);
-
-
-
 
     return (
         <>
             <Header/>
             <Carousel/>
-            <div>
-                {console.log(222,products)}
+            <div className="container">
+            <div className="main_container">
+                <div>
+                    <div className="main_title">
+                        What's NEW
+                    </div>
+                    <div className="products_container">          
+                    {
+                        products.length > 0 && (
+                            products.map( product =>
+                                <div key={product.uuid} className="products_container_container">
+                                    <ProductCard prop={product}/>
+                                </div>
+                            )
+                        )
+                    }
+                    </div>
+                   
+                </div>
+           
 
+            </div>
             </div>
         </>
     );

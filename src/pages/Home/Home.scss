@@ -1,0 +1,35 @@
+@import './../../config/_styles.scss';
+
+.container{
+    background-color: $base_color;
+    padding:100px $layout_horizontal 0 $layout_horizontal;
+}
+.main_container{
+    background-color: white;
+    border-radius:$border-radius_container;
+    padding: $content_vertical;
+}
+.products_container{
+    display: flex;
+    flex-wrap: wrap;
+
+    &_container{
+        width:214px;
+        height: 280px;
+        border: 1px solid $grey;
+        margin: 7px;
+        box-sizing: border-box;
+        border-radius: $border-radius_card;
+    }
+
+    &_container:hover{
+        box-shadow: $shadow_big;
+        border:none;
+    }
+}
+.main_title{
+    @extend .big_font;
+    color:$red;
+    font-weight: 700;
+    margin:0 0 10px 0;
+}
