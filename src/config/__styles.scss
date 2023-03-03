@@ -1,3 +1,9 @@
+//global
+body{
+    margin: 0;
+    padding: 0;
+}
+
 // logo
 $logo_height:50px;
 $logo_width:150px;
@@ -6,3 +12,36 @@ $logo_width:150px;
 $red:#c85145;
 $yellow:#f8b62b;
 $pink:#e4007f;
+$grey:#D5DBDB;
+$base_color:#E3E6E6;
+
+//font size
+.big_font{
+    font-size: 24px;
+    line-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.middle_font{
+    font-size: 16px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.small_font{
+    font-size: 14px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//boder-radius
+$border-radius_card:8px;
+$border-radius_container:18px;
+//margin
+$content_horizontal:50px;
+$layout_horizontal:100px;
+$content_vertical:20px;
+//shadow
+$shadow: 0 1px 2px 0 #d8d8d8;
+$shadow_big: 0 19px 39px 0 rgb(0 0 0 / 20%);
