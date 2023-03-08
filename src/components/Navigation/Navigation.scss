@@ -7,4 +7,15 @@
         color:white;
     }
 
+    .login_register_container{
+        color:white;
+       
+        a{
+            @extend .middle_font;
+            color:white;
+            text-decoration: none;
+            margin: 0 7px;
+            font-weight: $heavy_bold;
+        }
+    }
 }

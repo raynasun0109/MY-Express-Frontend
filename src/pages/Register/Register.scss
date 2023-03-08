@@ -1,0 +1,35 @@
+@import './../../config/_styles.scss';
+
+.register_container{
+    margin-top: 50px;
+    .copyright_container{
+        margin-bottom: 20px;
+    }
+    &_content{
+        
+        border:1px solid $base_color;
+        border-radius: $border-radius_container;
+        &_title{
+            @extend .big_font;
+            color:$red;
+            margin-bottom: 20px;
+            font-weight: $heavy_bold;
+        }
+        .register_footer{
+            @extend .small_font;
+            color:$red;
+            margin-top: 10px;
+        }
+        .register_confirm_btn{
+            background-color: $base_color;
+        }
+        .register_confirm_btn:hover{
+            background-color: $red;
+        }
+        .radio_container,.register_input_field{
+            .Mui-focused{
+                color: black;
+            }    
+        }
+    }
+}

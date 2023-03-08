@@ -1,0 +1,31 @@
+@import './../../config/_styles.scss';
+
+.login_container{
+    margin-top: 50px;
+    &_content{
+        
+        border:1px solid $base_color;
+        border-radius: $border-radius_container;
+        &_login{
+            @extend .big_font;
+            color:$red;
+            font-weight: $heavy_bold;
+        }
+        .signin_footer{
+            @extend .small_font;
+            color:$red;
+            margin-top: 10px;
+        }
+        .login_confirm_btn{
+            background-color: $base_color;
+        }
+        .login_confirm_btn:hover{
+            background-color: $red;
+        }
+        .login_input_field{
+            .Mui-focused{
+                color: black;
+            }    
+        }
+    }
+}

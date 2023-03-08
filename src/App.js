@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home/Home';
 import { BrowserRouter as Router} from 'react-router-dom';
@@ -9,8 +8,6 @@ function App() {
       <Router>
         <Home/>
       </Router>
-       
-
     </div>
   );
 }
