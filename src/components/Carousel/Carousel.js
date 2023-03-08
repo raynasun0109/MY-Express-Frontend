@@ -34,7 +34,8 @@ export default function CarouselComponent(props)
     return (
         <Carousel
             className={'carousel_container'}
-        fullHeightHover={false}
+            height={'470px'}
+            fullHeightHover={false}
             indicators={false}
             PrevIcon={<NavigateBeforeRoundedIcon/>}
             NextIcon={<NavigateNextRoundedIcon/>}
