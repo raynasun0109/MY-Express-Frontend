@@ -7,7 +7,7 @@ export default function ProductCard(prop){
 
 
     return (
-        <div className="product_card_container">
+        <div className="product_card_container" data-testid='product_card'>
             <img src={product.image}/>
             <div className="product_name">
                 {product.name}
