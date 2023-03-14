@@ -1,0 +1,46 @@
+@import './../../config/_styles.scss';
+
+.loading_container{
+    text-align: center;
+    &_title{
+        margin-top: 30px;
+    }
+    .icon_container{
+        margin: 70px 0 0 0;
+        .error_icon{
+            text-align: center;
+            width: 45px!important;
+            height: 45px!important;
+        }
+    }
+    .loading_btn_container{
+        margin-bottom: 50px;
+        .loading_btn{
+            border: none!important;
+            .MuiLoadingButton-loadingIndicator {
+                .MuiCircularProgress-root{
+                    width: 30px!important;
+                    height: 30px!important;
+                }
+            }
+        }
+    }
+   
+    .MuiDialog-container {
+        .MuiDialog-paper{
+            h2{
+                @extend .big_font;
+                padding: 0 0 20px 0;
+                color:$red;
+                font-weight: $heavy_bold;
+            }
+            .MuiDialogContent-root {
+                p{
+                    @extend .middle_font;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+   
+}

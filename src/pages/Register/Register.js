@@ -1,9 +1,8 @@
-import Avatar from '@mui/material/Avatar';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,6 +13,10 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import {registerOneUser} from '../../service/UserService';
+import CryptoJs from 'crypto-js';
+import Loading from '../../components/Loading/Loading.js';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
     return (
@@ -29,18 +32,52 @@ function Copyright(props) {
   }
 
 export default function Register () {
+    const [isLoading,setLoading]=useState(false);
+    const [title,setTitle]=useState();
+    const [content,setContent]=useState();
+    const [isSetIcon,setIcon]=useState();
+    const [isShowLoading,setShowLoading]=useState(false);
+
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log(666,data.get('row-radio-buttons-group'));
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+        setTitle("Registering");
+        setContent("Don't leave the current page");
+        setLoading(true);
+        const form = new FormData(event.currentTarget);
+        const type= form.get('row-radio-buttons-group')=="customer"? 1:2;
+        const data = {
+          first_name: form.get('first_name'),
+          email: form.get('email'),
+          password: CryptoJs.MD5(form.get('password')).toString(),
+          last_name: form.get('last_name'),
+          type
+        }
+        registerOneUser(data).then(res => {
+              if(res.data.code==1){
+                setTitle("Registered successfully");
+                setContent("Direct to the home page now");
+                setLoading(false);
+                setShowLoading(false);
+                navigate('/');
+              }else{
+                setTitle("Your email is used");
+                setIcon('error');
+                setContent("Please choose another email to register");
+                setLoading(false);
+                setShowLoading(true);
+              }
+            });
       };
 
     return (
-        <div className="register_container">
+      <div className="register_container">
+        {
+          isShowLoading&&
+          <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
+        }
+
       <Container component="main" maxWidth="xs" className="register_container_content">
         <CssBaseline />
         <Box
@@ -59,7 +96,7 @@ export default function Register () {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="first_name"
                   required
                   fullWidth
                   id="firstName"
@@ -74,7 +111,7 @@ export default function Register () {
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="family-name"
                   className="register_input_field"
                 />
