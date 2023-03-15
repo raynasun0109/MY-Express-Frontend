@@ -74,3 +74,4 @@ clould: https://cloudinary.com/console/c-fe050415a00cc41ba09f8345ea2120/media_li
 image resource: internet
 cookie:https://github.com/js-cookie/js-cookie
 router:https://reactrouter.com/en/main/start/tutorial
+test account: customer :user@test.com(123456)  merchant: shop@test.com(123456)

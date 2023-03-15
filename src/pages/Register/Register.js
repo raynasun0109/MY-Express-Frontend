@@ -16,7 +16,10 @@ import FormLabel from '@mui/material/FormLabel';
 import {registerOneUser} from '../../service/UserService';
 import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
 
 function Copyright(props) {
     return (
@@ -56,11 +59,12 @@ export default function Register () {
         }
         registerOneUser(data).then(res => {
               if(res.data.code==1){
+                cookies.set('myShopaholic',JSON.stringify(res.data.data))
                 setTitle("Registered successfully");
                 setContent("Direct to the home page now");
-                setLoading(false);
-                setShowLoading(false);
-                navigate('/');
+                setLoading(true);
+                setShowLoading(true);
+                setTimeout(() => navigate('/'), 3000);
               }else{
                 setTitle("Your email is used");
                 setIcon('error');

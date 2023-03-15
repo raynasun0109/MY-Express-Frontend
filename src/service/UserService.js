@@ -12,3 +12,9 @@ export function registerOneUser (params){
         return res;
     });
 }
+
+export function userLogin (params){
+    return axios.post(`${router.baseUrl}${router.userLogin}`,params).then(res => {
+        return res;
+    });
+}

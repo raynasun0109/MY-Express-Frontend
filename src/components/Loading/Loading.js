@@ -68,7 +68,6 @@ export default function Loading(prop){
 
                 {
                     isLoading&&<LoadingButton size="large" loading variant="outlined" className="loading_btn"></LoadingButton>
-
                 }
                 </div>
             </Dialog>

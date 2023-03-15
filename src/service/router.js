@@ -10,3 +10,4 @@ export const getOneUser="/users/info/one";
 
 export const registerOneUser="/users/register/one";
 
+export const userLogin="/users/login";

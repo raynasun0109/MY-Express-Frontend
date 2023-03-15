@@ -4,6 +4,7 @@ import './index.css';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Logout from './pages/Logout/Logout';
 import reportWebVitals from './reportWebVitals';
 import LogoHeader from './components/LogoHeader/LogoHeader';
 
@@ -27,6 +28,18 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />
+  },
+  {
+    path: "setting",
+    element: <Register />
+  },
+  {
+    path: "profile",
+    element: <Register />
+  },
+  {
+    path: "logout",
+    element: <Logout />
   },
 ]);
 

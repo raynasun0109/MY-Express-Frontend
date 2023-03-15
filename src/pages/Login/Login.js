@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -10,7 +10,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Login.scss';
-
+import {userLogin} from '../../service/UserService';
+import CryptoJs from 'crypto-js';
+import Loading from '../../components/Loading/Loading.js';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
+ 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -25,17 +32,46 @@ function Copyright(props) {
 }
 
 export default function Login () {
+  const [isLoading,setLoading]=useState(false);
+  const [title,setTitle]=useState();
+  const [content,setContent]=useState();
+  const [isSetIcon,setIcon]=useState();
+  const [isShowLoading,setShowLoading]=useState(false);
+
+  const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
+        const form = new FormData(event.currentTarget);
+        const data = {
+          email: form.get('email'),
+          password: CryptoJs.MD5(form.get('password')).toString(),
+        }
+        userLogin(data).then(res => {
+          if(res.data.code==1){
+            cookies.set('myShopaholic',JSON.stringify(res.data.data[0]))
+            //console.log(333,cookies.get('myShopaholic'));
+            setTitle("Login successfully");
+            setContent("Direct to the home page now");
+            setLoading(true);
+            setShowLoading(true);
+            setTimeout(() => navigate('/'), 3000);
+          }else{
+            setTitle("Login Failed");
+            setIcon('error');
+            setContent("Please check your email or password");
+            setLoading(false);
+            setShowLoading(true);
+          }
         });
       };
 
     return (
         <div className="login_container">
+          {
+            isShowLoading&&
+            <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
+          }
           <Container component="main" maxWidth="xs" className="login_container_content">
             <CssBaseline />
             <Box
