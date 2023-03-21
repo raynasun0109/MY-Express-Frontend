@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../components/Header/Header.js';
+import Navigation from '../../components/Navigation/Navigation.js';
 import Carousel from '../../components/Carousel/Carousel.js';
 import {allProducts,latestProducts} from '../../service/ProductService';
 import ProductCard from '../../components/ProductCard/ProductCard.js';
@@ -16,7 +16,7 @@ export default function Home() {
 
     return (
         <>
-            <Header/>
+            <Navigation/>
             <Carousel/>
             <div className="container">
             <div className="main_container">

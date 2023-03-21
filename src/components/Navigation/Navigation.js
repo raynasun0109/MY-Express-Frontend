@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -21,7 +21,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import './Navigation.scss';
+import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
+ 
+const user_info=cookies.get('myShopaholic');
+console.log(999,user_info,cookies.get('myShopaholic'),cookies.get('myCat'));
 const Navigation_content = [
   {
     name:'Products'
@@ -33,14 +39,62 @@ const Navigation_content = [
     name:'Blog'
   }
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const setting_content = [
+  {
+    name:'Profile',
+    url:'/profile'
+  },
+  {
+    name:'Dashboard',
+    url:'/dashboard'
+  },
+  {
+    name:'Logout',
+    url:'logout'
+  }
+];
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+  };
+}
+
 export default function Navigation() {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+
+  const [cookie,setCookie]=useState('')
+
+  useEffect(() => {
+    setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+  }, []);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -138,33 +192,50 @@ export default function Navigation() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {
+              cookie
+                ?
+                <>
+                  <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar {...stringAvatar(`${cookie.first_name} ${cookie.last_name}`)} alt={cookie.last_name} src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  className="user_setting_container"
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {setting_content.map((setting) => (
+                    <Link to={setting.url} key={setting.name}>
+                      <MenuItem key={setting.name} onClick={handleCloseUserMenu} >
+                        <Typography textAlign="center">{setting.name}</Typography>
+                      </MenuItem>
+
+                      {setting.url!=="logout"&&<Divider />}
+                    </Link>
+                  ))}
+                  </Menu>
+                </>
+                :
+                  <div className="login_register_container">
+                    <Link to={'/login'}>Login</Link>
+                    /
+                    <Link to={'/register'}>Register</Link>
+                  </div>
+            }
           </Box>
         </Toolbar>
       </Container>
