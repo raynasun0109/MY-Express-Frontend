@@ -49,7 +49,9 @@ export default function Login () {
         }
         userLogin(data).then(res => {
           if(res.data.code==1){
-            cookies.set('myShopaholic',JSON.stringify(res.data.data[0]))
+            cookies.set('myShopaholic',JSON.stringify(res.data.data[0]),{
+              maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
+           })
             //console.log(333,cookies.get('myShopaholic'));
             setTitle("Login successfully");
             setContent("Direct to the home page now");
