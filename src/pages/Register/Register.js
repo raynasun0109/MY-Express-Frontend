@@ -18,21 +18,9 @@ import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
- 
-const cookies = new Cookies();
+import Copyright from '../../components/Copyright/Copyright.js';
 
-function Copyright(props) {
-    return (
-      <Typography className="copyright_container" variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <>
-          MY Shopaholic
-        </>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+const cookies = new Cookies();
 
 export default function Register () {
     const [isLoading,setLoading]=useState(false);

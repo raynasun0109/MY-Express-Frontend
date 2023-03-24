@@ -7,7 +7,9 @@ import Register from './pages/Register/Register';
 import Logout from './pages/Logout/Logout';
 import reportWebVitals from './reportWebVitals';
 import LogoHeader from './components/LogoHeader/LogoHeader';
-
+import UserDashboard from './pages/Users/UserDashboard/UserDashboard';
+import MerchantDashboard from './pages/MerchantDashboard/MerchantDashboard';
+import UserOrders from './pages/Users/UserOrders/UserOrders';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -40,6 +42,18 @@ const router = createBrowserRouter([
   {
     path: "logout",
     element: <Logout />
+  },
+  {
+    path: "dashboard/user/:id/dashboard",
+    element: <UserDashboard />,
+  },
+  {
+    path: "dashboard/user/:id/orders",
+    element: <UserOrders />
+  },
+  {
+    path: "dashboard/merchant/:id",
+    element: <MerchantDashboard />
   },
 ]);
 

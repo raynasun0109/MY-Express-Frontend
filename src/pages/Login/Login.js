@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -7,7 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Login.scss';
 import {userLogin} from '../../service/UserService';
@@ -15,21 +14,8 @@ import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
- 
+import Copyright from '../../components/Copyright/Copyright.js';
 const cookies = new Cookies();
- 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <>
-        MY Shopaholic
-      </>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 export default function Login () {
   const [isLoading,setLoading]=useState(false);

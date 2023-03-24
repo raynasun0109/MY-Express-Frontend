@@ -23,22 +23,29 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import './Navigation.scss';
 import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import {user_type} from '../../utils/functions.js';
 
 const cookies = new Cookies();
  
-const user_info=cookies.get('myShopaholic');
-console.log(999,user_info,cookies.get('myShopaholic'),cookies.get('myCat'));
+// const user_info=cookies.get('myShopaholic');
+// console.log(999,user_info);
 const Navigation_content = [
   {
-    name:'Products'
+    name:'Home'
   },
   {
-    name:'Pricing'
-  },
-  {
-    name:'Blog'
+    name:'About Us'
   }
 ];
+
+function generate_path (item,user_info){
+  const {name,url}=item;
+  if(name=="Dashboard"){
+      return `${url}/${user_type(user_info.type)}/${user_info.uuid}/dashboard`
+  } else{
+    return url
+  }
+}
 const setting_content = [
   {
     name:'Profile',
@@ -219,7 +226,7 @@ export default function Navigation() {
                   onClose={handleCloseUserMenu}
                 >
                   {setting_content.map((setting) => (
-                    <Link to={setting.url} key={setting.name}>
+                    <Link to={generate_path(setting,cookie)} key={setting.name}>
                       <MenuItem key={setting.name} onClick={handleCloseUserMenu} >
                         <Typography textAlign="center">{setting.name}</Typography>
                       </MenuItem>
