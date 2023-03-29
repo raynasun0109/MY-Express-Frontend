@@ -4,15 +4,21 @@ import Carousel from '../../components/Carousel/Carousel.js';
 import {allProducts,latestProducts} from '../../service/ProductService';
 import ProductCard from '../../components/ProductCard/ProductCard.js';
 import './Home.scss';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 export default function Home() {
    const [products, setProducts] = useState([]);
+   const navigate = useNavigate()
 
     useEffect(() => {
         latestProducts({number:5}).then(res => {
             setProducts(res.data);
       });
     }, []);
+
+    function handleClick(id){
+        navigate(`product/${id}`)
+    }
 
     return (
         <>
@@ -28,7 +34,7 @@ export default function Home() {
                     {
                         products.length > 0 && (
                             products.map( product =>
-                                <div key={product.uuid} className="products_container_container">
+                                <div onClick={()=>handleClick(product.uuid)} key={product.uuid} className="products_container_container">
                                     <ProductCard prop={product}/>
                                 </div>
                             )

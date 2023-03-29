@@ -10,6 +10,9 @@ import LogoHeader from './components/LogoHeader/LogoHeader';
 import UserDashboard from './pages/Users/UserDashboard/UserDashboard';
 import MerchantDashboard from './pages/MerchantDashboard/MerchantDashboard';
 import UserOrders from './pages/Users/UserOrders/UserOrders';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
+import Footer from './components/Footer/Footer';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -55,6 +58,10 @@ const router = createBrowserRouter([
     path: "dashboard/merchant/:id",
     element: <MerchantDashboard />
   },
+  {
+    path: "product/:id",
+    element: <ProductDetail />,
+  },
 ]);
 
 
@@ -62,6 +69,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <LogoHeader />
     <RouterProvider router={router} />
+    <Footer/>
   </React.StrictMode>
 );
 

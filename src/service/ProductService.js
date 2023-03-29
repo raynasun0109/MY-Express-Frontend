@@ -12,3 +12,10 @@ export function latestProducts (params){
         return res;
     });
 }
+
+
+export function getOneProduct (params){
+    return axios.post(`${router.baseUrl}${router.getOneProduct}`,params).then(res => {
+        return res;
+    });
+}

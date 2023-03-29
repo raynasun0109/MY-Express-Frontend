@@ -5,6 +5,9 @@ export const allProducts="/products/all";
 
 export const latestProducts="/products/latest";
 
+export const getOneProduct="/products/get/one";
+
+
 //users
 export const getOneUser="/users/info/one";
 

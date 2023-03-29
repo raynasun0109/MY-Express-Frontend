@@ -24,6 +24,8 @@ import './Navigation.scss';
 import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import {user_type} from '../../utils/functions.js';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const cookies = new Cookies();
  
@@ -197,7 +199,11 @@ export default function Navigation() {
               </Button>
             ))}
           </Box>
-
+          <Box className="cart_container">
+            <Badge badgeContent={4} className="cart_container_badge">
+              <ShoppingCartIcon className="cart_container_cart" />
+            </Badge>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             {
               cookie

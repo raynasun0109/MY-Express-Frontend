@@ -75,3 +75,4 @@ image resource: internet
 cookie:https://github.com/js-cookie/js-cookie
 router:https://reactrouter.com/en/main/start/tutorial
 test account: customer :user@test.com(123456)  merchant: shop@test.com(123456)
+number input :https://www.npmjs.com/package/react-numeric-input
