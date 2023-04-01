@@ -18,7 +18,6 @@ import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import Copyright from '../../components/Copyright/Copyright.js';
 
 const cookies = new Cookies();
 
@@ -85,7 +84,7 @@ export default function Register () {
           <div className="register_container_content_title">
             Register
           </div>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -164,7 +163,7 @@ export default function Register () {
             >
               Register
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-end" className="register_action_container">
               <Grid item>
                 <Link href="/signin" variant="body2" className="register_footer">
                   Already have an account? Sign in
@@ -173,7 +172,6 @@ export default function Register () {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
         </div>
     );

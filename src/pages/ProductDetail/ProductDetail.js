@@ -17,6 +17,12 @@ import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import ProductCard from '../../components/ProductCard/ProductCard.js';
 import {allProducts,latestProducts} from '../../service/ProductService';
+import {connect} from "react-redux";
+import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import {addProduct} from "../../redux/actions/products";
+import {updateOneUser} from '../../service/UserService';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
@@ -35,9 +41,10 @@ const AccordionSummary = styled((props) => (
 }));
 
   
-export default function ProductDetail(){
+function ProductDetail(props){
     const [product, setProduct] = useState([]);
     const [recommendProducts, setRecommendProducts] = useState([]);
+    const [cookie,setCookie]=useState('')
 
     const [qty, setQty] = useState([1]);
 
@@ -46,13 +53,45 @@ export default function ProductDetail(){
 
 
     useEffect(() => {
+        fetchCookie()
         fetchProduct()
     }, []);
  
+    function fetchCookie(){
+        setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+    }
     function handleQty (value) {
-        console.log(value)
+        setQty(value)
     };
 
+    function handleAddToCart(){
+        // console.log('eee',props)
+        // const addedInfo={
+        //     number:qty,
+        //     detail:product
+        // }
+        // props.addProduct(addedInfo);
+        // console.log(cookie);
+        // console.log(typeof product)
+        // const info=product;
+        product['number']= product['number']?product['number']+qty:qty;
+        const addedProduct=[];
+        addedProduct.push(product)
+        const stringifyAddedProduct=JSON.stringify(addedProduct)
+        stringifyAddedProduct.replace("'","\'")
+
+        const {first_name, last_name,password,email,type,uuid}=cookie;
+        const data={
+            first_name, last_name,password,email,type,uuid,
+            shopping_cart:JSON.stringify(stringifyAddedProduct)
+        }
+console.log(data)
+        updateOneUser(data)
+            .then(res => {
+               console.log("Res",res)
+            })
+
+    }
 
     function handleClick(id){
         navigate(`product/${id}`)
@@ -71,9 +110,11 @@ export default function ProductDetail(){
 
     return (
         <div>
-            {            console.log(product)
+            {
+                            // console.log(product,props)
+
 }
-            <Navigation/>
+            <Navigation data={props.state}/>
             <div className="product_detail_container">
                 <div className="category_container">
                     {product&&product.category&& product.category.toLowerCase()}  
@@ -113,7 +154,7 @@ export default function ProductDetail(){
                             </div>
                         </div>
                         <div className="product_display_container_right_btn_container">
-                            <Button className="add_to_cart">Add to cart</Button>
+                            <Button className="add_to_cart" onClick={()=>handleAddToCart()}>Add to cart</Button>
                             <Button className="buy_now">Buy now</Button>
                         </div>
                     </div>
@@ -159,3 +200,24 @@ export default function ProductDetail(){
     )
     
 }
+
+const mapStateToProps=(state)=>{
+    // console.log('state',state)
+    return {
+        state,
+
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    // console.log(dispatch,"dispatch")
+    return {
+        addProduct(item){
+            dispatch(addProduct(item))
+        },
+        removeCountry(item){
+            dispatch(removeCountry(item))
+        },
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProductDetail);

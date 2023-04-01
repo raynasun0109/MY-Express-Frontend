@@ -8,11 +8,14 @@ import Logout from './pages/Logout/Logout';
 import reportWebVitals from './reportWebVitals';
 import LogoHeader from './components/LogoHeader/LogoHeader';
 import UserDashboard from './pages/Users/UserDashboard/UserDashboard';
-import MerchantDashboard from './pages/MerchantDashboard/MerchantDashboard';
+import MerchantDashboard from './pages/Merchant/MerchantDashboard/MerchantDashboard';
 import UserOrders from './pages/Users/UserOrders/UserOrders';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Footer from './components/Footer/Footer';
-
+import { Provider } from 'react-redux'
+import store from "./redux/stores/index.js";
+import MerchantOrders from './pages/Merchant/MerchantOrders/MerchantOrders';
+import MerchantProducts from './pages/Merchant/MerchantProducts/MerchantProducts';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -55,8 +58,16 @@ const router = createBrowserRouter([
     element: <UserOrders />
   },
   {
-    path: "dashboard/merchant/:id",
+    path: "dashboard/merchant/:id/dashboard",
     element: <MerchantDashboard />
+  },
+  {
+    path: "dashboard/merchant/:id/orders",
+    element: <MerchantOrders />
+  },
+  {
+    path: "dashboard/merchant/:id/products",
+    element: <MerchantProducts />
   },
   {
     path: "product/:id",
@@ -67,9 +78,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LogoHeader />
-    <RouterProvider router={router} />
-    <Footer/>
+     <Provider store={store}>
+      <LogoHeader />
+      <RouterProvider router={router} />
+      <Footer/>
+     </Provider>
+    
   </React.StrictMode>
 );
 

@@ -2,6 +2,7 @@
 
 .login_container{
     margin-top: 50px;
+    margin-bottom: 100px;
     &_content{
         
         border:1px solid $base_color;
@@ -10,6 +11,9 @@
             @extend .big_font;
             color:$red;
             font-weight: $heavy_bold;
+        }
+        .login_action_container{
+            margin-bottom: 20px;
         }
         .signin_footer{
             @extend .small_font;

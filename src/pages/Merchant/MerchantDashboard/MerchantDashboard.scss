@@ -1,0 +1,35 @@
+@import '../../../config/_styles.scss';
+
+.user_dashboard_container{
+    &_order{
+        padding:$content_vertical;
+        &_title{
+            @extend .big_font;
+            color:$red;
+            font-weight: $heavy_bold;
+            margin-bottom: $content_vertical;
+        }
+        &_content{
+            
+            display: flex;
+            .user_dashboard_container_order_item{
+                border:2px solid red;
+                margin-right: 20px;
+                text-align: center;
+                .order_content_name{
+                    @extend .middle_font;
+                    color:$red;
+                    font-weight: $heavy_bold;
+                }
+                .order_content_icon{
+                    .order_content_badge{
+                        color:$red;
+                        
+                    }
+                }
+            }
+           
+        }
+    }
+  
+}

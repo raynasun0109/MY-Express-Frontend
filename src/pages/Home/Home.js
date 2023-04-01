@@ -5,8 +5,10 @@ import {allProducts,latestProducts} from '../../service/ProductService';
 import ProductCard from '../../components/ProductCard/ProductCard.js';
 import './Home.scss';
 import { useNavigate,useLocation } from 'react-router-dom';
+import {connect} from "react-redux";
+import {removeCountry,addCountry} from "../../redux/actions/index.js";
 
-export default function Home() {
+function Home(prop) {
    const [products, setProducts] = useState([]);
    const navigate = useNavigate()
 
@@ -19,12 +21,14 @@ export default function Home() {
     function handleClick(id){
         navigate(`product/${id}`)
     }
+  
 
     return (
         <>
-            <Navigation/>
+            <Navigation data={prop.state}/>
             <Carousel/>
             <div className="container">
+                <button onClick={()=>{addCountry('item')}}>myyyyyy</button>
             <div className="main_container">
                 <div>
                     <div className="main_title">
@@ -50,3 +54,22 @@ export default function Home() {
         </>
     );
 }
+
+const mapStateToProps=(state)=>{
+    return {
+        state,
+
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return {
+        addCountry(item){
+            dispatch(addCountry(item))
+        },
+        removeCountry(item){
+            dispatch(removeCountry(item))
+        },
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

@@ -1,0 +1,44 @@
+@import '../../../config/_styles.scss';
+
+.user_layout_container{
+    background-color:$light_color;
+    &_content{
+        // border: 1px solid red;
+        margin:$content_horizontal;
+        display: flex;
+        &_left{
+            width: 15%;
+            margin-right:50px;
+            border-radius: $border-radius_container;
+            &_menu{
+                .active_menu_tbn{
+                    background: $red;
+                    color:white;
+                    font-weight: $heavy_bold;
+                }
+                padding:0!important;
+                background: white;
+
+                @extend .middle_font;
+
+                .left_menu_item_container{
+                    .left_menu_item_btn{
+                        padding:15px 20px;
+                        .left_menu_item_icon{
+                            color:$red;
+                            display: flex;
+                            margin: 0 auto;
+                        }
+                    }
+                   
+                }
+            }
+        }
+        &_right{
+            border:1px solid red;
+            background-color: white;
+            width:100%;
+
+        }
+    }
+}

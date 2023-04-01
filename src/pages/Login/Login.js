@@ -14,7 +14,6 @@ import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import Copyright from '../../components/Copyright/Copyright.js';
 const cookies = new Cookies();
 
 export default function Login () {
@@ -38,7 +37,7 @@ export default function Login () {
             cookies.set('myShopaholic',JSON.stringify(res.data.data[0]),{
               maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
            })
-            //console.log(333,cookies.get('myShopaholic'));
+            console.log(333,cookies.get('myShopaholic'));
             setTitle("Login successfully");
             setContent("Direct to the home page now");
             setLoading(true);
@@ -109,7 +108,7 @@ export default function Login () {
               >
                 Confirm
               </Button>
-              <Grid container>
+              <Grid container className="login_action_container">
                 <Grid item xs>
                   {/** TODO Forgot password */}
                   <Link href="#" variant="body2" className="signin_footer">
@@ -124,7 +123,6 @@ export default function Login () {
               </Grid>
             </Box>
           </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
 
         </div>

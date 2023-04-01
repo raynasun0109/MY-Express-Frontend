@@ -3,12 +3,15 @@ import './Logout.scss';
 import { LoadingButton } from '@mui/lab';
 import Cookies from 'universal-cookie';
  
+import { useNavigate,useLocation } from 'react-router-dom';
+ 
 const cookies = new Cookies();
 
 export default function Logout(){
+
     useEffect(() => {
         cookies.remove('myShopaholic');
-       setTimeout(() => window.location.href=`http://${window.location.host}`, 3000);
+        setTimeout(() => window.location.href=`http://${window.location.host}`, 3000);
     }, []);
 
     return (

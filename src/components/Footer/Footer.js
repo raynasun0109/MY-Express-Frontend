@@ -62,6 +62,7 @@ export default function Footer(){
               <div className="footer_content_container">
                 <div className="footer_content_container_content_title">Follow Us</div>
                 <table className="follow_us_table">
+                <tbody>
                   <tr>
                     <td>
                       <a href="#">
@@ -79,6 +80,7 @@ export default function Footer(){
                       </a>
                     </td>
                   </tr>
+                  </tbody>
                 </table>
             </div>
           </div>

@@ -26,6 +26,11 @@ import Cookies from 'universal-cookie';
 import {user_type} from '../../utils/functions.js';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {connect} from "react-redux";
+import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import {retrieve_shopping_cart} from '../../utils/functions';
+import { useNavigate,useLocation } from 'react-router-dom';
+import { createMemoryHistory } from "history";
 
 const cookies = new Cookies();
  
@@ -91,7 +96,10 @@ function stringAvatar(name) {
   };
 }
 
-export default function Navigation() {
+function Navigation(prop) {
+  const navigate = useNavigate()
+  let history = createMemoryHistory();
+
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -99,10 +107,16 @@ export default function Navigation() {
     right: false,
   });
 
+  // const totalNumber=1;
   const [cookie,setCookie]=useState('')
+  const {totalNumber}=prop.state.products;
+  const [shoppingCart,setShoppingCart]=useState([])
+  const myyyy='[{"uuid":"f943935d-b884-45b3-9fd5-3a636a78830b","first_name":"user","password":"e10adc3949ba59abbe56e057f20f883e","type":"1","created_at":"1678879728162","update_at":"1678879728162","email":"user@test.com","last_name":"sun","shopping_cart":"[]"} ,{"uuid":"f943935d-b884-45b3-9fd5-3a636a78830b","first_name":"user","password":"e10adc3949ba59abbe56e057f20f883e","type":"1","created_at":"1678879728162","update_at":"1678879728162","email":"user@test.com","last_name":"sun","shopping_cart":"[]"} ]'
 
   useEffect(() => {
+    // retrieve_shopping_cart(myyyy)
     setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+    setShoppingCart(cookies.get('myShopaholic')?cookies.get('myShopaholic').shopping_cart:[])
   }, []);
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -145,10 +159,16 @@ export default function Navigation() {
     </Box>
   );
 
+  function jumpTo(prop){
+    const path=generate_path(prop,cookie);
+    navigate(path,true)
+}
   return (
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
+          {console.log('shoppingCart',retrieve_shopping_cart(shoppingCart))}
+          {/* {console.log("v",JSON.stringify(cookie),JSON.parse(JSON.stringify(myyyy)),typeof shoppingCart)} */}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
@@ -200,7 +220,7 @@ export default function Navigation() {
             ))}
           </Box>
           <Box className="cart_container">
-            <Badge badgeContent={4} className="cart_container_badge">
+            <Badge badgeContent={shoppingCart.length} className="cart_container_badge">
               <ShoppingCartIcon className="cart_container_cart" />
             </Badge>
           </Box>
@@ -232,13 +252,13 @@ export default function Navigation() {
                   onClose={handleCloseUserMenu}
                 >
                   {setting_content.map((setting) => (
-                    <Link to={generate_path(setting,cookie)} key={setting.name}>
+                    <div onClick={()=>{jumpTo(setting)}} key={setting.name}>
                       <MenuItem key={setting.name} onClick={handleCloseUserMenu} >
                         <Typography textAlign="center">{setting.name}</Typography>
                       </MenuItem>
 
                       {setting.url!=="logout"&&<Divider />}
-                    </Link>
+                    </div>
                   ))}
                   </Menu>
                 </>
@@ -256,3 +276,21 @@ export default function Navigation() {
     </div>
   );
 }
+
+const mapStateToProps=(state)=>{
+  return {
+      state,
+
+  }
+}
+const mapDispatchToProps=(dispatch)=>{
+  return {
+      addCountry(item){
+          dispatch(addCountry(item))
+      },
+      removeCountry(item){
+          dispatch(removeCountry(item))
+      },
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Navigation);

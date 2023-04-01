@@ -2,9 +2,7 @@
 
 .register_container{
     margin-top: 50px;
-    .copyright_container{
-        margin-bottom: 20px;
-    }
+    margin-bottom: 100px;
     &_content{
         
         border:1px solid $base_color;
@@ -14,6 +12,9 @@
             color:$red;
             margin-bottom: 20px;
             font-weight: $heavy_bold;
+        }
+        .register_action_container{
+            margin-bottom: 20px;
         }
         .register_footer{
             @extend .small_font;

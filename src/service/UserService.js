@@ -13,6 +13,12 @@ export function registerOneUser (params){
     });
 }
 
+export function updateOneUser (params){
+    return axios.post(`${router.baseUrl}${router.updateOneUser}`,params).then(res => {
+        return res;
+    });
+}
+
 export function userLogin (params){
     return axios.post(`${router.baseUrl}${router.userLogin}`,params).then(res => {
         return res;
