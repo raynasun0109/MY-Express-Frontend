@@ -4,7 +4,7 @@
     background-color:$light_color;
     &_content{
         // border: 1px solid red;
-        margin:$content_horizontal;
+        padding:$content_horizontal;
         display: flex;
         &_left{
             width: 15%;

@@ -24,3 +24,10 @@ export const registerOneUser="/users/register/one";
 export const userLogin="/users/login";
 
 export const updateOneUser="/users/update/one";
+
+
+//orders
+export const addOneOrder="/orders/add/one";
+
+//transaction
+export const addOneTransaction="/transaction/add/one";

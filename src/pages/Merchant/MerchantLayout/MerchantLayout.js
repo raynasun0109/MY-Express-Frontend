@@ -117,11 +117,12 @@ export default function MerchantLayout({children}) {
       }, []);
 
     function jumpTo(prop){
-        // console.log(prop)
         checkActiveTab();
         const path=generate_path(prop,cookie);
      
         if (path=="/logout"){
+            // navigate(path, { replace: true })
+
             history.replace(path)
         }else{
             navigate(path)

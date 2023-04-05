@@ -22,6 +22,9 @@ import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {addProduct} from "../../redux/actions/products";
 import {updateOneUser} from '../../service/UserService';
 import Cookies from 'universal-cookie';
+import {retrieve_shopping_cart,update_shopping_cart} from '../../utils/functions';
+import { v4 as uuidv4 } from 'uuid';
+
 const cookies = new Cookies();
 
 const AccordionSummary = styled((props) => (
@@ -42,11 +45,11 @@ const AccordionSummary = styled((props) => (
 
   
 function ProductDetail(props){
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState({});
     const [recommendProducts, setRecommendProducts] = useState([]);
     const [cookie,setCookie]=useState('')
 
-    const [qty, setQty] = useState([1]);
+    const [qty, setQty] = useState(1);
 
     let location = useLocation();
     const navigate = useNavigate()
@@ -65,36 +68,60 @@ function ProductDetail(props){
     };
 
     function handleAddToCart(){
-        // console.log('eee',props)
-        // const addedInfo={
-        //     number:qty,
-        //     detail:product
-        // }
-        // props.addProduct(addedInfo);
-        // console.log(cookie);
-        // console.log(typeof product)
-        // const info=product;
-        product['number']= product['number']?product['number']+qty:qty;
-        const addedProduct=[];
-        addedProduct.push(product)
-        const stringifyAddedProduct=JSON.stringify(addedProduct)
-        stringifyAddedProduct.replace("'","\'")
+     
+        product['qty']= qty;
+        // console.log(qty)
+
+        // product['qty']= product['qty']?product['qty'][0]+qty[0]:qty[0];
+        // console.log('product',product)
+        // const addedProduct=[];
+        // addedProduct.push(product)
+        // const stringifyAddedProduct=JSON.stringify(addedProduct)
+        // stringifyAddedProduct.replace("'","\'")
 
         const {first_name, last_name,password,email,type,uuid}=cookie;
+        // console.log(cookie.shopping_cart)
+        const shopping_cart=retrieve_shopping_cart(cookie.shopping_cart);
+        // console.log('shopping_cart',shopping_cart)
+
+        // console.log('cookie',shopping_cart.length)
+
+        const oldShoppingCart=shopping_cart.length>0?JSON.parse(shopping_cart):[];
+                // console.log('oldShoppingCart',oldShoppingCart)
+
+        // const formattedOldShoppingCart=JSON.parse(oldShoppingCart)
+        // console.log('oldShoppingCart',formattedOldShoppingCart)
+
+        const newShoppingCart = update_shopping_cart(product,oldShoppingCart)
+        // const check = check_shopping_cart(product,[])
+        // const formattedShoppingCart=JSON.stringify(newShoppingCart).replace("'","\'");
+        // const formattedShoppingCart=newShoppingCart
+        // console.log('check',formattedShoppingCart)
+        // console.log('oldShoppingCart',oldShoppingCart);
+
+        
         const data={
             first_name, last_name,password,email,type,uuid,
-            shopping_cart:JSON.stringify(stringifyAddedProduct)
+            shopping_cart:JSON.stringify(newShoppingCart)
         }
-console.log(data)
+        // console.log("data",data)
         updateOneUser(data)
             .then(res => {
                console.log("Res",res)
+                // setShoppingCart(JSON.stringify(newShoppingCart))
+                 setCookie(JSON.stringify(res.data.data))
+                 cookies.set('myShopaholic',JSON.stringify(res.data.data))
             })
 
     }
 
     function handleClick(id){
         navigate(`product/${id}`)
+    }
+
+    function buynow(){
+        navigate('/checkout', { replace: true })
+
     }
 
     function fetchProduct(){
@@ -111,7 +138,7 @@ console.log(data)
     return (
         <div>
             {
-                            // console.log(product,props)
+                            // console.log('product',product)
 
 }
             <Navigation data={props.state}/>
@@ -149,13 +176,13 @@ console.log(data)
                             Quantity:
                             </div>
                             <div className="product_display_container_right_detail_right">
-                                <NumericInput min={0} value={1} precision={0} className="number_input"
+                                <NumericInput snap min={1} value={Number(qty)} precision={0} max={Number(product.stock)} className="number_input"
                                     onChange={(value) => {handleQty(value)}}/>
                             </div>
                         </div>
                         <div className="product_display_container_right_btn_container">
                             <Button className="add_to_cart" onClick={()=>handleAddToCart()}>Add to cart</Button>
-                            <Button className="buy_now">Buy now</Button>
+                            <Button className="buy_now" onClick={()=>buynow()}>Buy now</Button>
                         </div>
                     </div>
                 </div>

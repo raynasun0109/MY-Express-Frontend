@@ -16,6 +16,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
+import { createMemoryHistory } from "history";
 
 
 const cookies = new Cookies();
@@ -64,8 +65,8 @@ const setting_content = [
     },
     {
       name:'My Cart',
-      url:'cart',
-      key:'cart',
+      url:'carts',
+      key:'carts',
       collapse:false,
 
     },
@@ -88,6 +89,7 @@ export default function UserLayout({children}) {
 
     const navigate = useNavigate()
     let location = useLocation();
+    let history = createMemoryHistory();
 
     function checkActiveTab(){
         const currentPath=location.pathname.split('/')[4];
@@ -115,15 +117,24 @@ export default function UserLayout({children}) {
       }, []);
 
     function jumpTo(prop){
-        console.log(prop)
+        // console.log(prop)
         checkActiveTab();
         const path=generate_path(prop,cookie);
-        navigate(path)
+        if (path=="/logout"){
+            navigate(path, { replace: true })
+
+            // console.log("history")
+            // history.replace(path)
+        }else{
+            // console.log("navigate")
+
+            navigate(path)
+        }
     }
 
   return (
     <div className="user_layout_container" key={uuidv4()}>
-        {console.log(activeTab)}
+        {/* {console.log(activeTab)} */}
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
@@ -175,7 +186,6 @@ export default function UserLayout({children}) {
                 {children}
             </div>
         </div>
-        <Copyright/>
     </div>
   )
 }

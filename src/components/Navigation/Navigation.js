@@ -21,7 +21,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import './Navigation.scss';
-import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import {user_type} from '../../utils/functions.js';
 import Badge from '@mui/material/Badge';
@@ -29,7 +28,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {retrieve_shopping_cart} from '../../utils/functions';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,useLocation,Link } from 'react-router-dom';
 import { createMemoryHistory } from "history";
 
 const cookies = new Cookies();
@@ -64,7 +63,7 @@ const setting_content = [
   },
   {
     name:'Logout',
-    url:'logout'
+    url:'/logout'
   }
 ];
 function stringToColor(string) {
@@ -111,12 +110,12 @@ function Navigation(prop) {
   const [cookie,setCookie]=useState('')
   const {totalNumber}=prop.state.products;
   const [shoppingCart,setShoppingCart]=useState([])
-  const myyyy='[{"uuid":"f943935d-b884-45b3-9fd5-3a636a78830b","first_name":"user","password":"e10adc3949ba59abbe56e057f20f883e","type":"1","created_at":"1678879728162","update_at":"1678879728162","email":"user@test.com","last_name":"sun","shopping_cart":"[]"} ,{"uuid":"f943935d-b884-45b3-9fd5-3a636a78830b","first_name":"user","password":"e10adc3949ba59abbe56e057f20f883e","type":"1","created_at":"1678879728162","update_at":"1678879728162","email":"user@test.com","last_name":"sun","shopping_cart":"[]"} ]'
 
   useEffect(() => {
-    // retrieve_shopping_cart(myyyy)
     setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-    setShoppingCart(cookies.get('myShopaholic')?cookies.get('myShopaholic').shopping_cart:[])
+    setShoppingCart(cookies.get('myShopaholic')?retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart):[])
+
+    // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
   }, []);
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -161,13 +160,21 @@ function Navigation(prop) {
 
   function jumpTo(prop){
     const path=generate_path(prop,cookie);
-    navigate(path,true)
-}
+    // navigate(path,true)
+    console.log('path',path)
+    if (path=="/logout"){
+          navigate(path, { replace: true })
+
+  }else{
+      console.log("navigate")
+
+      navigate(path)
+  }
+  }
   return (
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
-          {console.log('shoppingCart',retrieve_shopping_cart(shoppingCart))}
           {/* {console.log("v",JSON.stringify(cookie),JSON.parse(JSON.stringify(myyyy)),typeof shoppingCart)} */}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -219,11 +226,17 @@ function Navigation(prop) {
               </Button>
             ))}
           </Box>
-          <Box className="cart_container">
-            <Badge badgeContent={shoppingCart.length} className="cart_container_badge">
-              <ShoppingCartIcon className="cart_container_cart" />
-            </Badge>
-          </Box>
+          {
+            cookie.type!=="2" &&
+            <Box className="cart_container">
+                <Link to={`/dashboard/user/${cookie.uuid}/carts`}>
+                  <Badge badgeContent={shoppingCart.length} className="cart_container_badge">
+                    <ShoppingCartIcon className="cart_container_cart" />
+                  </Badge>
+              </Link>
+            </Box>
+          }
+          
           <Box sx={{ flexGrow: 0 }}>
             {
               cookie

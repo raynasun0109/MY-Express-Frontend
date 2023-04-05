@@ -2,7 +2,6 @@ import './MerchantDashboard.scss';
 import * as React from 'react';
 import MerchantLayout from '../MerchantLayout/MerchantLayout';
 import Cookies from 'universal-cookie';
-import { v4 as uuidv4 } from 'uuid';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import FactoryIcon from '@mui/icons-material/Factory';

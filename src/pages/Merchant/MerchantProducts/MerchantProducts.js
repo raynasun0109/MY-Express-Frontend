@@ -230,9 +230,7 @@ export default function MerchantProducts(){
             merchant_uuid:cookie.uuid,
             uuid:tempUpdate.uuid
           }
-        console.log("data",data)
         updateOneProduct(data).then(res => {
-            console.log("res",res)
                 if(res.status==200){
                     fetchProductList(cookie)
                     handleCloseUpdate()

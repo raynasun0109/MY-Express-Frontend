@@ -2,16 +2,23 @@
 
 .cart_container{
     margin:5px 28px 0 0;
-    &_badge{
-        .MuiBadge-badge {
-            font-weight: $heavy_bold;
-            background-color:$yellow;
-        }
-        .cart_container_cart{
-            path{
+    a{
+        .cart_container_badge{
+            .MuiBadge-badge {
+                font-weight: $heavy_bold;
+                background-color:$yellow;
+            }
+            .cart_container_cart{
+                path{
+                    fill:white;
+                }
+            }
+            .MuiBadge-badge{
+                color:white;
             }
         }
     }
+ 
 }
 .user_setting_container{
     .MuiPaper-root {

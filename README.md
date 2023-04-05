@@ -72,7 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Carousel:https://www.npmjs.com/package/react-material-ui-carousel
 clould: https://cloudinary.com/console/c-fe050415a00cc41ba09f8345ea2120/media_library/folders/c3282dacc38879196ae5c661c6fd1dc72a
 image resource: internet
-cookie:https://github.com/js-cookie/js-cookie
+cookie:https://github.com/reactivestack/cookies
 router:https://reactrouter.com/en/main/start/tutorial
 test account: customer :user@test.com(123456)  merchant: shop@test.com(123456)
 number input :https://www.npmjs.com/package/react-numeric-input

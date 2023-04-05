@@ -16,6 +16,9 @@ import { Provider } from 'react-redux'
 import store from "./redux/stores/index.js";
 import MerchantOrders from './pages/Merchant/MerchantOrders/MerchantOrders';
 import MerchantProducts from './pages/Merchant/MerchantProducts/MerchantProducts';
+import UserCart from './pages/Users/UserCart/UserCart';
+import Checkout from './pages/Checkout/Checkout';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -42,12 +45,17 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
+    path: "checkout",
+    element: <Checkout />
+  },
+  {
     path: "profile",
     element: <Register />
   },
   {
     path: "logout",
-    element: <Logout />
+    element: <Logout />,
+    forceRefresh:true
   },
   {
     path: "dashboard/user/:id/dashboard",
@@ -56,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "dashboard/user/:id/orders",
     element: <UserOrders />
+  },
+  {
+    path: "dashboard/user/:id/carts",
+    element: <UserCart />
   },
   {
     path: "dashboard/merchant/:id/dashboard",
@@ -81,6 +93,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
      <Provider store={store}>
       <LogoHeader />
       <RouterProvider router={router} />
+      
       <Footer/>
      </Provider>
     

@@ -1,0 +1,52 @@
+@import './../../config/_styles.scss';
+
+.checkout_container_label{
+    .MuiStepLabel-iconContainer {
+        .Mui-active {
+            color:$red;
+            font-weight: $heavy_bold;
+        }
+        .Mui-completed{
+            color:$red;
+
+        }
+    }
+    .MuiStepLabel-labelContainer {
+        .MuiStepLabel-label {
+            @extend .middle_font;
+            font-weight: $heavy_bold;
+        }
+    }
+}
+.checkout_container{
+    margin: 50px 0;
+    padding:0 200px;
+    .checkout_container_content{
+        border:1px solid $base_color;
+        border-radius: $border-radius_container;
+        margin-top: 50px;
+        padding: 40px 100px;
+        &_title{
+            @extend .big_font;
+            color:$red;
+            font-weight: $heavy_bold;
+            margin-bottom: 40px;
+        }
+    }
+    .checkout_container_stepper_box {
+        // margin-left: 15%;
+        // width: 70%;
+    }
+    .checkout_container_btn_container{
+        
+        .checkout_container_btn_back, .checkout_container_btn_next{
+            background-color: $red;
+            @extend .middle_font;
+            text-transform: capitalize;
+            color:white;
+        }
+        .checkout_container_btn_back:hover, .checkout_container_btn_next:hover{
+            background: $red_shadow;
+        }
+    }
+}
