@@ -13,46 +13,54 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import './Checkout.scss';
-const products = [
-    {
-      name: 'Product 1',
-      desc: 'A nice thing',
-      price: '$9.99',
-    },
-    {
-      name: 'Product 2',
-      desc: 'Another thing',
-      price: '$3.45',
-    },
-    {
-      name: 'Product 3',
-      desc: 'Something else',
-      price: '$6.51',
-    },
-    {
-      name: 'Product 4',
-      desc: 'Best thing of all',
-      price: '$14.11',
-    },
-    { name: 'Shipping', desc: '', price: 'Free' },
-  ];
-  
-  const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-  const payments = [
-    { name: 'Card type', detail: 'Visa' },
-    { name: 'Card holder', detail: 'Mr John Smith' },
-    { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-    { name: 'Expiry date', detail: '04/2024' },
-  ];
+import Cookies from 'universal-cookie';
+import {calculate_shopping_cart} from '../../utils/functions';
+import { useNavigate,useLocation } from 'react-router-dom';
+import Divider from '@mui/material/Divider';
+import Loading from '../../components/Loading/Loading.js';
+
+const cookies = new Cookies();
+
 const steps = [
     'Shipping address',
     'Payment details',
     'Review your order',
   ];
-export default function Checkout(prop){
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [payment, setPayment] = React.useState(0);
+export default function Checkout(props){
+    const [activeStep, setActiveStep] = useState(0);
+    const [isSubmitOrder, setIsSubmitOrder] = useState(false);
 
+    const [payment, setPayment] = useState({
+        cardName:"",cardNumber:"",expDate:"",cvv:""
+    });
+    const location = useLocation();
+    const [productList, setProductList] = useState([]);
+    const [cookie,setCookie]=useState('')
+    const [address, setAddress] = useState({
+        firstName: "", lastName: "",address1: "",
+        address2: "",city:"",state:"",zip:"",country:""
+      });
+      const [isLoading,setLoading]=useState(false);
+      const [title,setTitle]=useState();
+      const [content,setContent]=useState();
+      const [isSetIcon,setIcon]=useState();
+      const [isShowLoading,setShowLoading]=useState(false);
+      const navigate = useNavigate();
+
+      
+    useEffect(() => {
+        fetchCookie();
+        fetchData()
+    }, []);
+ 
+    function fetchData(){
+        setProductList(location.state.products)
+    }
+
+    function fetchCookie(){
+        setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+    }
+    console.log('props',location)
     const handleNext = () => {
         setActiveStep(activeStep + 1);
       };
@@ -60,8 +68,56 @@ export default function Checkout(prop){
       const handleBack = () => {
         setActiveStep(activeStep - 1);
       };
+
+    const handleSubmitAddress = (event)=>{
+        event.preventDefault();
+        handleNext()
+        const form = new FormData(event.currentTarget);
+        setAddress({
+            firstName:form.get('firstName'),
+            lastName:form.get('lastName'),
+            address1:form.get('address1'),
+            address2:form.get('address2'),
+            city:form.get('city'),
+            state:form.get('state'),
+            zip:form.get('zip'),
+            country:form.get('country'),
+        })
+    }
+
+    const handleSubmitCardName = (event) => {
+        const { value } = event.target;
+        setPayment({ ...payment, 'cardName': value });
+    };
+
+    const handleSubmitCardNumber = (event) => {
+        const { value } = event.target;
+        setPayment({ ...payment, 'cardNumber': value });
+    };
+
+    const handleSubmitExpDate = (event) => {
+        const { value } = event.target;
+        setPayment({ ...payment, 'expDate': value });
+    };
+
+    const handleSubmitCvv = (event) => {
+        const { value } = event.target;
+        setPayment({ ...payment, 'cvv': value });
+    };
+
+    const handlePlaceOrder = ()=>{
+        setIsSubmitOrder(true);
+        setTitle("Place order successfully");
+        setContent("Direct to the home page now");
+        setLoading(true);
+        setShowLoading(true);
+        // setTimeout(() => navigate('/'), 3000);
+    }
+    
     return (
         <div className="checkout_container">
+            {            console.log('address',address,payment)
+}
             <Box sx={{ width: '100%' }} className="checkout_container_stepper_box">
                 <Stepper activeStep={activeStep} alternativeLabel className="checkout_container_stepper">
                     {steps.map((label) => (
@@ -73,11 +129,11 @@ export default function Checkout(prop){
             </Box>
             {
             activeStep==0 && (
-                <div className="checkout_container_content">
+                <form className="checkout_container_content" id="shippingAddress" onSubmit={handleSubmitAddress} component="form">
                     <div className="checkout_container_content_title">
                         Shipping address
                     </div>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} >
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 required
@@ -87,6 +143,8 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="given-name"
                                 variant="standard"
+                                defaultValue={address.firstName}
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -98,6 +156,7 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="family-name"
                                 variant="standard"
+                                defaultValue={address.lastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -109,6 +168,7 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="shipping address-line1"
                                 variant="standard"
+                                defaultValue={address.address1}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -119,6 +179,7 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="shipping address-line2"
                                 variant="standard"
+                                defaultValue={address.address2}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -130,6 +191,7 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="shipping address-level2"
                                 variant="standard"
+                                defaultValue={address.city}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -139,6 +201,7 @@ export default function Checkout(prop){
                                 label="State/Province/Region"
                                 fullWidth
                                 variant="standard"
+                                defaultValue={address.state}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -150,6 +213,7 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="shipping postal-code"
                                 variant="standard"
+                                defaultValue={address.zip}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -161,20 +225,30 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="shipping country"
                                 variant="standard"
+                                defaultValue={address.country}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
                                 label="Use this address for payment details"
                             />
-                        </Grid>
+                        </Grid> */}
                     </Grid>
-                </div>
+                    <Button
+                        className="checkout_container_btn_next"
+                        variant="contained"
+                        type="submit"
+                        // onClick={handleNext}
+                        sx={{ mt: 3, ml: 1 }}
+                        >
+                        Next
+                    </Button>
+                </form>
                 )}
               {
                 activeStep==1 && (
-                <div className="checkout_container_content">
+                <div className="checkout_container_content" id="payment">
                     <div className="checkout_container_content_title">
                         Payment method
                     </div>
@@ -187,6 +261,8 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="cc-name"
                                 variant="standard"
+                                defaultValue={payment.cardName}
+                                onChange={handleSubmitCardName}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -197,6 +273,8 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="cc-number"
                                 variant="standard"
+                                onChange={handleSubmitCardNumber}
+                                defaultValue={payment.cardNumber}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -207,6 +285,8 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="cc-exp"
                                 variant="standard"
+                                onChange={handleSubmitExpDate}
+                                defaultValue={payment.expDate}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -218,6 +298,8 @@ export default function Checkout(prop){
                                 fullWidth
                                 autoComplete="cc-csc"
                                 variant="standard"
+                                onChange={handleSubmitCvv}
+                                defaultValue={payment.cvv}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -227,6 +309,15 @@ export default function Checkout(prop){
                             />
                         </Grid>
                     </Grid>
+                    <Button
+                        className="checkout_container_btn_next"
+                        variant="contained"
+                        onClick={handleNext}
+                        type="button"
+                        sx={{ mt: 3, ml: 1 }}
+                        >
+                        Next
+                    </Button>
                 </div>
                 )}
               {
@@ -236,63 +327,69 @@ export default function Checkout(prop){
                         Order summary
                     </div>
                     <List disablePadding>
-                        {products.map((product) => (
+                        {productList.map((product) => (
                         <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-                            <ListItemText primary={product.name} secondary={product.desc} />
-                            <Typography variant="body2">{product.price}</Typography>
+                            <ListItemText className="checkout_container_ordersummary_price" primary={product.name} secondary={product.desc} />
+                            <Typography className="checkout_container_ordersummary_price">$ {product.price}</Typography>
                         </ListItem>
                         ))}
-
+                        <Divider/>
                         <ListItem sx={{ py: 1, px: 0 }}>
-                        <ListItemText primary="Total" />
-                        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                            $34.06
-                        </Typography>
+                        <ListItemText primary="Total" className="checkout_container_ordersummary_total"/>
+                        <div className="checkout_container_ordersummary_total">
+                            $ {calculate_shopping_cart(productList)}
+                        </div>
                         </ListItem>
                     </List>
+                   
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                            <div sx={{ mt: 2 }} className="checkout_container_ordersummary_subtitle">
                                 Shipping
-                            </Typography>
-                            <Typography gutterBottom>John Smith</Typography>
-                            <Typography gutterBottom>{addresses.join(', ')}</Typography>
+                            </div>
+                            <Typography gutterBottom>{address.firstName} {address.lastName}</Typography>
+                            <Typography gutterBottom>{address.address1},{address.address2},{address.city},{address.state},{address.country},{address.zip}</Typography>
                         </Grid>
                         <Grid item container direction="column" xs={12} sm={6}>
-                        <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                        <div className="checkout_container_ordersummary_subtitle">
                             Payment details
-                        </Typography>
+                        </div>
+
                         <Grid container>
-                            {payments.map((payment) => (
-                            <React.Fragment key={payment.name}>
+                            <React.Fragment>
                                 <Grid item xs={6}>
-                                <Typography gutterBottom>{payment.name}</Typography>
+                                <Typography gutterBottom>{payment.cardName}</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                <Typography gutterBottom>{payment.detail}</Typography>
+                                <Typography gutterBottom>{payment.cardNumber}</Typography>
                                 </Grid>
+                                
                             </React.Fragment>
-                            ))}
                         </Grid>
                     </Grid>
                 </Grid>
+                <Button
+                        className="checkout_container_btn_next"
+                        variant="contained"
+                        onClick={handlePlaceOrder}
+                        sx={{ mt: 3, ml: 1 }}
+                        >
+                        Place Order
+                    </Button>
             </div>
             )}
+            {
+                isSubmitOrder&&
+                    isShowLoading&&
+                    <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
+                
+            }
             <Box className="checkout_container_btn_container" sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button className="checkout_container_btn_back" onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                     Back
                   </Button>
                 )}
-
-                <Button
-                className="checkout_container_btn_next"
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                </Button>
             </Box>
         </div>
     )

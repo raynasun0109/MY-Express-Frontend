@@ -28,6 +28,21 @@ export function user_type(type){
         
 }
 
+/**
+ * Calculate the total from array
+ */
+export function calculate_shopping_cart(list){
+    let total = 0;
+   
+
+    list.forEach((item) => {
+        total+=Number(item.price)*Number(item.qty)
+       
+    });
+    return total
+}
+
+
 
 /**
  * Transfer string from shopping cart to Array

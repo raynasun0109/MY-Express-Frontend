@@ -120,7 +120,10 @@ function ProductDetail(props){
     }
 
     function buynow(){
-        navigate('/checkout', { replace: true })
+        const productList=[];
+        product.qty=qty;
+        productList.push(product)
+        navigate('/checkout', {replace: true,state:{products:productList}})
 
     }
 

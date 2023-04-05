@@ -18,14 +18,68 @@
         }
     }
 }
+.checkout_container_ordersummary_price{
+    span{
+        @extend .middle_font;
+
+    }
+}
+.checkout_container_ordersummary_total{
+    color:$red;
+    @extend .middle_font;
+    font-weight: $heavy_bold;
+    margin-top: 20px;
+    span{
+        font-weight: $heavy_bold;
+    }
+}
+.checkout_container_ordersummary_subtitle{
+    color:$red;
+    @extend .big_font;
+    font-weight: $heavy_bold;
+    margin:80px 0 30px 0;
+}
+
 .checkout_container{
     margin: 50px 0;
     padding:0 200px;
-    .checkout_container_content{
+    .checkout_container_btn_container{
+        .checkout_container_btn_back{
+            // background-color: $red;
+            @extend .middle_font;
+            text-transform: capitalize;
+            color:$red;
+        }
+        .checkout_container_btn_back:hover{
+            background: $red_shadow;
+            color:white;
+        }
+    }
+    &_content{
         border:1px solid $base_color;
         border-radius: $border-radius_container;
         margin-top: 50px;
         padding: 40px 100px;
+        .MuiGrid-root {
+            .MuiFormControl-root {
+                .MuiInputBase-root:after {
+                    border-bottom: 2px solid $red;
+                }
+                .Mui-focused{
+                    color:$red;
+                }
+            }
+        }
+        .checkout_container_btn_next{
+            background-color: $red;
+            @extend .middle_font;
+            text-transform: capitalize;
+            color:white;
+        }
+        .checkout_container_btn_next:hover{
+            background: $red_shadow;
+        }
+      
         &_title{
             @extend .big_font;
             color:$red;
@@ -37,16 +91,5 @@
         // margin-left: 15%;
         // width: 70%;
     }
-    .checkout_container_btn_container{
-        
-        .checkout_container_btn_back, .checkout_container_btn_next{
-            background-color: $red;
-            @extend .middle_font;
-            text-transform: capitalize;
-            color:white;
-        }
-        .checkout_container_btn_back:hover, .checkout_container_btn_next:hover{
-            background: $red_shadow;
-        }
-    }
+
 }
