@@ -18,6 +18,9 @@ import Box from '@mui/material/Box';
 import {retrieve_shopping_cart} from '../../../utils/functions';
 import {updateOneUser} from '../../../service/UserService';
 import NumericInput from 'react-numeric-input';
+import {connect} from "react-redux";
+import {removeCountry,addCountry} from "../../../redux/actions/index.js";
+import { useNavigate,useLocation } from 'react-router-dom';
 
 const cookies = new Cookies();
 
@@ -28,10 +31,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
 }));
 
-export default function UserCart(){
-
+function UserCart(prop){
     const [shoppingCart,setShoppingCart]=useState([])
     const [cookie,setCookie]=useState('')
+    let location = useLocation();
+    const navigate = useNavigate()
 
    useEffect(() => {
         fetchCookie()
@@ -45,11 +49,11 @@ export default function UserCart(){
     function handleQty (uuid,value) {
         console.log(uuid,value)
         // setQty(value)
-        shoppingCart.forEach((item) => {
-            if(item.uuid==uuid){
-                item.qty=JSON.stringify(value)
-            }
-          });
+        // shoppingCart.forEach((item) => {
+        //     if(item.uuid==uuid){
+        //         item.qty=JSON.stringify(value)
+        //     }
+        //   });
           const {first_name, last_name,password,email,type,created_at,update_at}=cookie;
           const data={
               first_name, last_name,password,email,type,uuid:cookie.uuid,
@@ -59,21 +63,32 @@ export default function UserCart(){
           const newCookie={
             created_at,update_at,first_name, last_name,password,email,type,uuid:cookie.uuid,shopping_cart:JSON.stringify(shoppingCart)
           }
-          updateOneUser(data)
-              .then(res => {
-                 console.log("Res",res)
-                 setShoppingCart(shoppingCart)
-                 setCookie(newCookie)
-                 cookies.set('myShopaholic',JSON.stringify(newCookie))
-              })
+        //   updateOneUser(data)
+        //       .then(res => {
+        //          console.log("Res",res)
+        //          setShoppingCart(shoppingCart)
+        //          setCookie(newCookie)
+        //          cookies.set('myShopaholic',JSON.stringify(newCookie))
+        //       })
         console.log(shoppingCart)
         console.log(data,cookie)
 
     };
 
+    function checkout(prop){
+        // const productList=[];
+        // product.qty=qty;
+        // productList.push(product)
+        // console.log('ssss',prop)
+        navigate('/checkout', {replace: true,state:{products:prop}})
+
+    }
+
     return (
         <UserLayout key="UserCart">
-            <div className="user_cart_container">{console.log(shoppingCart)}
+            <div className="user_cart_container">
+            {console.log(console.log('prop',prop)
+)}
                     <TableContainer className="user_cart_container_left">
                         <Table sx={{ minWidth: 700 }} aria-label="customized table">
                             <TableHead className="user_cart_container_table_head">
@@ -88,9 +103,9 @@ export default function UserCart(){
                                 </TableRow>
                             </TableHead>
                             <TableBody className="merchant_container_bottom_body">
-                                {console.log('shoppingCart',shoppingCart)}
-                            {shoppingCart&&
-                            shoppingCart.map((row) => (
+                                {/* {console.log('shoppingCart',shoppingCart)} */}
+                            {prop.state.products.shoppingCart&&
+                            prop.state.products.shoppingCart.map((row) => (
                                 <TableRow key={row.uuid}>
                                     <TableCell scope="row" className="user_cart_container_body_img_container">
                                         <img src={row.image}/>{row.name}
@@ -127,9 +142,28 @@ export default function UserCart(){
                         <div className="user_cart_container_right_content_left">Subtotal</div>
                         <div className="user_cart_container_right_content_right">$</div>
                     </div>
-                    <Button fullWidth className="user_cart_checkout_btn">Checkout Now</Button>
+                    <Button fullWidth className="user_cart_checkout_btn" onClick={()=>checkout(prop.state.products.shoppingCart)}>Checkout Now</Button>
                 </div>
             </div>
         </UserLayout>
     )
 }
+
+const mapStateToProps=(state)=>{
+        console.log('statssse',state)
+
+    return {
+        state,
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        addCountry(item){
+            dispatch(addCountry(item))
+        },
+        removeCountry(item){
+            dispatch(removeCountry(item))
+        },
+    }
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(UserCart);

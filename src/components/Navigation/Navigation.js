@@ -226,11 +226,12 @@ function Navigation(prop) {
               </Button>
             ))}
           </Box>
+          {/* {console.log('state',prop)} */}
           {
             cookie.type!=="2" &&
             <Box className="cart_container">
                 <Link to={`/dashboard/user/${cookie.uuid}/carts`}>
-                  <Badge badgeContent={shoppingCart.length} className="cart_container_badge">
+                  <Badge badgeContent={prop.state.products.totalNumber} className="cart_container_badge">
                     <ShoppingCartIcon className="cart_container_cart" />
                   </Badge>
               </Link>

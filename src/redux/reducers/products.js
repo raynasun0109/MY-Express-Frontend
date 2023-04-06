@@ -1,6 +1,11 @@
+import Cookies from 'universal-cookie';
+import {retrieve_shopping_cart} from '../../utils/functions';
+
+const cookies = new Cookies();
+
 const initState={
-    totalNumber:1,
-    shoppingCart:[],
+    totalNumber:cookies.get('myShopaholic').shopping_cart?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)).length:0,
+    shoppingCart:cookies.get('myShopaholic').shopping_cart?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[],
 }
 
 const products=(state=initState,action)=>{

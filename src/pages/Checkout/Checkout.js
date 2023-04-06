@@ -14,10 +14,16 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import './Checkout.scss';
 import Cookies from 'universal-cookie';
-import {calculate_shopping_cart} from '../../utils/functions';
+import {mockup_productList} from '../../utils/mockups.js';
+import {calculate_shopping_cart,formatted_productlist_to_tran_database} from '../../utils/functions';
 import { useNavigate,useLocation } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import Loading from '../../components/Loading/Loading.js';
+import {addOneOrder} from '../../service/OrdersService';
+import {updateOneProduct} from '../../service/ProductService';
+import {addOneTransaction} from '../../service/TransactionService';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const cookies = new Cookies();
 
@@ -50,7 +56,8 @@ export default function Checkout(props){
       
     useEffect(() => {
         fetchCookie();
-        fetchData()
+        fetchData();
+        checkCookie()
     }, []);
  
     function fetchData(){
@@ -60,7 +67,7 @@ export default function Checkout(props){
     function fetchCookie(){
         setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
     }
-    console.log('props',location)
+    // console.log('props',location)
     const handleNext = () => {
         setActiveStep(activeStep + 1);
       };
@@ -105,19 +112,97 @@ export default function Checkout(props){
         setPayment({ ...payment, 'cvv': value });
     };
 
+    function checkCookie(){
+        setShowLoading(cookies.get('myShopaholic')?false:true);
+        setTitle("Login details expired");
+        setContent("Direct to the login page now");
+        setLoading(true);
+        if(cookies.get('myShopaholic')==undefined){
+            setTimeout(() => navigate('/login'), 3000);
+        }
+    }
+
     const handlePlaceOrder = ()=>{
         setIsSubmitOrder(true);
-        setTitle("Place order successfully");
-        setContent("Direct to the home page now");
+        setTitle("Placing order now....");
+        setContent("Please don't leave this page");
         setLoading(true);
         setShowLoading(true);
-        // setTimeout(() => navigate('/'), 3000);
+                           //clear shopping cart
+        const transactionUuidArray=[];
+        const order_uuid=uuidv4();
+        let size=0;
+        formatted_productlist_to_tran_database(productList).forEach((value, key, map)=>{
+            const transactionUuid=uuidv4();
+            transactionUuidArray.push(transactionUuid);
+
+            const newTransaction={
+                uuid:transactionUuid,
+                 merchant_uuid:key,
+                 order_uuid,product_content:JSON.stringify(value),status:"Paid",user_uuid:cookie.uuid
+            }
+            for (let i =0;i<value.length;i++){
+                const data = {
+                    name: value[i].name,
+                    description: value[i].description,
+                    category: value[i].category,
+                    price: value[i].price,
+                    image: value[i].image,
+                    location: value[i].location,
+                    stock: Number(value[i].stock)-value[i].qty,
+                    merchant_uuid:value[i].merchant_uuid,
+                    uuid:value[i].uuid,
+                  }
+                // console.log('dadaadad',Number(value[i].stock),value[i].qty,Number(value[i].stock)-value[i].qty)
+                updateOneProduct(data).then(res => {
+                        if(res.status==200){
+                            console.log("update product succsfully")
+                        } else{
+                            console.log("update product failed")
+                        }
+                })
+            }
+
+            addOneTransaction(newTransaction).then(res => {
+                if(res){
+                    
+                    console.log("update addOneTransaction succsfully",res)
+                } else{
+                    console.log("update addOneTransaction failed")
+                }
+            })
+            size++;
+
+        })
+
+        const newOrder={
+            transaction_uuids:transactionUuidArray,
+            user_uuid:cookie.uuid,
+            order_uuid
+        }
+
+        if(size==formatted_productlist_to_tran_database(productList).size){
+            addOneOrder(newOrder).then(res => {
+                if(res){
+                    setTitle("Place order successfully");
+                    setContent("Direct to the home page now");
+                    setLoading(true);
+                    setShowLoading(true);
+                    // console.log("update newOrder succsfully",res)
+                    setTimeout(() => navigate('/'), 3000);
+    
+                } else{
+                    console.log("update newOrder failed")
+                }
+            })
+        }
+      
+      
     }
     
     return (
         <div className="checkout_container">
-            {            console.log('address',address,payment)
-}
+            {/* {            console.log('address',address,payment) */}
             <Box sx={{ width: '100%' }} className="checkout_container_stepper_box">
                 <Stepper activeStep={activeStep} alternativeLabel className="checkout_container_stepper">
                     {steps.map((label) => (

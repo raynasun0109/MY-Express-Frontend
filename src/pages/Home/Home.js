@@ -28,7 +28,7 @@ function Home(prop) {
             <Navigation data={prop.state}/>
             <Carousel/>
             <div className="container">
-                <button onClick={()=>{addCountry('item')}}>myyyyyy</button>
+                {/* <button onClick={()=>{addCountry('item')}}>myyyyyy</button> */}
             <div className="main_container">
                 <div>
                     <div className="main_title">
@@ -56,6 +56,7 @@ function Home(prop) {
 }
 
 const mapStateToProps=(state)=>{
+    // console.log('333',state)
     return {
         state,
 

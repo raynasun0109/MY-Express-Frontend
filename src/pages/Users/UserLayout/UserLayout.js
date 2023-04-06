@@ -17,7 +17,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
-
+import {connect} from "react-redux";
+import {removeCountry,addCountry} from "../../../redux/actions/index.js";
 
 const cookies = new Cookies();
 
@@ -78,7 +79,7 @@ const setting_content = [
     }
   ];
 
-export default function UserLayout({children}) {
+function UserLayout({children},props) {
     const [cookie,setCookie]=useState('')
     const [isSetIcon,setIcon]=useState();
     const [isShowLoading,setShowLoading]=useState(false);
@@ -134,7 +135,7 @@ export default function UserLayout({children}) {
 
   return (
     <div className="user_layout_container" key={uuidv4()}>
-        {/* {console.log(activeTab)} */}
+        {console.log(props)}
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
@@ -189,3 +190,20 @@ export default function UserLayout({children}) {
     </div>
   )
 }
+const mapStateToProps=(state)=>{
+    return {
+        state,
+  
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        addCountry(item){
+            dispatch(addCountry(item))
+        },
+        removeCountry(item){
+            dispatch(removeCountry(item))
+        },
+    }
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(UserLayout);

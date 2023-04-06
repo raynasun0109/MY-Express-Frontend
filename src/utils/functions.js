@@ -42,7 +42,27 @@ export function calculate_shopping_cart(list){
     return total
 }
 
+/**
+ * sort product list to the format to write into transaction database
+ */
+export function formatted_productlist_to_tran_database(list){   
+    const newMap=new Map();
+    list.forEach((listItem) => {
+        // console.log(listItem.merchant_uuid)
+        if(newMap.has(listItem.merchant_uuid)){
+            // console.log('get',newMap.get(listItem.merchant_uuid))
+            newMap.set(listItem.merchant_uuid,[...newMap.get(listItem.merchant_uuid),listItem])
+            
+        } else{
+            // console.log('has',newMap.has(`${listItem.merchant_uuid}`))
 
+            newMap.set(listItem.merchant_uuid,[listItem])
+        }
+
+       
+    });
+    return newMap
+}
 
 /**
  * Transfer string from shopping cart to Array
