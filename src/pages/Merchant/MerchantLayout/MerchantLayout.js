@@ -130,15 +130,15 @@ export default function MerchantLayout({children}) {
     }
 
   return (
-    <div className="user_layout_container" key={uuidv4()}>
+    <div className="merchant_layout_container" key={uuidv4()}>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
           }
         <Navigation/>
-        <div className="user_layout_container_content">
-        <div className="user_layout_container_content_left">
-                 <List className="user_layout_container_content_left_menu" >
+        <div className="merchant_layout_container_content">
+        <div className="merchant_layout_container_content_left">
+                 <List className="merchant_layout_container_content_left_menu" >
                     {setting_content.map((item)=>{
                         return (
                             <>

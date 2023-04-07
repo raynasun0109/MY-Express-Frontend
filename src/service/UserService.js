@@ -24,3 +24,15 @@ export function userLogin (params){
         return res;
     });
 }
+
+export function updateOneShoppingCart (params){
+    return axios.post(`${router.baseUrl}${router.updateOneShoppingCart}`,params).then(res => {
+        return res;
+    });
+}
+
+export function fetchOneShoppingCart (params){
+    return axios.post(`${router.baseUrl}${router.fetchOneShoppingCart}`,params).then(res => {
+        return res;
+    });
+}

@@ -29,7 +29,7 @@ export function user_type(type){
 }
 
 /**
- * Calculate the total from array
+ * Calculate the total money from array
  */
 export function calculate_shopping_cart(list){
     let total = 0;
@@ -40,6 +40,23 @@ export function calculate_shopping_cart(list){
        
     });
     return total
+}
+
+/**
+ * Calculate the total number from array
+ */
+export function calculate_shopping_cart_number(list){
+
+    if(list){
+        let total = 0;
+        list.forEach((item) => {
+            total+=Number(item.qty)
+        });
+        console.log(total)
+        return total
+    } else{
+        return 0
+    }
 }
 
 /**
@@ -68,14 +85,17 @@ export function formatted_productlist_to_tran_database(list){
  * Transfer string from shopping cart to Array
  */
 export function retrieve_shopping_cart(data){
-    if (data.length==2){
-        return []
-    } else{
+    console.log('fun',data)
+    if (data&&data.length>2){
+        console.log('111')
         // const data_string=JSON.stringify(data.slice(1,data.length-1));
         const data_string=JSON.stringify(data);
         const formattedData=JSON.parse(data_string)
         // console.log("data_string",formattedData)
         return formattedData;
+    } else{
+        console.log('22')
+        return '[]'
     }
 }
 

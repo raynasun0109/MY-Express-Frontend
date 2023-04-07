@@ -17,13 +17,14 @@ import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import ProductCard from '../../components/ProductCard/ProductCard.js';
 import {allProducts,latestProducts} from '../../service/ProductService';
-import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {addProduct} from "../../redux/actions/products";
-import {updateOneUser} from '../../service/UserService';
+import {updateOneUser,updateOneShoppingCart} from '../../service/UserService';
 import Cookies from 'universal-cookie';
 import {retrieve_shopping_cart,update_shopping_cart} from '../../utils/functions';
 import { v4 as uuidv4 } from 'uuid';
+import {connect,useSelector,useDispatch} from "react-redux";
+import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
 
 const cookies = new Cookies();
 
@@ -50,6 +51,8 @@ function ProductDetail(props){
     const [cookie,setCookie]=useState('')
 
     const [qty, setQty] = useState(1);
+    const dispatch = useDispatch();
+
 
     let location = useLocation();
     const navigate = useNavigate()
@@ -79,15 +82,15 @@ function ProductDetail(props){
         // const stringifyAddedProduct=JSON.stringify(addedProduct)
         // stringifyAddedProduct.replace("'","\'")
 
-        const {first_name, last_name,password,email,type,uuid}=cookie;
+        // const {first_name, last_name,password,email,type,uuid}=cookie;
         // console.log(cookie.shopping_cart)
         const shopping_cart=retrieve_shopping_cart(cookie.shopping_cart);
-        // console.log('shopping_cart',shopping_cart)
+        console.log('shopping_cart',shopping_cart)
 
         // console.log('cookie',shopping_cart.length)
 
         const oldShoppingCart=shopping_cart.length>0?JSON.parse(shopping_cart):[];
-                // console.log('oldShoppingCart',oldShoppingCart)
+                console.log('oldShoppingCart',oldShoppingCart)
 
         // const formattedOldShoppingCart=JSON.parse(oldShoppingCart)
         // console.log('oldShoppingCart',formattedOldShoppingCart)
@@ -96,27 +99,14 @@ function ProductDetail(props){
         // const check = check_shopping_cart(product,[])
         // const formattedShoppingCart=JSON.stringify(newShoppingCart).replace("'","\'");
         // const formattedShoppingCart=newShoppingCart
-        // console.log('check',formattedShoppingCart)
-        // console.log('oldShoppingCart',oldShoppingCart);
 
-        
-        const data={
-            first_name, last_name,password,email,type,uuid,
-            shopping_cart:JSON.stringify(newShoppingCart)
-        }
-        // console.log("data",data)
-        updateOneUser(data)
-            .then(res => {
-               console.log("Res",res)
-                // setShoppingCart(JSON.stringify(newShoppingCart))
-                 setCookie(JSON.stringify(res.data.data))
-                 cookies.set('myShopaholic',JSON.stringify(res.data.data))
-            })
+        dispatch({type:'updateShoppingCart',data:{shopping_cart:newShoppingCart,uuid:cookie.uuid}})
 
     }
-
+//todo 
     function handleClick(id){
-        navigate(`product/${id}`)
+
+        navigate(`product/${id}`,{replace:true})
     }
 
     function buynow(){

@@ -13,6 +13,7 @@ function Home(prop) {
    const navigate = useNavigate()
 
     useEffect(() => {
+        // window.location.reload();
         latestProducts({number:5}).then(res => {
             setProducts(res.data);
       });

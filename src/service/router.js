@@ -25,6 +25,10 @@ export const userLogin="/users/login";
 
 export const updateOneUser="/users/update/one";
 
+export const updateOneShoppingCart="/users/update/shoppingcart/one";
+
+export const fetchOneShoppingCart="/users/get/shoppingcart/one";
+
 
 //orders
 export const addOneOrder="/orders/add/one";

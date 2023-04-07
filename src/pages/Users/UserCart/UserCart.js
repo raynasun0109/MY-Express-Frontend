@@ -15,11 +15,12 @@ import TablePagination from '@mui/material/TablePagination';
 import {getProductsFromMerchant,deleteOneProduct,updateOneProduct,addOneProduct} from '../../../service/ProductService';
 import moment from "moment";
 import Box from '@mui/material/Box';
-import {retrieve_shopping_cart} from '../../../utils/functions';
+import {retrieve_shopping_cart,calculate_shopping_cart} from '../../../utils/functions';
 import {updateOneUser} from '../../../service/UserService';
 import NumericInput from 'react-numeric-input';
-import {connect} from "react-redux";
+import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../../redux/actions/index.js";
+import {updateShoppingCart} from "../../../redux/actions/products.js";
 import { useNavigate,useLocation } from 'react-router-dom';
 
 const cookies = new Cookies();
@@ -36,6 +37,7 @@ function UserCart(prop){
     const [cookie,setCookie]=useState('')
     let location = useLocation();
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
    useEffect(() => {
         fetchCookie()
@@ -43,36 +45,21 @@ function UserCart(prop){
 
     function fetchCookie(){
         setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-        setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
+        // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
     }
 
-    function handleQty (uuid,value) {
-        console.log(uuid,value)
-        // setQty(value)
-        // shoppingCart.forEach((item) => {
-        //     if(item.uuid==uuid){
-        //         item.qty=JSON.stringify(value)
-        //     }
-        //   });
-          const {first_name, last_name,password,email,type,created_at,update_at}=cookie;
-          const data={
-              first_name, last_name,password,email,type,uuid:cookie.uuid,
-              shopping_cart:JSON.stringify(shoppingCart)
-          }
-          
-          const newCookie={
-            created_at,update_at,first_name, last_name,password,email,type,uuid:cookie.uuid,shopping_cart:JSON.stringify(shoppingCart)
-          }
-        //   updateOneUser(data)
-        //       .then(res => {
-        //          console.log("Res",res)
-        //          setShoppingCart(shoppingCart)
-        //          setCookie(newCookie)
-        //          cookies.set('myShopaholic',JSON.stringify(newCookie))
-        //       })
-        console.log(shoppingCart)
-        console.log(data,cookie)
+    function handleQty (uuid,value,shoppingCart,prop) {
+        // console.log('handleQty',shoppingCart)
+        shoppingCart.forEach((item) => {
+            if(item.uuid==uuid){
+                item.qty=value
+            }
+     
+        })
+        dispatch({type:'updateShoppingCart',data:{shopping_cart:shoppingCart,uuid:cookie.uuid}})
 
+        // prop.updateShoppingCart({shopping_cart:shoppingCart,uuid:cookie.uuid});
+        // console.log('shoppingCart',shoppingCart)
     };
 
     function checkout(prop){
@@ -87,8 +74,8 @@ function UserCart(prop){
     return (
         <UserLayout key="UserCart">
             <div className="user_cart_container">
-            {console.log(console.log('prop',prop)
-)}
+            {/* {console.log(console.log('prop',prop) */}
+
                     <TableContainer className="user_cart_container_left">
                         <Table sx={{ minWidth: 700 }} aria-label="customized table">
                             <TableHead className="user_cart_container_table_head">
@@ -103,7 +90,7 @@ function UserCart(prop){
                                 </TableRow>
                             </TableHead>
                             <TableBody className="merchant_container_bottom_body">
-                                {/* {console.log('shoppingCart',shoppingCart)} */}
+                                {console.log('shoppingCart',prop.state)}
                             {prop.state.products.shoppingCart&&
                             prop.state.products.shoppingCart.map((row) => (
                                 <TableRow key={row.uuid}>
@@ -115,7 +102,7 @@ function UserCart(prop){
                                     </TableCell>
                                     <TableCell>
                                     <NumericInput min={0} value={row.qty} precision={0} className="number_input"
-                                        onChange={(value) => {handleQty(row.uuid,value)}}/>
+                                        onChange={(value) => {handleQty(row.uuid,value,prop.state.products.shoppingCart,prop)}}/>
                                     </TableCell>
                                    
                                     <TableCell>
@@ -140,7 +127,7 @@ function UserCart(prop){
                     </div>
                     <div className="user_cart_container_right_content">
                         <div className="user_cart_container_right_content_left">Subtotal</div>
-                        <div className="user_cart_container_right_content_right">$</div>
+                        <div className="user_cart_container_right_content_right">${calculate_shopping_cart(prop.state.products.shoppingCart)}</div>
                     </div>
                     <Button fullWidth className="user_cart_checkout_btn" onClick={()=>checkout(prop.state.products.shoppingCart)}>Checkout Now</Button>
                 </div>
@@ -150,8 +137,6 @@ function UserCart(prop){
 }
 
 const mapStateToProps=(state)=>{
-        console.log('statssse',state)
-
     return {
         state,
     }
@@ -163,6 +148,9 @@ const mapStateToProps=(state)=>{
         },
         removeCountry(item){
             dispatch(removeCountry(item))
+        },
+        updateShoppingCart(shoppingCart,uuid){
+            dispatch(updateShoppingCart(shoppingCart,uuid))
         },
     }
   }

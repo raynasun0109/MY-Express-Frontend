@@ -135,7 +135,7 @@ function UserLayout({children},props) {
 
   return (
     <div className="user_layout_container" key={uuidv4()}>
-        {console.log(props)}
+        {/* {console.log(props)} */}
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>

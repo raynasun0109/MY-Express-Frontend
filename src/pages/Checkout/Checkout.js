@@ -23,7 +23,10 @@ import {addOneOrder} from '../../service/OrdersService';
 import {updateOneProduct} from '../../service/ProductService';
 import {addOneTransaction} from '../../service/TransactionService';
 import { v4 as uuidv4 } from 'uuid';
-
+import {connect,useSelector,useDispatch} from "react-redux";
+import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import {updateShoppingCart,cleanShoppingCart} from "../../redux/actions/products.js";
+import {fetchOneShoppingCart,updateOneShoppingCart} from '../../service/UserService';
 
 const cookies = new Cookies();
 
@@ -32,7 +35,8 @@ const steps = [
     'Payment details',
     'Review your order',
   ];
-export default function Checkout(props){
+
+function Checkout(props){
     const [activeStep, setActiveStep] = useState(0);
     const [isSubmitOrder, setIsSubmitOrder] = useState(false);
 
@@ -52,6 +56,7 @@ export default function Checkout(props){
       const [isSetIcon,setIcon]=useState();
       const [isShowLoading,setShowLoading]=useState(false);
       const navigate = useNavigate();
+      const dispatch = useDispatch()
 
       
     useEffect(() => {
@@ -128,7 +133,7 @@ export default function Checkout(props){
         setContent("Please don't leave this page");
         setLoading(true);
         setShowLoading(true);
-                           //clear shopping cart
+
         const transactionUuidArray=[];
         const order_uuid=uuidv4();
         let size=0;
@@ -165,7 +170,12 @@ export default function Checkout(props){
 
             addOneTransaction(newTransaction).then(res => {
                 if(res){
-                    
+                    dispatch({type:'cleanShoppingCart',data:{shopping_cart:[]}})
+                    const oldCookie=cookies.get('myShopaholic');
+                    oldCookie.shopping_cart=JSON.stringify([]);
+                    // cookies.set('myShopaholic',JSON.stringify(oldCookie),{
+                    //     maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
+                    //  })
                     console.log("update addOneTransaction succsfully",res)
                 } else{
                     console.log("update addOneTransaction failed")
@@ -181,7 +191,7 @@ export default function Checkout(props){
             order_uuid
         }
 
-        if(size==formatted_productlist_to_tran_database(productList).size){
+        setTimeout(() => {
             addOneOrder(newOrder).then(res => {
                 if(res){
                     setTitle("Place order successfully");
@@ -189,13 +199,29 @@ export default function Checkout(props){
                     setLoading(true);
                     setShowLoading(true);
                     // console.log("update newOrder succsfully",res)
-                    setTimeout(() => navigate('/'), 3000);
-    
+                    // setTimeout(() => navigate('/'), 3000);
+                    const oldCookie=cookies.get('myShopaholic');
+                    oldCookie.shopping_cart=JSON.stringify([]);
+                    const data={
+                        shoppingCart:JSON.stringify([]),
+                        uuid:cookie.uuid
+                    }
+                    updateOneShoppingCart(data).then(res => {
+                        if(res.status==200){
+                            cookies.set('myShopaholic',JSON.stringify(oldCookie),{
+                                maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
+                             })
+                        } else{
+                        
+                        }
+                      })
+                    navigate('/')
                 } else{
                     console.log("update newOrder failed")
                 }
             })
-        }
+
+        }, 3000);
       
       
     }
@@ -479,3 +505,25 @@ export default function Checkout(props){
         </div>
     )
 }
+const mapStateToProps=(state)=>{
+    return {
+        state,
+    }
+  }
+  const mapDispatchToProps=(dispatch)=>{
+    return {
+        addCountry(item){
+            dispatch(addCountry(item))
+        },
+        removeCountry(item){
+            dispatch(removeCountry(item))
+        },
+        updateShoppingCart(shoppingCart,uuid){
+            dispatch(updateShoppingCart(shoppingCart,uuid))
+        },
+        cleanShoppingCart(item){
+            dispatch(cleanShoppingCart(item))
+        },
+    }
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(Checkout);

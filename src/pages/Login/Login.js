@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -14,9 +14,13 @@ import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import {connect,useSelector,useDispatch} from "react-redux";
+import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+
 const cookies = new Cookies();
 
-export default function Login () {
+function Login (prop) {
   const [isLoading,setLoading]=useState(false);
   const [title,setTitle]=useState();
   const [content,setContent]=useState();
@@ -25,8 +29,13 @@ export default function Login () {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch()
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        // console.log('hang',prop)
+
         const form = new FormData(event.currentTarget);
         const data = {
           email: form.get('email'),
@@ -34,10 +43,12 @@ export default function Login () {
         }
         userLogin(data).then(res => {
           if(res.data.code==1){
+            console.log('login',res)
             cookies.set('myShopaholic',JSON.stringify(res.data.data[0]),{
               maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
            })
-            console.log(333,cookies.get('myShopaholic'));
+           dispatch({type:'refreshShoppingCart',data:{shopping_cart:res.data.data[0].shopping_cart}})
+
             setTitle("Login successfully");
             setContent("Direct to the home page now");
             setLoading(true);
@@ -128,3 +139,24 @@ export default function Login () {
         </div>
     );
 };
+
+const mapStateToProps=(state)=>{
+  return {
+      state,
+      }
+  }
+  
+  const mapDispatchToProps=(dispatch)=>{
+      return {
+          refreshShoppingCart(){
+              dispatch(refreshShoppingCart())
+          },
+          removeCountry(item){
+              dispatch(removeCountry(item))
+          },
+          updateShoppingCart(shoppingCart,uuid){
+              dispatch(updateShoppingCart(shoppingCart,uuid))
+          },
+      }
+    }
+    export default connect(mapStateToProps,mapDispatchToProps)(Login);

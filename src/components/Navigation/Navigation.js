@@ -25,12 +25,14 @@ import Cookies from 'universal-cookie';
 import {user_type} from '../../utils/functions.js';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {connect} from "react-redux";
+import {connect,useSelector} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import {getShoppingCart} from "../../redux/actions/products.js";
+
 import {retrieve_shopping_cart} from '../../utils/functions';
 import { useNavigate,useLocation,Link } from 'react-router-dom';
 import { createMemoryHistory } from "history";
-
+import {fetchOneShoppingCart} from '../../service/UserService';
 const cookies = new Cookies();
  
 // const user_info=cookies.get('myShopaholic');
@@ -105,18 +107,43 @@ function Navigation(prop) {
     bottom: false,
     right: false,
   });
-
+ 
   // const totalNumber=1;
   const [cookie,setCookie]=useState('')
-  const {totalNumber}=prop.state.products;
-  const [shoppingCart,setShoppingCart]=useState([])
+  // const [totalNumber,setTotalNumber]=useState(0)
+
+  // const {totalNumber}=prop.state.products;
+  // const [shoppingCart,setShoppingCart]=useState([])
 
   useEffect(() => {
     setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-    setShoppingCart(cookies.get('myShopaholic')?retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart):[])
-
+    // setShoppingCart(cookies.get('myShopaholic')?retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart):[])
+    fetchShoppingCart();
     // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
   }, []);
+  // const { totalNumber } = useSelector((state) => ({
+  //   totalNumber: state.products.totalNumber
+  // }))
+  // function shoppingCartTotalNumber(){
+  //   const { totalNumber } = useSelector((state) => ({
+  //     totalNumber: state.products.totalNumber
+  //   }))
+  //   console.log('useSelector',totalNumber)
+  // }
+  function fetchShoppingCart(){
+    if (cookies.get('myShopaholic')){
+      const uuid=cookies.get('myShopaholic').uuid;
+
+      fetchOneShoppingCart({uuid}).then(res => {
+        if(res.status==200){
+            // console.log("fetch ShoppingCart succsfully",res)
+        } else{
+            // console.log("fetch ShoppingCart failed",res)
+        }
+      })
+    }
+  
+  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -175,7 +202,7 @@ function Navigation(prop) {
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
-          {/* {console.log("v",JSON.stringify(cookie),JSON.parse(JSON.stringify(myyyy)),typeof shoppingCart)} */}
+          {console.log("v",JSON.stringify(cookie),cookies.get('myShopaholic'))}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
@@ -226,7 +253,7 @@ function Navigation(prop) {
               </Button>
             ))}
           </Box>
-          {/* {console.log('state',prop)} */}
+          {console.log('nav',prop.state.products)}
           {
             cookie.type!=="2" &&
             <Box className="cart_container">
@@ -237,7 +264,8 @@ function Navigation(prop) {
               </Link>
             </Box>
           }
-          
+          {/* {console.log('ddddd',getShoppingCart())} */}
+          {/* {console.log('cookie',cookie.length)} */}
           <Box sx={{ flexGrow: 0 }}>
             {
               cookie
@@ -305,6 +333,9 @@ const mapDispatchToProps=(dispatch)=>{
       removeCountry(item){
           dispatch(removeCountry(item))
       },
+      getShoppingCart(){
+        dispatch(getShoppingCart())
+      }
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Navigation);
