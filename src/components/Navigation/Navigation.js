@@ -188,13 +188,12 @@ function Navigation(prop) {
   function jumpTo(prop){
     const path=generate_path(prop,cookie);
     // navigate(path,true)
-    console.log('path',path)
+    // console.log('path',path)
     if (path=="/logout"){
           navigate(path, { replace: true })
 
   }else{
-      console.log("navigate")
-
+      // console.log("navigate")
       navigate(path)
   }
   }
@@ -202,7 +201,7 @@ function Navigation(prop) {
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
-          {console.log("v",JSON.stringify(cookie),cookies.get('myShopaholic'))}
+          {/* {console.log("v",JSON.stringify(cookie),cookies.get('myShopaholic'))} */}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
@@ -253,7 +252,7 @@ function Navigation(prop) {
               </Button>
             ))}
           </Box>
-          {console.log('nav',prop.state.products)}
+          {/* {console.log('nav',prop.state.products)} */}
           {
             cookie.type!=="2" &&
             <Box className="cart_container">

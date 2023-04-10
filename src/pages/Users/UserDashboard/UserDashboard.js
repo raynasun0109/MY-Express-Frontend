@@ -7,12 +7,14 @@ import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import FactoryIcon from '@mui/icons-material/Factory';
 import Badge from '@mui/material/Badge';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+
 const cookies = new Cookies();
 
 const my_order_list=[
   {
-    name:"Unpaid",
-    icon:<MoneyOffIcon/>
+    name:"Paid",
+    icon:<CurrencyExchangeIcon/>
 
   },
   {

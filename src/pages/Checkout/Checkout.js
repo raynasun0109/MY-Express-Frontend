@@ -191,6 +191,8 @@ function Checkout(props){
             order_uuid
         }
 
+        console.log('transactionUuidArray',transactionUuidArray)
+
         setTimeout(() => {
             addOneOrder(newOrder).then(res => {
                 if(res){

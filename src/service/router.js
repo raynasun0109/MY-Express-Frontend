@@ -33,5 +33,12 @@ export const fetchOneShoppingCart="/users/get/shoppingcart/one";
 //orders
 export const addOneOrder="/orders/add/one";
 
+export const getOrdersFromOneUser="/orders/get/all/oneUser";
+
+
 //transaction
 export const addOneTransaction="/transaction/add/one";
+
+export const getOneTranscationFromOneOrder="/transaction/get/one/fromOneOrder";
+
+export const getTranscationFromSameOrder="/transaction/get/one/fromSameOrder";

@@ -6,3 +6,9 @@ export function addOneOrder (params){
         return res;
     });
 }
+
+export function getOrdersFromOneUser (params){
+    return axios.post(`${router.baseUrl}${router.getOrdersFromOneUser}`,params).then(res => {
+        return res;
+    });
+}

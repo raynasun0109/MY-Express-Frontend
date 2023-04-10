@@ -115,7 +115,6 @@ export default function MerchantProducts(){
     function fetchCookie(){
         setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
         fetchProductList(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-
     }
 
     function fetchProductList(id){

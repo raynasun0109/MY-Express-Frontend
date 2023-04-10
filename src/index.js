@@ -18,6 +18,10 @@ import MerchantOrders from './pages/Merchant/MerchantOrders/MerchantOrders';
 import MerchantProducts from './pages/Merchant/MerchantProducts/MerchantProducts';
 import UserCart from './pages/Users/UserCart/UserCart';
 import Checkout from './pages/Checkout/Checkout';
+import UserPaid from './pages/Users/UserOrders/UserPaid/UserPaid';
+import UserProcessing from './pages/Users/UserOrders/UserProcessing/UserProcessing';
+import UserShipped from './pages/Users/UserOrders/UserShipped/UserShipped';
+
 
 import {
   createBrowserRouter,
@@ -64,6 +68,18 @@ const router = createBrowserRouter([
   {
     path: "dashboard/user/:id/orders",
     element: <UserOrders />
+  },
+  {
+    path: "dashboard/user/:id/orders/paid",
+    element: <UserPaid />
+  },
+  {
+    path: "dashboard/user/:id/orders/processing",
+    element: <UserProcessing />
+  },
+  {
+    path: "dashboard/user/:id/orders/shipped",
+    element: <UserShipped />
   },
   {
     path: "dashboard/user/:id/carts",

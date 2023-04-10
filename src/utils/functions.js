@@ -1,3 +1,4 @@
+import {getOneTranscationFromOneOrder} from '../service/TransactionService';
 
 /**
  * Iterate Object to Array
@@ -82,19 +83,36 @@ export function formatted_productlist_to_tran_database(list){
 }
 
 /**
+ * sort order list to the format to show in frontend
+ */
+export function formatted_orderlist_to_user_dashboard(list){   
+
+    list.forEach((listItem) => {
+        listItem.transactionList=[];
+
+        splitTransactionStringArray(listItem.transaction_uuids).map((itemUuid)=>{
+            getOneTranscationFromOneOrder({uuid:itemUuid}).then(res => {
+                listItem.transactionList.push(res.data[0])
+            })
+        })
+
+    });
+    return list
+}
+/**
  * Transfer string from shopping cart to Array
  */
 export function retrieve_shopping_cart(data){
-    console.log('fun',data)
+    // console.log('fun',data)
     if (data&&data.length>2){
-        console.log('111')
+        // console.log('111')
         // const data_string=JSON.stringify(data.slice(1,data.length-1));
         const data_string=JSON.stringify(data);
         const formattedData=JSON.parse(data_string)
         // console.log("data_string",formattedData)
         return formattedData;
     } else{
-        console.log('22')
+        // console.log('22')
         return '[]'
     }
 }
@@ -140,4 +158,59 @@ export function update_shopping_cart(product,list){
        
     //     return list;
     // }
+}
+
+/**
+ * Transfer string from Transaction Array
+ */
+export function splitTransactionStringArray(stringTransaction){
+    const checkComma=stringTransaction.includes(',');
+    if (checkComma){
+        let transactionArray=stringTransaction.split(',');
+        // console.log(transactionArray)
+        return transactionArray;
+    } else{
+        let transactionArray=[];
+        transactionArray.push(stringTransaction);
+        // console.log(transactionArray)
+
+        return transactionArray;
+    }
+
+}
+
+/**
+ * Sorted Transaction Array
+ */
+export function sortTransactionArray(list){
+    list.sort((a, b) => a.created_at - b.reated_at);
+
+    // console.log(list)
+    const newMap=new Map();
+    list.forEach((listItem) => {
+        // console.log(listItem.merchant_uuid)
+        if(newMap.has(listItem.order_uuid)){
+            // console.log('get',newMap.get(listItem.merchant_uuid))
+            newMap.set(listItem.order_uuid,[...newMap.get(listItem.order_uuid),listItem])
+            
+        } else{
+            // console.log('has',newMap.has(`${listItem.merchant_uuid}`))
+
+            newMap.set(listItem.order_uuid,[listItem])
+        }
+
+       
+    });
+    // return newMap
+
+    const newList=[];
+    newMap.forEach(function(value,key){
+        newList.push(value)
+
+    })
+
+    return newList;
+   
+
+
 }

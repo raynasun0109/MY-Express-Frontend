@@ -48,9 +48,9 @@ const setting_content = [
       key:'orders',
       children:[
         {
-            name:'Unpaid',
-            url:'orders',
-            key:'unpaid',
+            name:'Paid',
+            url:'orders/paid',
+            key:'paid',
         },
         {
             name:'Processing',
