@@ -1,16 +1,24 @@
 @import '../../../config/_styles.scss';
-
+.user_dashboard_container_title{
+    @extend .big_font;
+    color:$red;
+    font-weight: $heavy_bold;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.user_dashboard_container_block{
+    background-color: white;
+    padding:$content_vertical 50px;
+    border-radius: $border-radius_container;
+    margin-bottom: 40px;
+}
 .user_dashboard_container{
+    &_top{
+        display: flex;
+        // justify-content: space-between;
+    }
     &_order{
-        background-color: white;
-        padding:$content_vertical;
-        border-radius: $border-radius_container;
-        &_title{
-            @extend .big_font;
-            color:$red;
-            font-weight: $heavy_bold;
-            margin-bottom: 40px;
-        }
+        margin-right: 40px;
         &_content{
             
             display: flex;

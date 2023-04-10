@@ -1,4 +1,5 @@
 import {getOneTranscationFromOneOrder} from '../service/TransactionService';
+import moment from "moment";
 
 /**
  * Iterate Object to Array
@@ -185,17 +186,12 @@ export function splitTransactionStringArray(stringTransaction){
 export function sortTransactionArray(list){
     list.sort((a, b) => a.created_at - b.reated_at);
 
-    // console.log(list)
     const newMap=new Map();
     list.forEach((listItem) => {
-        // console.log(listItem.merchant_uuid)
         if(newMap.has(listItem.order_uuid)){
-            // console.log('get',newMap.get(listItem.merchant_uuid))
             newMap.set(listItem.order_uuid,[...newMap.get(listItem.order_uuid),listItem])
             
         } else{
-            // console.log('has',newMap.has(`${listItem.merchant_uuid}`))
-
             newMap.set(listItem.order_uuid,[listItem])
         }
 
@@ -210,7 +206,16 @@ export function sortTransactionArray(list){
     })
 
     return newList;
-   
+}
 
-
+/**
+ * Sorted Transaction data for dashboard
+ */
+export function sortTransactionData(list){
+    list.sort((a, b) => a.created_at - b.reated_at);
+    list.forEach((listItem) => {
+        listItem.date=moment(JSON.parse(listItem.created_at)).format('YYYY-MM-DD HH:mm')
+        listItem.spent=JSON.parse(listItem.product_content)[0].qty*JSON.parse(listItem.product_content)[0].price
+    })
+    return list;
 }

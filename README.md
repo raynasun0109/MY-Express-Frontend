@@ -76,3 +76,4 @@ cookie:https://github.com/reactivestack/cookies
 router:https://reactrouter.com/en/main/start/tutorial
 test account: customer :user@test.com(123456)  merchant: shop@test.com(123456)
 number input :https://www.npmjs.com/package/react-numeric-input
+chart: https://recharts.org/en-US/guide
