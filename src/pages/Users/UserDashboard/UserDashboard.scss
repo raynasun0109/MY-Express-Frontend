@@ -2,28 +2,39 @@
 
 .user_dashboard_container{
     &_order{
+        background-color: white;
         padding:$content_vertical;
+        border-radius: $border-radius_container;
         &_title{
             @extend .big_font;
             color:$red;
             font-weight: $heavy_bold;
-            margin-bottom: $content_vertical;
+            margin-bottom: 40px;
         }
         &_content{
             
             display: flex;
             .user_dashboard_container_order_item{
-                border:2px solid red;
-                margin-right: 20px;
+                // border:2px solid red;
+                margin-right: 50px;
                 text-align: center;
                 .order_content_name{
                     @extend .middle_font;
-                    color:$red;
-                    font-weight: $heavy_bold;
+                    color:$dark_grey;
+                    margin-bottom: 10px;
+                    // font-weight: $heavy_bold;
                 }
                 .order_content_icon{
                     .order_content_badge{
-                        color:$red;
+                        color:$dark_grey;
+                        .MuiSvgIcon-root {
+                            width: 35px;
+                            height: 35px;
+                        }
+                        .MuiBadge-badge {
+                            font-weight: $heavy_bold;
+                            background-color:$yellow;
+                        }
                         
                     }
                 }
