@@ -54,20 +54,7 @@ function generate_path (item,user_info){
     return url
   }
 }
-const setting_content = [
-  {
-    name:'Profile',
-    url:'/profile'
-  },
-  {
-    name:'Dashboard',
-    url:'/dashboard'
-  },
-  {
-    name:'Logout',
-    url:'/logout'
-  }
-];
+
 function stringToColor(string) {
   let hash = 0;
   let i;
@@ -100,6 +87,7 @@ function stringAvatar(name) {
 function Navigation(prop) {
   const navigate = useNavigate()
   let history = createMemoryHistory();
+  const [cookie,setCookie]=useState('')
 
   const [state, setState] = useState({
     top: false,
@@ -109,11 +97,6 @@ function Navigation(prop) {
   });
  
   // const totalNumber=1;
-  const [cookie,setCookie]=useState('')
-  // const [totalNumber,setTotalNumber]=useState(0)
-
-  // const {totalNumber}=prop.state.products;
-  // const [shoppingCart,setShoppingCart]=useState([])
 
   useEffect(() => {
     setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
@@ -121,15 +104,7 @@ function Navigation(prop) {
     fetchShoppingCart();
     // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
   }, []);
-  // const { totalNumber } = useSelector((state) => ({
-  //   totalNumber: state.products.totalNumber
-  // }))
-  // function shoppingCartTotalNumber(){
-  //   const { totalNumber } = useSelector((state) => ({
-  //     totalNumber: state.products.totalNumber
-  //   }))
-  //   console.log('useSelector',totalNumber)
-  // }
+
   function fetchShoppingCart(){
     if (cookies.get('myShopaholic')){
       const uuid=cookies.get('myShopaholic').uuid;
@@ -145,6 +120,20 @@ function Navigation(prop) {
   
   }
 
+  const setting_content = [
+    {
+      name:'Profile',
+      url:`/dashboard/user/${cookie.uuid}/profile`
+    },
+    {
+      name:'Dashboard',
+      url:`/dashboard`
+    },
+    {
+      name:'Logout',
+      url:'/logout'
+    }
+  ];
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
