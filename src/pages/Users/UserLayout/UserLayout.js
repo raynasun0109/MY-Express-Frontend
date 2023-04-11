@@ -39,6 +39,12 @@ const setting_content = [
         url:'dashboard',
         collapse:false,
         key:'dashboard'
+    },
+    {
+        name:'My Profile',
+        url:'profile',
+        collapse:false,
+        key:'profile'
       },
     {
       name:'My Orders',

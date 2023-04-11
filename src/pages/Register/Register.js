@@ -14,10 +14,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {registerOneUser} from '../../service/UserService';
-import CryptoJs from 'crypto-js';
+
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
+var CryptoJS = require("crypto-js");
 
 const cookies = new Cookies();
 
@@ -40,7 +41,7 @@ export default function Register () {
         const data = {
           first_name: form.get('first_name'),
           email: form.get('email'),
-          password: CryptoJs.MD5(form.get('password')).toString(),
+          password: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(form.get('password'))),
           last_name: form.get('last_name'),
           type
         }

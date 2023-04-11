@@ -79,3 +79,14 @@ table,thead,tbody,tfoot,tr,th,td {
 th, td {
     display: inline;
 }
+
+//buttons
+.red_button{
+    background-color: $red;
+    text-transform: capitalize;
+    @extend .middle_font;
+    padding: 10px 20px;
+}
+.red_button:hover{
+    background-color: $red_shadow;
+}
