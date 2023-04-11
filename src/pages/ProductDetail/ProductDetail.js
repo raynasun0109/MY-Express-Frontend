@@ -73,17 +73,6 @@ function ProductDetail(props){
     function handleAddToCart(){
      
         product['qty']= qty;
-        // console.log(qty)
-
-        // product['qty']= product['qty']?product['qty'][0]+qty[0]:qty[0];
-        // console.log('product',product)
-        // const addedProduct=[];
-        // addedProduct.push(product)
-        // const stringifyAddedProduct=JSON.stringify(addedProduct)
-        // stringifyAddedProduct.replace("'","\'")
-
-        // const {first_name, last_name,password,email,type,uuid}=cookie;
-        // console.log(cookie.shopping_cart)
         const shopping_cart=retrieve_shopping_cart(cookie.shopping_cart);
         console.log('shopping_cart',shopping_cart)
 

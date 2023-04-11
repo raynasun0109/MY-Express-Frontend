@@ -21,7 +21,7 @@ import Checkout from './pages/Checkout/Checkout';
 import UserPaid from './pages/Users/UserOrders/UserPaid/UserPaid';
 import UserProcessing from './pages/Users/UserOrders/UserProcessing/UserProcessing';
 import UserShipped from './pages/Users/UserOrders/UserShipped/UserShipped';
-
+import UserProfile from './pages/Users/UserProfile/UserProfile';
 
 import {
   createBrowserRouter,
@@ -53,10 +53,6 @@ const router = createBrowserRouter([
     element: <Checkout />
   },
   {
-    path: "profile",
-    element: <Register />
-  },
-  {
     path: "logout",
     element: <Logout />,
     forceRefresh:true
@@ -64,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "dashboard/user/:id/dashboard",
     element: <UserDashboard />,
+  },
+  {
+    path: "dashboard/user/:id/profile",
+    element: <UserProfile />,
   },
   {
     path: "dashboard/user/:id/orders",

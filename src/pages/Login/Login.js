@@ -10,13 +10,14 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import './Login.scss';
 import {userLogin} from '../../service/UserService';
-import CryptoJs from 'crypto-js';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+
+var CryptoJS = require("crypto-js");
 
 const cookies = new Cookies();
 
@@ -39,7 +40,7 @@ function Login (prop) {
         const form = new FormData(event.currentTarget);
         const data = {
           email: form.get('email'),
-          password: CryptoJs.MD5(form.get('password')).toString(),
+          password: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(form.get('password'))),
         }
         userLogin(data).then(res => {
           if(res.data.code==1){
