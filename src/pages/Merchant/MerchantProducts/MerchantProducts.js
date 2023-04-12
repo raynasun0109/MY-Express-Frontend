@@ -21,15 +21,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 const cookies = new Cookies();
-const style = {
-    position: 'absolute',
-    // top: '50%',
-    // left: '50%',
-    // transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-  };
+// const style = {
+//     position: 'absolute',
+//     // top: '50%',
+//     // left: '50%',
+//     // transform: 'translate(-50%, -50%)',
+//     bgcolor: 'background.paper',
+//     boxShadow: 24,
+//     p: 4,
+//   };
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
     },
@@ -86,7 +86,7 @@ function getComparator(order, orderBy) {
 export default function MerchantProducts(){
     const [order, setOrder] = React.useState(DEFAULT_ORDER);
     const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
-    const [selected, setSelected] = React.useState([]);
+    // const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [visibleRows, setVisibleRows] = React.useState(null);
@@ -124,25 +124,25 @@ export default function MerchantProducts(){
             })
     }
 
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected = [];
+    // const handleClick = (event, name) => {
+    //     const selectedIndex = selected.indexOf(name);
+    //     let newSelected = [];
     
-        if (selectedIndex === -1) {
-          newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-          newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-          newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-          newSelected = newSelected.concat(
-            selected.slice(0, selectedIndex),
-            selected.slice(selectedIndex + 1),
-          );
-        }
+    //     if (selectedIndex === -1) {
+    //       newSelected = newSelected.concat(selected, name);
+    //     } else if (selectedIndex === 0) {
+    //       newSelected = newSelected.concat(selected.slice(1));
+    //     } else if (selectedIndex === selected.length - 1) {
+    //       newSelected = newSelected.concat(selected.slice(0, -1));
+    //     } else if (selectedIndex > 0) {
+    //       newSelected = newSelected.concat(
+    //         selected.slice(0, selectedIndex),
+    //         selected.slice(selectedIndex + 1),
+    //       );
+    //     }
     
-        setSelected(newSelected);
-      };
+    //     setSelected(newSelected);
+    //   };
     
     const handleChangePage = React.useCallback(
         (event, newPage) => {
@@ -312,7 +312,7 @@ export default function MerchantProducts(){
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={rows.length}
+                count={productList.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
