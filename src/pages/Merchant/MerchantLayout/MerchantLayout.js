@@ -37,6 +37,12 @@ const setting_content = [
         url:'dashboard',
         collapse:false,
         key:'dashboard'
+    },
+    {
+        name:'Transaction Management',
+        url:'transaction',
+        collapse:false,
+        key:'transaction'
       },
     {
       name:'My Orders',

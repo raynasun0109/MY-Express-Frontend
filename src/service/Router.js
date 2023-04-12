@@ -42,3 +42,7 @@ export const addOneTransaction="/transaction/add/one";
 export const getOneTranscationFromOneOrder="/transaction/get/one/fromOneOrder";
 
 export const getTranscationFromSameOrder="/transaction/get/one/fromSameOrder";
+
+export const getTranscationFromSameMerchant="/transaction/get/one/fromSameMerchant";
+
+export const updateOneTransaction="/transaction/update/one";
