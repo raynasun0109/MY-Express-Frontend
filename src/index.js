@@ -22,6 +22,7 @@ import UserPaid from './pages/Users/UserOrders/UserPaid/UserPaid';
 import UserProcessing from './pages/Users/UserOrders/UserProcessing/UserProcessing';
 import UserShipped from './pages/Users/UserOrders/UserShipped/UserShipped';
 import UserProfile from './pages/Users/UserProfile/UserProfile';
+import MerchantTransaction from './pages/Merchant/MerchantTransaction/MerchantTransaction';
 
 import {
   createBrowserRouter,
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
   {
     path: "dashboard/merchant/:id/products",
     element: <MerchantProducts />
+  },
+  {
+    path: "dashboard/merchant/:id/transaction",
+    element: <MerchantTransaction />
   },
   {
     path: "product/:id",

@@ -90,3 +90,15 @@ th, td {
 .red_button:hover{
     background-color: $red_shadow;
 }
+
+.red_outline_button{
+    text-transform: capitalize;
+    border:1.5px solid $red;
+    color:$red;
+}
+
+.red_outline_button:hover{
+    border:1.5px solid $red;
+    background-color: $red;
+    color:white;
+}
