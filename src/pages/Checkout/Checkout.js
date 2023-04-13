@@ -144,7 +144,10 @@ function Checkout(props){
             const newTransaction={
                 uuid:transactionUuid,
                  merchant_uuid:key,
-                 order_uuid,product_content:JSON.stringify(value),status:"Paid",user_uuid:cookie.uuid
+                 order_uuid,product_content:JSON.stringify(value),
+                 status:"Paid",
+                 user_uuid:cookie.uuid,
+                 total:Number(JSON.stringify(value).price)*(JSON.stringify(value).qty)
             }
             for (let i =0;i<value.length;i++){
                 const data = {
@@ -191,7 +194,7 @@ function Checkout(props){
             order_uuid
         }
 
-        console.log('transactionUuidArray',transactionUuidArray)
+        // console.log('transactionUuidArray',transactionUuidArray)
 
         setTimeout(() => {
             addOneOrder(newOrder).then(res => {

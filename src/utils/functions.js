@@ -130,11 +130,6 @@ export function update_shopping_cart(product,list){
 
     if(checkExist!==-1){
         list[checkExist].qty+=product.qty;
-        // list.forEach((item) => {
-        //     if(item.uuid==product.uuid){
-        //         item.qty=JSON.stringify(product.qty+Number(item.qty))
-        //     }
-        //   });
     } else{
         list.push(product)
     }

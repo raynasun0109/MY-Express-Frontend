@@ -46,3 +46,12 @@ export const getTranscationFromSameOrder="/transaction/get/one/fromSameOrder";
 export const getTranscationFromSameMerchant="/transaction/get/one/fromSameMerchant";
 
 export const updateOneTransaction="/transaction/update/one";
+<<<<<<< HEAD
+=======
+
+export const getTotalFromTranscation="/transaction/get/total";
+
+export const getDailyTotalFromTranscation="/transaction/get/total/daily";
+
+export const getWeeklyTranscation="/transaction/get/total/weekly";
+>>>>>>> ae3fdb698819cb993885ea8e8a266c9fd64bce21

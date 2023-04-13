@@ -1,35 +1,53 @@
-// @import '../../../config/_styles.scss';
+@import '../../../config/_styles.scss';
 
-// .user_dashboard_container{
-//     &_order{
-//         padding:$content_vertical;
-//         &_title{
-//             @extend .big_font;
-//             color:$red;
-//             font-weight: $heavy_bold;
-//             margin-bottom: $content_vertical;
-//         }
-//         &_content{
-            
-//             display: flex;
-//             .user_dashboard_container_order_item{
-//                 border:2px solid red;
-//                 margin-right: 20px;
-//                 text-align: center;
-//                 .order_content_name{
-//                     @extend .middle_font;
-//                     color:$red;
-//                     font-weight: $heavy_bold;
-//                 }
-//                 .order_content_icon{
-//                     .order_content_badge{
-//                         color:$red;
-                        
-//                     }
-//                 }
-//             }
-           
-//         }
-//     }
-  
-// }
+.merchant_dashboard_container_title{
+    @extend .big_font;
+    color:$red;
+    font-weight: $heavy_bold;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.merchant_dashboard_container_content_title{
+    @extend .middle_font;
+    font-weight: $heavy_bold;
+    color:$red;
+    margin-bottom: 30px;
+}
+
+.merchant_dashboard_container_block{
+    background-color: white;
+    padding:$content_vertical 20px;
+    border-radius: $border-radius_container;
+    margin-bottom: 40px;
+    box-shadow: $shadow_middle;
+}
+
+.merchant_dashboard_container{
+    &_top{
+        .merchant_dashboard_container_content{
+            display: flex;
+            justify-content: space-between;
+            &_left{
+                .merchant_dashboard_container_content_container{
+                    .merchant_dashboard_container_content_text{
+                        &_amount{
+                            @extend .big_font;
+                            font-weight: $heavy_bold;
+                            color:$red;
+                        }
+                        &_title{
+                            @extend .middle_font;
+                            font-weight: $heavy_bold;
+                            margin-bottom: 5px;
+                            margin-top: 30px;
+                        }
+
+                    }
+                }
+          
+            }
+        }
+
+    }
+}

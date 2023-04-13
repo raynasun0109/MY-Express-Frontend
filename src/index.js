@@ -23,6 +23,13 @@ import UserProcessing from './pages/Users/UserOrders/UserProcessing/UserProcessi
 import UserShipped from './pages/Users/UserOrders/UserShipped/UserShipped';
 import UserProfile from './pages/Users/UserProfile/UserProfile';
 import MerchantTransaction from './pages/Merchant/MerchantTransaction/MerchantTransaction';
+<<<<<<< HEAD
+=======
+import MerchantPaid from './pages/Merchant/MerchantTransaction/MerchantPaid/MerchantPaid';
+import MerchantProcessing from './pages/Merchant/MerchantTransaction/MerchantProcessing/MerchantProcessing';
+import MerchantShipped from './pages/Merchant/MerchantTransaction/MerchantShipped/MerchantShipped';
+import MerchantProfile from './pages/Merchant/MerchantProfile/MerchantProfile';
+>>>>>>> ae3fdb698819cb993885ea8e8a266c9fd64bce21
 
 import {
   createBrowserRouter,
@@ -91,6 +98,10 @@ const router = createBrowserRouter([
     element: <MerchantDashboard />
   },
   {
+    path: "dashboard/merchant/:id/profile",
+    element: <MerchantProfile />
+  },
+  {
     path: "dashboard/merchant/:id/orders",
     element: <MerchantOrders />
   },
@@ -103,7 +114,23 @@ const router = createBrowserRouter([
     element: <MerchantTransaction />
   },
   {
-    path: "product/:id",
+    path: "dashboard/merchant/:id/transaction/paid",
+    element: <MerchantPaid />
+  },
+  {
+    path: "dashboard/merchant/:id/transaction/processing",
+    element: <MerchantProcessing />
+  },
+  {
+    path: "dashboard/merchant/:id/transaction/shipped",
+    element: <MerchantShipped />
+  },
+  {
+    path: "product/:category/:id",
+    element: <ProductDetail />,
+  },
+  {
+    path: "product/:category",
     element: <ProductDetail />,
   },
 ]);

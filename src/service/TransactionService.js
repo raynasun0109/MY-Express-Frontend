@@ -29,4 +29,25 @@ export function getTranscationFromSameMerchant (params){
     return axios.post(`${router.baseUrl}${router.getTranscationFromSameMerchant}`,params).then(res => {
         return res;
     });
+<<<<<<< HEAD
+=======
+}
+
+export function getTotalFromTranscation (params){
+    return axios.post(`${router.baseUrl}${router.getTotalFromTranscation}`,params).then(res => {
+        return res;
+    });
+}
+
+export function getDailyTotalFromTranscation (params){
+    return axios.post(`${router.baseUrl}${router.getDailyTotalFromTranscation}`,params).then(res => {
+        return res;
+    });
+}
+
+export function getWeeklyTranscation (params){
+    return axios.post(`${router.baseUrl}${router.getWeeklyTranscation}`,params).then(res => {
+        return res;
+    });
+>>>>>>> ae3fdb698819cb993885ea8e8a266c9fd64bce21
 }
