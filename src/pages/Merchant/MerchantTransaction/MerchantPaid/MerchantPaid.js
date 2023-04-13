@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './MerchantTransaction.scss';
-import MerchantLayout from '../MerchantLayout/MerchantLayout';
+import './MerchantPaid.scss';
+import MerchantLayout from '../../MerchantLayout/MerchantLayout';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import {getTranscationFromSameMerchant,updateOneTransaction} from "../../../service/TransactionService";
+import {getTranscationFromSameMerchant,updateOneTransaction} from "../../../../service/TransactionService";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -33,8 +33,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const DEFAULT_ORDER = 'asc';
 const DEFAULT_ORDER_BY = 'calories';
 const DEFAULT_ROWS_PER_PAGE = 5;
-
-
 
 function getComparator(order, orderBy) {
     return order === 'desc'
@@ -68,7 +66,7 @@ function descendingComparator(a, b, orderBy) {
     return stabilizedThis.map((el) => el[0]);
   }
 
-function MerchantTransaction(){
+function MerchantPaid(){
     const [order, setOrder] = React.useState(DEFAULT_ORDER);
     const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
     const [page, setPage] = React.useState(0);
@@ -104,7 +102,7 @@ function MerchantTransaction(){
     }
 
     function fetchTranList(id){
-        getTranscationFromSameMerchant({merchant_uuid:id.uuid})
+        getTranscationFromSameMerchant({merchant_uuid:id.uuid,status:"paid"})
             .then(res => {
                 setTranList(res.data)
             })
@@ -155,12 +153,10 @@ function MerchantTransaction(){
 
     const handleUpdateProduct=(event)=>{
         event.preventDefault();
-        const form = new FormData(event.currentTarget);
         const data = {
             uuid: tempUpdate.transaction_uuid,
             status,
           }
-        //   console.log('handleUpdateProduct',data)
 
           updateOneTransaction(data).then(res => {
                 if(res.status==200){
@@ -181,7 +177,7 @@ function MerchantTransaction(){
                             <StyledTableCell>UUID</StyledTableCell>
                             {/* <StyledTableCell>Customer</StyledTableCell> */}
                             <StyledTableCell>Image</StyledTableCell>
-                            <StyledTableCell>Product</StyledTableCell>
+                            <StyledTableCell>Products</StyledTableCell>
                             <StyledTableCell>Amount</StyledTableCell>
                             <StyledTableCell>Total</StyledTableCell>
                             <StyledTableCell>Status</StyledTableCell>
@@ -293,4 +289,4 @@ function MerchantTransaction(){
     )
 }
 
-export default MerchantTransaction;
+export default MerchantPaid;

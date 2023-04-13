@@ -1,0 +1,45 @@
+@import '../../../config/_styles.scss';
+
+.user_profile_container{
+    padding: $content_horizontal;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: $shadow_middle;
+
+    border-radius: $border-radius_container;
+    &_box{
+        .MuiGrid-container {
+            .update_confirm_btn{
+                @extend .red_button;
+                // background-color: $red;
+                // text-transform: capitalize;
+                // @extend .middle_font;
+                // padding: 10px 20px;
+            }
+            // .update_confirm_btn:hover{
+            //     background-color: $red_shadow;
+            // }
+
+            .MuiGrid-item {
+                margin: auto;
+            }
+            .user_profile_container_box_content{
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                &_title{
+                    @extend .middle_font;
+                    width: 100px;
+                    margin-right: 10px;
+                }
+                &_input{
+                    width:60%;
+                }
+                &_type{
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+
+}
