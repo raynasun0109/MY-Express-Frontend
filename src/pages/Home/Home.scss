@@ -33,3 +33,13 @@
     font-weight: 700;
     margin:0 0 10px 0;
 }
+.sec_container{
+    margin-top: 100px;
+    .sec_title{
+        @extend .big_font;
+        color:$pink;
+        text-align: center;
+        font-weight: 700;
+        margin:0 0 10px 0;
+    }
+}

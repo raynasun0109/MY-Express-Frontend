@@ -17,7 +17,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
 
-
 const cookies = new Cookies();
 
 function generate_path (item,user_info){
@@ -39,31 +38,31 @@ const setting_content = [
         key:'dashboard'
     },
     {
+        name:'My Profile',
+        url:'profile',
+        collapse:false,
+        key:'profile'
+    },
+    {
         name:'Transaction Management',
         url:'transaction',
-        collapse:false,
-        key:'transaction'
-      },
-    {
-      name:'My Orders',
-      url:'orders',
-      collapse:true,
-      collapse_key:"openOrder",
-      key:'orders',
-      children:[
+        collapse:true,
+        collapse_key:"openOrder",
+        key:'transaction',
+        children:[
         {
-            name:'Unpaid',
-            url:'orders',
-            key:'unpaid',
+            name:'Paid',
+            url:'transaction/paid',
+            key:'paid',
         },
         {
             name:'Processing',
-            url:'orders/processing',
+            url:'transaction/processing',
             key:'processing',
         },
         {
             name:'Shipped',
-            url:'orders/shipped',
+            url:'transaction/shipped',
             key:'shipped',
         }
       ]

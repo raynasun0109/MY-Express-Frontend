@@ -7,13 +7,31 @@ import './Home.scss';
 import { useNavigate,useLocation } from 'react-router-dom';
 import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
+const category=[
+    {name:"Clothes",url:"clothes"},
+    {name:"Shoes",url:"clothes"},
+    {name:"Sports",url:"clothes"},
+    {name:"Jewlery",url:"clothes"},
+    {name:"Home Appliances",url:"clothes"},
+    {name:"Pet Supplies",url:"clothes"},
+    {name:"Health",url:"clothes"},
+    {name:"Electronics",url:"clothes"},
+    {name:"Beauty",url:"clothes"},
+    {name:"Toys",url:"clothes"},
+    {name:"Furniture",url:"clothes"},
+    {name:"Phones",url:"clothes"},
+    {name:"Games",url:"clothes"},
+    {name:"Garden",url:"clothes"},
+    {name:"Accessories",url:"clothes"},
+
+]
 function Home(prop) {
    const [products, setProducts] = useState([]);
    const navigate = useNavigate()
 
     useEffect(() => {
-        // window.location.reload();
         latestProducts({number:5}).then(res => {
             setProducts(res.data);
       });
@@ -30,34 +48,46 @@ function Home(prop) {
             <Carousel/>
             <div className="container">
                 {/* <button onClick={()=>{addCountry('item')}}>myyyyyy</button> */}
-            <div className="main_container">
-                <div>
-                    <div className="main_title">
-                        What's NEW
-                    </div>
-                    <div className="products_container">          
-                    {
-                        products.length > 0 && (
-                            products.map( product =>
-                                <div onClick={()=>handleClick(product.uuid)} key={product.uuid} className="products_container_container">
-                                    <ProductCard prop={product}/>
-                                </div>
+                <div className="main_container">
+                    <div>
+                        <div className="main_title">
+                            What's NEW
+                        </div>
+                        <div className="products_container">          
+                        {
+                            products.length > 0 && (
+                                products.map( product =>
+                                    <div onClick={()=>handleClick(product.uuid)} key={product.uuid} className="products_container_container">
+                                        <ProductCard prop={product}/>
+                                    </div>
+                                )
                             )
-                        )
-                    }
+                        }
+                        </div>
                     </div>
-                   
                 </div>
-           
+                <div className="sec_container">
+                    <div className="sec_title">
+                        Shop By Category
+                    </div>
+                    <div className="sec_content_container">
+                        {
+                            category&&
+                            category.map((item)=>
+                            <div>
+                                {item.name}
+                            </div>
 
-            </div>
+                            )
+                        }
+                    </div>
+                </div>
             </div>
         </>
     );
 }
 
 const mapStateToProps=(state)=>{
-    // console.log('333',state)
     return {
         state,
 

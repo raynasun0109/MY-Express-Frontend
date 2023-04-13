@@ -3,7 +3,6 @@
 .user_layout_container{
     background-color:$light_color;
     &_content{
-        // border: 1px solid red;
         padding:$content_horizontal;
         display: flex;
         &_left{
@@ -35,7 +34,6 @@
             }
         }
         &_right{
-            border:1px solid red;
             // background-color: white;
             width:100%;
 
