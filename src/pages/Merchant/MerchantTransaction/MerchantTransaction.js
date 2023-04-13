@@ -209,15 +209,12 @@ function MerchantTransaction(){
                             <TableCell>
                                 {JSON.parse(row.product_content)[0].name}
                             </TableCell>
-<<<<<<< HEAD
-=======
                             <TableCell className="merchant_tran_container_center">
                                 {JSON.parse(row.product_content)[0].qty}
                             </TableCell>
                             <TableCell className="merchant_tran_container_center">
                                 {row.total}
                             </TableCell>
->>>>>>> ae3fdb698819cb993885ea8e8a266c9fd64bce21
                             <TableCell className="merchant_tran_container_status_container">
                                 <span className={`merchant_tran_container_${row.status}`}>{row.status}</span>
                             </TableCell>
