@@ -123,7 +123,11 @@ const router = createBrowserRouter([
     element: <MerchantShipped />
   },
   {
-    path: "product/:id",
+    path: "product/:category/:id",
+    element: <ProductDetail />,
+  },
+  {
+    path: "product/:category",
     element: <ProductDetail />,
   },
 ]);

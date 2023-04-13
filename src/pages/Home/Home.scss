@@ -1,14 +1,78 @@
 @import './../../config/_styles.scss';
 
 .container{
-    background-color: $base_color;
-    padding:100px $layout_horizontal 0 $layout_horizontal;
+    // padding:100px $layout_horizontal 0 $layout_horizontal;
+    .first_container{
+        background-color: $base_color;
+        padding: 100px $layout_horizontal 100px $layout_horizontal;
+        .main_container{
+            background-color: white;
+            border-radius:$border-radius_container;
+            padding: $content_vertical;
+        }
+    }
+    .third_container{
+        .third_title{
+            color:$yellow;
+            @extend .big_font;
+            font-weight: $heavy_bold;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .third_subtitle{
+            text-align: center;
+            @extend .small_font;
+            margin: 10px 0 30px 0;
+            color: $dark_grey;
+        }
+        .third_content_checkbox{
+            text-align: center;
+            @extend .small_font;
+            color: $dark_grey;
+            text-align: left;
+            margin-bottom: 20px;
+            margin-top: 15px;
+            width: 50%;
+            margin-left: 25%;
+            .Mui-checked{
+                color: $yellow;
+            }
+        }
+        .third_content_checkbox_error{
+            margin-bottom: 100px;
+            text-align: center;
+            color:$red;
+            @extend .small_font;
+            font-weight: $heavy_bold;
+        }
+        .third_content_container{
+            display: flex;
+            justify-content: center;
+            width: 500px;
+            margin: 0 auto;
+            .third_content_container_btn{
+                background-color: $yellow;
+                font-weight: $heavy_bold;
+                font-size: 20px;
+                color:white;
+                padding: 15px 20px;
+                border-top-right-radius:  $border-radius_card;
+                border-bottom-right-radius:  $border-radius_card;
+                cursor: pointer;
+            }
+            .third_content_container_input{
+                border: 1px solid $base_color;
+                padding: 5px 10px;
+                border-top-left-radius:  $border-radius_card;
+                border-bottom-left-radius:  $border-radius_card;
+                input{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
-.main_container{
-    background-color: white;
-    border-radius:$border-radius_container;
-    padding: $content_vertical;
-}
+
 .products_container{
     display: flex;
     flex-wrap: wrap;
@@ -34,12 +98,53 @@
     margin:0 0 10px 0;
 }
 .sec_container{
-    margin-top: 100px;
+    // margin-top: 100px;
+    padding:20px 0 50px 0;
+    background-color: $base_color;
+
     .sec_title{
         @extend .big_font;
         color:$pink;
         text-align: center;
         font-weight: 700;
         margin:0 0 10px 0;
+    }
+
+    .sec_content_container{
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &_block:hover{
+            box-shadow: $shadow_middle;
+            border: 2px solid $pink;
+
+        }
+        &_block{
+            border: 2px solid white;
+
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            width: 180px;
+            margin: 10px;
+            background-color: white;
+            border-radius: $border-radius_card;
+            &_img{
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+                img{
+                    width: 100%;
+                    
+                }
+            }
+            &_text{
+                @extend .middle_font;
+                color: $pink;
+                font-weight: $heavy_bold;
+            }
+        }
     }
 }
