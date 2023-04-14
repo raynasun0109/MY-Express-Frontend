@@ -107,11 +107,6 @@ function ProductDetail(props){
 
     function fetchProduct(){
         const productId=location.pathname.split('/')[3];
-<<<<<<< HEAD
-        console.log('location.pathname',location.pathname)
-=======
-        // console.log('location.pathname',location.pathname)
->>>>>>> a56d92c6ee76588d0c61f01bd59c54f377b35fd3
         getOneProduct({uuid:productId})
             .then(res => {
                 setProduct(res.data[0]);

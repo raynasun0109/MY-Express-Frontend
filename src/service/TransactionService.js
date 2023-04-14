@@ -29,10 +29,6 @@ export function getTranscationFromSameMerchant (params){
     return axios.post(`${router.baseUrl}${router.getTranscationFromSameMerchant}`,params).then(res => {
         return res;
     });
-<<<<<<< HEAD
-
-=======
->>>>>>> a56d92c6ee76588d0c61f01bd59c54f377b35fd3
 }
 
 export function getTotalFromTranscation (params){

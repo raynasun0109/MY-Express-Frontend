@@ -27,10 +27,7 @@ import MerchantPaid from './pages/Merchant/MerchantTransaction/MerchantPaid/Merc
 import MerchantProcessing from './pages/Merchant/MerchantTransaction/MerchantProcessing/MerchantProcessing';
 import MerchantShipped from './pages/Merchant/MerchantTransaction/MerchantShipped/MerchantShipped';
 import MerchantProfile from './pages/Merchant/MerchantProfile/MerchantProfile';
-<<<<<<< HEAD
-=======
 import ProductCategory from './pages/ProductCategory/ProductCategory';
->>>>>>> a56d92c6ee76588d0c61f01bd59c54f377b35fd3
 
 import {
   createBrowserRouter,
@@ -127,17 +124,8 @@ const router = createBrowserRouter([
     element: <MerchantShipped />
   },
   {
-<<<<<<< HEAD
-    path: "product/:category/:id",
-    element: <ProductDetail />,
-  },
-  {
-    path: "product/:category",
-    element: <ProductDetail />,
-=======
     path: "product/:category",
     element: <ProductCategory />,
->>>>>>> a56d92c6ee76588d0c61f01bd59c54f377b35fd3
   },
   {
     path: "product/:category/:id",

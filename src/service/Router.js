@@ -47,10 +47,6 @@ export const getTranscationFromSameMerchant="/transaction/get/one/fromSameMercha
 
 export const updateOneTransaction="/transaction/update/one";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a56d92c6ee76588d0c61f01bd59c54f377b35fd3
 export const getTotalFromTranscation="/transaction/get/total";
 
 export const getDailyTotalFromTranscation="/transaction/get/total/daily";
