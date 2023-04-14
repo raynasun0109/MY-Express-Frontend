@@ -1,0 +1,35 @@
+@import './../../config/_styles.scss';
+
+.category_container{
+    &_content{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 $layout_horizontal 100px $layout_horizontal;
+
+    }
+    &_search{
+        display: flex;
+        justify-content: center;
+        width: 700px;
+        margin: 50px auto 70px auto;
+        &_btn{
+            background-color: $red;
+            font-weight: $heavy_bold;
+            font-size: 20px;
+            color:white;
+            padding: 15px 20px;
+            border-top-right-radius:  $border-radius_card;
+            border-bottom-right-radius:  $border-radius_card;
+            cursor: pointer;
+        }
+        &_input{
+            border: 1px solid $base_color;
+            padding: 5px 10px;
+            border-top-left-radius:  $border-radius_card;
+            border-bottom-left-radius:  $border-radius_card;
+            input{
+                font-size: 16px;
+            }
+        }
+    }
+}

@@ -4,7 +4,6 @@ import Navigation from '../../components/Navigation/Navigation.js';
 import { useNavigate,useLocation } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './ProductDetail.scss';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import NumericInput from 'react-numeric-input';
 import Accordion from '@mui/material/Accordion';
@@ -107,7 +106,8 @@ function ProductDetail(props){
     }
 
     function fetchProduct(){
-        const productId=location.pathname.split('/')[2];
+        const productId=location.pathname.split('/')[3];
+        // console.log('location.pathname',location.pathname)
         getOneProduct({uuid:productId})
             .then(res => {
                 setProduct(res.data[0]);

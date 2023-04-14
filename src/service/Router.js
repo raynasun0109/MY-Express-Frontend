@@ -46,3 +46,9 @@ export const getTranscationFromSameOrder="/transaction/get/one/fromSameOrder";
 export const getTranscationFromSameMerchant="/transaction/get/one/fromSameMerchant";
 
 export const updateOneTransaction="/transaction/update/one";
+
+export const getTotalFromTranscation="/transaction/get/total";
+
+export const getDailyTotalFromTranscation="/transaction/get/total/daily";
+
+export const getWeeklyTranscation="/transaction/get/total/weekly";

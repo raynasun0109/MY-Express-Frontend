@@ -1,8 +1,8 @@
 import * as router from "./Router";
 import axios from 'axios';
 
-export function allProducts (){
-    return axios.get(`${router.baseUrl}${router.allProducts}`).then(res => {
+export function allProducts (params){
+    return axios.post(`${router.baseUrl}${router.allProducts}`,params).then(res => {
         return res;
     });
 }
