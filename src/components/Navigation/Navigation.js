@@ -287,7 +287,7 @@ function Navigation(prop) {
                   onClose={handleCloseUserMenu}
                 >
                   {setting_content.map((setting) => (
-                    <div onClick={()=>{jumpTo(setting)}} key={setting.name}>
+                    <div className="user_setting_container_block" onClick={()=>{jumpTo(setting)}} key={setting.name}>
                       <MenuItem key={setting.name} onClick={handleCloseUserMenu} >
                         <Typography textAlign="center">{setting.name}</Typography>
                       </MenuItem>

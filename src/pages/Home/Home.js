@@ -51,14 +51,12 @@ function Home(prop) {
     function handleClick(category,id){
         navigate(`product/${category}/${id}`)
     }
-  
+
     function jump(category){
         navigate(`product/${category}`)
-
     }
 
     function handleClickCheckbox(){
-        // console.log('click')
         setChecked(!checked)
     }
 

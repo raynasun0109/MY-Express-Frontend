@@ -27,6 +27,7 @@ import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,cleanShoppingCart} from "../../redux/actions/products.js";
 import {fetchOneShoppingCart,updateOneShoppingCart} from '../../service/UserService';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -233,6 +234,8 @@ function Checkout(props){
     
     return (
         <div className="checkout_container">
+            <ScrollToTop/>
+
             {/* {            console.log('address',address,payment) */}
             <Box sx={{ width: '100%' }} className="checkout_container_stepper_box">
                 <Stepper activeStep={activeStep} alternativeLabel className="checkout_container_stepper">

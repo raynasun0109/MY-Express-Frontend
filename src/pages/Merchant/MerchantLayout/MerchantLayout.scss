@@ -41,3 +41,22 @@
         }
     }
 }
+.inactive_child_child_menu_tbn{
+    background-color: white;
+    color:black;
+    font-weight: 400;
+    div{
+        padding: 10px 0 10px 40px; 
+
+    }
+}
+
+.active_child_child_menu_tbn{
+    background-color: $red;
+    color:white;
+
+    div{
+        padding: 10px 0 10px 40px; 
+
+    }
+}
