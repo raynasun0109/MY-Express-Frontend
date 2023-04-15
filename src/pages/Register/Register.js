@@ -14,7 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {registerOneUser} from '../../service/UserService';
-
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import Loading from '../../components/Loading/Loading.js';
 import { useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
@@ -67,6 +67,7 @@ export default function Register () {
 
     return (
       <div className="register_container">
+        <ScrollToTop/>
         {
           isShowLoading&&
           <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>

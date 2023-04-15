@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navigation from '../../components/Navigation/Navigation.js';
 import {connect,useSelector,useDispatch} from "react-redux";
 import './AboutUs.scss';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 function AboutUs(props){
 
@@ -9,6 +10,7 @@ function AboutUs(props){
 
     return (
         <div>
+            <ScrollToTop/>
             <Navigation data={props.state}/>
             <div className="about_us_container">
                 <div className="hero_container">

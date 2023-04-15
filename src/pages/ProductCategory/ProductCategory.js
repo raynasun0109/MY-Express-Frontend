@@ -20,6 +20,7 @@ import {connect,useSelector,useDispatch} from "react-redux";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -80,6 +81,7 @@ function ProductCategory(props){
 
     return (
         <div>
+            <ScrollToTop/>
             <Navigation data={props.state}/>
             <div className="category_container">
                 <div className="category_container_search">
@@ -97,8 +99,8 @@ function ProductCategory(props){
                     {
                         productList&&
                         productList.map(product =>
-                            <div onClick={()=>handleClick(product.category,product.uuid)} key={product.uuid} className="products_container_container">
-                                <ProductCard prop={product}/>
+                            <div key={product.uuid} className="products_container_container">
+                                <ProductCard prop={product} category={product.category} uuid={product.uuid}/>
                             </div>
                         )
                     }

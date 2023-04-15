@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {getOneProduct} from '../../service/ProductService';
 import Navigation from '../../components/Navigation/Navigation.js';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,useLocation,Link } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './ProductDetail.scss';
 import Button from '@mui/material/Button';
@@ -24,6 +24,8 @@ import {retrieve_shopping_cart,update_shopping_cart} from '../../utils/functions
 import { v4 as uuidv4 } from 'uuid';
 import {connect,useSelector,useDispatch} from "react-redux";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+import { createMemoryHistory } from "history";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -55,6 +57,7 @@ function ProductDetail(props){
 
     let location = useLocation();
     const navigate = useNavigate()
+    let history = createMemoryHistory();
 
 
     useEffect(() => {
@@ -91,11 +94,6 @@ function ProductDetail(props){
         dispatch({type:'updateShoppingCart',data:{shopping_cart:newShoppingCart,uuid:cookie.uuid}})
 
     }
-//todo 
-    function handleClick(id){
-
-        navigate(`product/${id}`,{replace:true})
-    }
 
     function buynow(){
         const productList=[];
@@ -118,15 +116,14 @@ function ProductDetail(props){
 
     return (
         <div>
-            {
-                            // console.log('product',product)
-
-}
+            <ScrollToTop/>
             <Navigation data={props.state}/>
             <div className="product_detail_container">
                 <div className="category_container">
-                    {product&&product.category&& product.category.toLowerCase()}  
-                     <ArrowForwardIosIcon/>
+                    <Link to={`http://${window.location.host}/product/${product.category}`}>
+                        {product&&product.category&& product.category.toLowerCase()}  
+                        <ArrowForwardIosIcon/>
+                     </Link>
                 </div>
                 <div className="product_display_container">
                     <div className="product_display_container_left">
@@ -195,8 +192,8 @@ function ProductDetail(props){
                     {
                         recommendProducts.length > 0 && (
                             recommendProducts.map( product =>
-                                <div onClick={()=>handleClick(product.uuid)} key={product.uuid} className="products_container_container">
-                                    <ProductCard prop={product}/>
+                                <div key={product.uuid} className="products_container_container">
+                                    <ProductCard prop={product} uuid={product.uuid} category={location.pathname.split('/')[2]}/>
                                 </div>
                             )
                         )

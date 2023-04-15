@@ -16,6 +16,7 @@ import Cookies from 'universal-cookie';
 import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 var CryptoJS = require("crypto-js");
 
@@ -67,6 +68,7 @@ function Login (prop) {
 
     return (
         <div className="login_container">
+          <ScrollToTop/>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>

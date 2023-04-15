@@ -16,6 +16,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -136,6 +137,7 @@ export default function MerchantLayout({children}) {
 
   return (
     <div className="merchant_layout_container" key={uuidv4()}>
+        <ScrollToTop/>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>

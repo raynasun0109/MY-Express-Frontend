@@ -19,6 +19,7 @@ import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
 import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../../redux/actions/index.js";
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -141,6 +142,7 @@ function UserLayout({children},props) {
 
   return (
     <div className="user_layout_container" key={uuidv4()}>
+        <ScrollToTop/>
         {/* {console.log(props)} */}
           {
             isShowLoading&&
