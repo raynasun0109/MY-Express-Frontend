@@ -44,7 +44,7 @@ const Navigation_content = [
   },
   {
     name:'About Us',
-    url:'about_us'
+    url:'/about_us'
   }
 ];
 
@@ -185,7 +185,7 @@ function Navigation(prop) {
     const path=generate_path(prop,cookie);
     // navigate(path,true)
     // console.log('path',path)
-    if (path=="/logout"){
+    if (path=="/logout"&&path=="/about_us"){
           navigate(path, { replace: true })
 
   }else{
