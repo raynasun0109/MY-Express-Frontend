@@ -39,10 +39,12 @@ const cookies = new Cookies();
 // console.log(999,user_info);
 const Navigation_content = [
   {
-    name:'Home'
+    name:'Home',
+    url:'/'
   },
   {
-    name:'About Us'
+    name:'About Us',
+    url:'about_us'
   }
 ];
 
@@ -122,8 +124,8 @@ function Navigation(prop) {
 
   const setting_content = [
     {
-      name:'Profile',
-      url:`/dashboard/user/${cookie.uuid}/profile`
+        name:'Profile',
+        url:`/dashboard/user/${cookie.uuid}/profile`
     },
     {
       name:'Dashboard',
@@ -134,11 +136,13 @@ function Navigation(prop) {
       url:'/logout'
     }
   ];
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, [anchor]: open });
+    
   };
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -160,7 +164,8 @@ function Navigation(prop) {
     >
       <List>
         {Navigation_content.map((item, index) => (
-          <ListItem key={item.name} disablePadding>
+          <div onClick={()=>jumpTo(item)} key={item.name}>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {item.name % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -168,6 +173,7 @@ function Navigation(prop) {
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
+          </div>
         ))}
       </List>
       <Divider />
@@ -175,6 +181,7 @@ function Navigation(prop) {
   );
 
   function jumpTo(prop){
+    console.log(prop)
     const path=generate_path(prop,cookie);
     // navigate(path,true)
     // console.log('path',path)
@@ -190,7 +197,6 @@ function Navigation(prop) {
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
-          {/* {console.log("v",JSON.stringify(cookie),cookies.get('myShopaholic'))} */}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
@@ -234,14 +240,15 @@ function Navigation(prop) {
             {Navigation_content.map((item,index) => (
               <Button
                 key={item.name}
-                onClick={toggleDrawer('left', false)}
+                onClick={()=>jumpTo(item)}
+                className="desktop_nav_content"
+                // onClick={toggleDrawer('left', false)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {item.name}
               </Button>
             ))}
           </Box>
-          {/* {console.log('nav',prop.state.products)} */}
           {
             cookie.type!=="2" &&
             <Box className="cart_container">
@@ -252,8 +259,6 @@ function Navigation(prop) {
               </Link>
             </Box>
           }
-          {/* {console.log('ddddd',getShoppingCart())} */}
-          {/* {console.log('cookie',cookie.length)} */}
           <Box sx={{ flexGrow: 0 }}>
             {
               cookie

@@ -1,0 +1,61 @@
+@import './../../config/_styles.scss';
+
+.about_us_container{
+    position: relative;
+    .content_container{
+        @extend .middle_font;
+        padding: 0 300px;
+        margin-bottom: 200px;
+    }
+    .person_intro_container{
+        margin: 50px 0 80px 0;
+        display: flex;
+        justify-content: center;
+        &_left{
+            margin-right: 30px;
+            img{
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 12px solid $yellow;
+            }
+        }
+        &_right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            &_name{
+                @extend .big_font;
+                font-weight: $heavy_bold;
+            }
+            &_text{
+                @extend .middle_font;
+                margin-top: 5px;
+                a{
+                    color:black;
+                }
+            }
+
+        }
+    }
+    .hero_container{
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        &_title{
+            @extend .large_font;
+            color:white;
+            font-weight: $heavy_bold;
+            z-index: 999;
+        }
+        img{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            left: 0;
+            height: 300px;
+        }
+    }
+}

@@ -80,7 +80,6 @@ function ProductCategory(props){
 
     return (
         <div>
-            {console.log(productList)}
             <Navigation data={props.state}/>
             <div className="category_container">
                 <div className="category_container_search">
