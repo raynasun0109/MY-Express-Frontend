@@ -14,6 +14,14 @@
                     background: $red;
                     color:white;
                     font-weight: $heavy_bold;
+                    .left_menu_item_container{
+                        .MuiButtonBase-root {
+                            .left_menu_item_icon{
+                                color:white;
+                            }
+                        }
+                    }
+                    
                 }
                 padding:0!important;
                 background: white;

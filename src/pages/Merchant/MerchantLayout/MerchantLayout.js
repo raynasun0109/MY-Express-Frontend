@@ -152,7 +152,7 @@ export default function MerchantLayout({children}) {
                  <List className="merchant_layout_container_content_left_menu" >
                     {setting_content.map((item)=>{
                         return (
-                            <>
+                            <div key={item.key}>
                                {item.key!=="dashboard"&&<Divider />}
                                 <div key={uuidv4()} className={activeTab==item.key?"active_menu_tbn":"inactive_menu_tbn"}>
                                     <div onClick={()=>{jumpTo(item)}} key={item.name} className="left_menu_item_container">
@@ -183,7 +183,7 @@ export default function MerchantLayout({children}) {
                                           </Collapse>
                                             }
                                 </div>
-                            </>
+                            </div>
                             )
                         })
                     }

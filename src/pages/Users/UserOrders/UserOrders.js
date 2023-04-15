@@ -49,7 +49,7 @@ export default function UserOrders(){
 
                     {
                         list.map((item)=>(
-                            <div className="user_order_transaction_container_body">
+                            <div key={item.uuid} className="user_order_transaction_container_body">
                                 <div className="user_order_container_first_block user_order_transaction_container_body_first_block">
                                     <img className="user_order_transaction_container_body_img" src={JSON.parse(item.product_content)[0].image}/>
                                     <div className="user_order_transaction_text_container">

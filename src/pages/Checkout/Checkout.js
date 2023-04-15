@@ -141,6 +141,7 @@ function Checkout(props){
         formatted_productlist_to_tran_database(productList).forEach((value, key, map)=>{
             const transactionUuid=uuidv4();
             transactionUuidArray.push(transactionUuid);
+        // const formattedShoppingCart=JSON.stringify(newShoppingCart).replace("'","\'");
 
             const newTransaction={
                 uuid:transactionUuid,
@@ -148,7 +149,8 @@ function Checkout(props){
                  order_uuid,product_content:JSON.stringify(value),
                  status:"Paid",
                  user_uuid:cookie.uuid,
-                 total:Number(JSON.stringify(value).price)*(JSON.stringify(value).qty)
+                 total:Number(value[0].price)*(Number(value[0].qty)),
+                 address:JSON.stringify(address).replace("'","\'")
             }
             for (let i =0;i<value.length;i++){
                 const data = {
@@ -162,7 +164,6 @@ function Checkout(props){
                     merchant_uuid:value[i].merchant_uuid,
                     uuid:value[i].uuid,
                   }
-                // console.log('dadaadad',Number(value[i].stock),value[i].qty,Number(value[i].stock)-value[i].qty)
                 updateOneProduct(data).then(res => {
                         if(res.status==200){
                             console.log("update product succsfully")
@@ -177,9 +178,6 @@ function Checkout(props){
                     dispatch({type:'cleanShoppingCart',data:{shopping_cart:[]}})
                     const oldCookie=cookies.get('myShopaholic');
                     oldCookie.shopping_cart=JSON.stringify([]);
-                    // cookies.set('myShopaholic',JSON.stringify(oldCookie),{
-                    //     maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
-                    //  })
                     console.log("update addOneTransaction succsfully",res)
                 } else{
                     console.log("update addOneTransaction failed")
@@ -204,8 +202,6 @@ function Checkout(props){
                     setContent("Direct to the home page now");
                     setLoading(true);
                     setShowLoading(true);
-                    // console.log("update newOrder succsfully",res)
-                    // setTimeout(() => navigate('/'), 3000);
                     const oldCookie=cookies.get('myShopaholic');
                     oldCookie.shopping_cart=JSON.stringify([]);
                     const data={
@@ -218,7 +214,6 @@ function Checkout(props){
                                 maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
                              })
                         } else{
-                        
                         }
                       })
                     navigate('/')
@@ -227,9 +222,7 @@ function Checkout(props){
                 }
             })
 
-        }, 3000);
-      
-      
+        }, 3000); 
     }
     
     return (

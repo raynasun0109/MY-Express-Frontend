@@ -94,7 +94,6 @@ function Home(prop) {
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
           }
             <div className="container">
-                {/* <button onClick={()=>{addCountry('item')}}>myyyyyy</button> */}
                 <div className="first_container">
                     <div className="main_container">
                         <div>
