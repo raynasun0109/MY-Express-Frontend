@@ -210,6 +210,7 @@ function Checkout(props){
                     }
                     updateOneShoppingCart(data).then(res => {
                         if(res.status==200){
+                            cookies.remove('myShopaholic');
                             cookies.set('myShopaholic',JSON.stringify(oldCookie),{
                                 maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
                              })

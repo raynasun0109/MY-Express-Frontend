@@ -58,6 +58,7 @@ function updateShoppingCart(item){
             const oldCookie=cookies.get('myShopaholic');
             oldCookie.shopping_cart=JSON.stringify(item.shopping_cart);
            // here
+            cookies.remove('myShopaholic')
             cookies.set('myShopaholic',JSON.stringify(oldCookie),{
                 maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
              })

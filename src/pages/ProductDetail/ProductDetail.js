@@ -76,7 +76,7 @@ function ProductDetail(props){
     };
 
     function getCurrentShoppingCart(uuid){
-        // console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+        console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
         getOneUser({uuid})
             .then(res=>{
                 // console.log('res',res)
@@ -113,12 +113,11 @@ function ProductDetail(props){
 
     return (
         <div>
-            <ScrollToTop/>{        console.log('currentShoppingCart',currentShoppingCart)
-}
+            <ScrollToTop/>
             <Navigation data={props.state}/>
             <div className="product_detail_container">
                 <div className="category_container">
-                    <Link to={`http://${window.location.host}/product/${product.category}`}>
+                    <Link className="category_container_link" to={`http://${window.location.host}/product/${product.category}`}>
                         {product&&product.category&& product.category.toLowerCase()}  
                         <ArrowForwardIosIcon/>
                      </Link>
