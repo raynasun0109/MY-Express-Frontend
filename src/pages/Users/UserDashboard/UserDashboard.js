@@ -107,7 +107,7 @@ export default function UserDashboard() {
             {
               my_order_list.map((item)=>{
                   return(
-                    <div className="user_dashboard_container_order_item">
+                    <div key={item.name} className="user_dashboard_container_order_item">
                       <div className="order_content_icon">
                         <Badge badgeContent={item.total} className="order_content_badge">{item.icon}</Badge>
                       </div>
