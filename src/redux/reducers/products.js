@@ -4,10 +4,10 @@ import {fetchOneShoppingCart,updateOneShoppingCart} from '../../service/UserServ
 
 const cookies = new Cookies();
 const initState={
-    // totalNumber:0,
-    totalNumber:cookies.get('myShopaholic')?calculate_shopping_cart_number(JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart))):0,
-    shoppingCart:cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[]
-    // shoppingCart:[],
+    totalNumber:0,
+    // totalNumber:cookies.get('myShopaholic')?calculate_shopping_cart_number(JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart))):0,
+    // shoppingCart:cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[]
+    shoppingCart:[],
 }
 function fetchShoppingCart(){
     console.log('fetchShoppingCart')
@@ -49,7 +49,7 @@ function updateShoppingCart(item){
         shopping_cart:JSON.stringify(item.shopping_cart),
         uuid:item.uuid
     }
-    console.log('item',item,data)
+    // console.log('item',item,data)
     updateOneShoppingCart(data).then(res => {
         if(res.status==200){
             // console.log('resshoppingCart',res)
