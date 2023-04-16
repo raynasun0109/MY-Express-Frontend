@@ -28,15 +28,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {connect,useSelector} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {getShoppingCart} from "../../redux/actions/products.js";
-
 import {retrieve_shopping_cart} from '../../utils/functions';
 import { useNavigate,useLocation,Link } from 'react-router-dom';
 import { createMemoryHistory } from "history";
 import {fetchOneShoppingCart} from '../../service/UserService';
 const cookies = new Cookies();
  
-// const user_info=cookies.get('myShopaholic');
-// console.log(999,user_info);
 const Navigation_content = [
   {
     name:'Home',
@@ -47,15 +44,6 @@ const Navigation_content = [
     url:'/about_us'
   }
 ];
-
-function generate_path (item,user_info){
-  const {name,url}=item;
-  if(name=="Dashboard"){
-      return `${url}/${user_type(user_info.type)}/${user_info.uuid}/dashboard`
-  } else{
-    return url
-  }
-}
 
 function stringToColor(string) {
   let hash = 0;
@@ -125,11 +113,11 @@ function Navigation(prop) {
   const setting_content = [
     {
         name:'Profile',
-        url:`/dashboard/user/${cookie.uuid}/profile`
+        url:`/dashboard/${user_type(cookie.type)}/${cookie.uuid}/profile`
     },
     {
       name:'Dashboard',
-      url:`/dashboard`
+      url:`/dashboard/${user_type(cookie.type)}/${cookie.uuid}/dashboard`
     },
     {
       name:'Logout',
@@ -181,16 +169,14 @@ function Navigation(prop) {
   );
 
   function jumpTo(prop){
-    console.log(prop)
-    const path=generate_path(prop,cookie);
+    // const path=generate_path(prop,cookie);
     // navigate(path,true)
-    // console.log('path',path)
-    if (path=="/logout"&&path=="/about_us"){
-          navigate(path, { replace: true })
+    if (prop.name=="Logout"&&prop.name=="About Us"){
+          navigate(prop.url, { replace: true })
 
   }else{
       // console.log("navigate")
-      navigate(path)
+      navigate(prop.url)
   }
   }
   return (
