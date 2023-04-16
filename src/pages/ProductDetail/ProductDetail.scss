@@ -38,7 +38,7 @@
         margin:0 0 10px 0;
     }
     .category_container{
-        a{
+        &_link{
             text-decoration: none;
             @extend .big_font;
             text-transform: capitalize;
@@ -48,7 +48,6 @@
             align-items: center;
             margin-bottom: $content_horizontal;
         }
-       
     }
     .product_display_container{
         display: flex;
