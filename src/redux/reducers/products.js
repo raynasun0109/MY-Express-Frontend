@@ -4,10 +4,10 @@ import {fetchOneShoppingCart,updateOneShoppingCart} from '../../service/UserServ
 
 const cookies = new Cookies();
 const initState={
-    totalNumber:0,
-    // totalNumber:cookies.get('myShopaholic')?calculate_shopping_cart_number(JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart))):0,
-    // shoppingCart:cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[]
-    shoppingCart:[],
+    // totalNumber:0,
+    totalNumber:cookies.get('myShopaholic')?calculate_shopping_cart_number(JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart))):0,
+    shoppingCart:cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[]
+    // shoppingCart:[],
 }
 function fetchShoppingCart(){
     console.log('fetchShoppingCart')
@@ -141,14 +141,14 @@ const products=(state=initState,action)=>{
                   }
                 })
               }
-            console.log("state",state,action);
+            // console.log("state",state,action);
             return Object.assign({},state,{
                 totalNumber:state.totalNumber,
             })
 
         case "updateShoppingCart":
             updateShoppingCart(action.data)
-            console.log("updateShoppingCart",state,action);
+            // console.log("updateShoppingCart",state,action);
             return Object.assign({},state,{
                 shoppingCart:action.data.shopping_cart,
                 totalNumber:calculate_shopping_cart_number(action.data.shopping_cart)
@@ -156,7 +156,7 @@ const products=(state=initState,action)=>{
         
         case "refreshShoppingCart":
                 // updateShoppingCart(action.data)
-                    // console.log("updateShoppingCart",state,action);
+                    // console.log("updateShoppingCart",action.data.shopping_cart);
                     // console.log('refreshShoppingCart',action,cookies.get('myShopaholic'))
                 return Object.assign({},state,{
                     totalNumber:calculate_shopping_cart_number(JSON.parse(action.data.shopping_cart)),
@@ -164,7 +164,7 @@ const products=(state=initState,action)=>{
                 })
 
         case "addProduct":
-            console.log("state",state,action);
+            // console.log("state",state,action);
             return Object.assign({},state,{
                     totalNumber:state.totalNumber,
                 })

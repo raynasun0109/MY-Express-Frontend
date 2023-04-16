@@ -141,15 +141,15 @@ function Checkout(props){
         formatted_productlist_to_tran_database(productList).forEach((value, key, map)=>{
             const transactionUuid=uuidv4();
             transactionUuidArray.push(transactionUuid);
-        // const formattedShoppingCart=JSON.stringify(newShoppingCart).replace("'","\'");
 
             const newTransaction={
                 uuid:transactionUuid,
                  merchant_uuid:key,
-                 order_uuid,product_content:JSON.stringify(value),
+                 order_uuid,
+                 product_content:JSON.stringify(value).replace("'","\'"),
                  status:"Paid",
                  user_uuid:cookie.uuid,
-                 total:Number(value[0].price)*(Number(value[0].qty)),
+                 total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
                  address:JSON.stringify(address).replace("'","\'")
             }
             for (let i =0;i<value.length;i++){
