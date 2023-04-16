@@ -76,8 +76,10 @@ function ProductDetail(props){
     };
 
     function getCurrentShoppingCart(uuid){
+        // console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
         getOneUser({uuid})
             .then(res=>{
+                // console.log('res',res)
                 setCurrentShoppingCart(JSON.parse(res.data[0].shopping_cart))
             })
     }
@@ -86,8 +88,9 @@ function ProductDetail(props){
      
         product['qty']= qty;
         const newShoppingCart = update_shopping_cart(product,currentShoppingCart)
+        // console.log("qty",qty)
         dispatch({type:'updateShoppingCart',data:{shopping_cart:newShoppingCart,uuid:cookie.uuid}})
-
+        getCurrentShoppingCart(cookie.uuid)
     }
 
     function buynow(){
@@ -110,7 +113,8 @@ function ProductDetail(props){
 
     return (
         <div>
-            <ScrollToTop/>
+            <ScrollToTop/>{        console.log('currentShoppingCart',currentShoppingCart)
+}
             <Navigation data={props.state}/>
             <div className="product_detail_container">
                 <div className="category_container">

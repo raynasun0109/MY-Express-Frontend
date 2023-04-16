@@ -47,6 +47,10 @@ export default function Register () {
         }
         registerOneUser(data).then(res => {
               if(res.data.code==1){
+                console.log(res)
+                // if(cookies.get('myShopaholic')){
+                //   cookies.remove('myShopaholic')
+                // }
                 cookies.set('myShopaholic',JSON.stringify(res.data.data),{
                   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
                })
