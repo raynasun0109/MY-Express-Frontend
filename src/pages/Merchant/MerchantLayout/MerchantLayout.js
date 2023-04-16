@@ -16,6 +16,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -90,6 +91,7 @@ export default function MerchantLayout({children}) {
     const [title,setTitle]=useState();
     const [content,setContent]=useState();
     const [activeTab,setActiveTab]=useState(setting_content[0]['name']);
+    const [activeChildTab,setActiveChildTab]=useState(setting_content[0]['name']);
 
     const navigate = useNavigate()
     let location = useLocation();
@@ -97,7 +99,10 @@ export default function MerchantLayout({children}) {
 
     function checkActiveTab(){
         const currentPath=location.pathname.split('/')[4];
+        const currentChildPath=location.pathname.split('/')[5];
         setActiveTab(currentPath)
+
+        setActiveChildTab(currentChildPath)
     }
 
     function fetchCookie(){
@@ -105,7 +110,7 @@ export default function MerchantLayout({children}) {
     }
 
     function checkCookie(){
-        console.log(cookie)
+        // console.log(cookie)
         setShowLoading(cookies.get('myShopaholic')?false:true);
         setTitle("Login details expired");
         setContent("Direct to the login page now");
@@ -136,6 +141,7 @@ export default function MerchantLayout({children}) {
 
   return (
     <div className="merchant_layout_container" key={uuidv4()}>
+        <ScrollToTop/>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
@@ -146,7 +152,7 @@ export default function MerchantLayout({children}) {
                  <List className="merchant_layout_container_content_left_menu" >
                     {setting_content.map((item)=>{
                         return (
-                            <>
+                            <div key={item.key}>
                                {item.key!=="dashboard"&&<Divider />}
                                 <div key={uuidv4()} className={activeTab==item.key?"active_menu_tbn":"inactive_menu_tbn"}>
                                     <div onClick={()=>{jumpTo(item)}} key={item.name} className="left_menu_item_container">
@@ -164,7 +170,7 @@ export default function MerchantLayout({children}) {
                                                 {
                                                     item.children.map((child)=>{
                                                         return (
-                                                            <div onClick={()=>{jumpTo(child)}} className={activeTab==item.name?"active_child_menu_tbn":"inactive_child_menu_tbn"}>
+                                                            <div onClick={()=>{jumpTo(child)}} className={activeChildTab==child.key?"active_child_child_menu_tbn":"inactive_child_child_menu_tbn"}>
                                                                 <ListItemButton sx={{ pl: 4 }}>
                                                                     {child.name}
                                                                 </ListItemButton>
@@ -177,7 +183,7 @@ export default function MerchantLayout({children}) {
                                           </Collapse>
                                             }
                                 </div>
-                            </>
+                            </div>
                             )
                         })
                     }

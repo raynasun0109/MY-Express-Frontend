@@ -15,6 +15,13 @@
                     background: $red;
                     color:white;
                     font-weight: $heavy_bold;
+                    .left_menu_item_container{
+                        .MuiButtonBase-root {
+                            .left_menu_item_icon{
+                                color:white;
+                            }
+                        }
+                    }
                 }
                 padding:0!important;
                 background: white;
@@ -39,5 +46,24 @@
             width:100%;
 
         }
+    }
+}
+.inactive_child_child_menu_tbn{
+    background-color: white;
+    color:black;
+    font-weight: 400;
+    div{
+        padding: 10px 0 10px 40px; 
+
+    }
+}
+
+.active_child_child_menu_tbn{
+    background-color: $red;
+    color:white;
+
+    div{
+        padding: 10px 0 10px 40px; 
+
     }
 }

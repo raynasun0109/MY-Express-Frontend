@@ -38,13 +38,17 @@
         margin:0 0 10px 0;
     }
     .category_container{
-        @extend .big_font;
-        text-transform: capitalize;
-        color:$red;
-        font-weight: $heavy_bold;
-        display: flex;
-        align-items: center;
-        margin-bottom: $content_horizontal;
+        a{
+            text-decoration: none;
+            @extend .big_font;
+            text-transform: capitalize;
+            color:$red;
+            font-weight: $heavy_bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: $content_horizontal;
+        }
+       
     }
     .product_display_container{
         display: flex;

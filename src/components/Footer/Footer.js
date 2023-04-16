@@ -5,7 +5,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-export default function Footer(){
+function Footer(){
+
+
+
     return (
         <div className="footer_container">
           <div className="footer_container_top">
@@ -21,18 +24,17 @@ export default function Footer(){
                 <div className="footer_content_container_content_title">Company</div>
                 <ul className="list">
                   <li>
-                    <a href="/about">
+                  <a href={`http://${window.location.host}/about_us`}>
                       <i className="fa fa-angle-right" aria-hidden="true" />
                       {' '}
                       About us
-                    </a>
+                  </a>
                   </li>
                   <li>
                     <a href="/contact-us">
                       <i
                         className="fa fa-angle-right"
                         aria-hidden="true"
-                        // onClick={() => history.push('/faqs')}
                       />
                       {' '}
                       Contact us
@@ -92,3 +94,5 @@ export default function Footer(){
 
     )
 }
+
+export default Footer;
