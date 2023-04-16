@@ -19,6 +19,7 @@ import Collapse from '@mui/material/Collapse';
 import { createMemoryHistory } from "history";
 import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../../redux/actions/index.js";
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -93,6 +94,7 @@ function UserLayout({children},props) {
     const [title,setTitle]=useState();
     const [content,setContent]=useState();
     const [activeTab,setActiveTab]=useState(setting_content[0]['name']);
+    const [activeChildTab,setActiveChildTab]=useState(setting_content[0]['name']);
 
     const navigate = useNavigate()
     let location = useLocation();
@@ -100,7 +102,10 @@ function UserLayout({children},props) {
 
     function checkActiveTab(){
         const currentPath=location.pathname.split('/')[4];
+        const currentChildPath=location.pathname.split('/')[5];
         setActiveTab(currentPath)
+
+        setActiveChildTab(currentChildPath)
     }
 
     function fetchCookie(){
@@ -141,6 +146,7 @@ function UserLayout({children},props) {
 
   return (
     <div className="user_layout_container" key={uuidv4()}>
+        <ScrollToTop/>
         {/* {console.log(props)} */}
           {
             isShowLoading&&
@@ -152,10 +158,10 @@ function UserLayout({children},props) {
                  <List className="user_layout_container_content_left_menu" >
                     {setting_content.map((item)=>{
                         return (
-                            <>
-                               {item.key!=="dashboard"&&<Divider />}
-                                <div key={uuidv4()} className={activeTab==item.key?"active_menu_tbn":"inactive_menu_tbn"}>
-                                    <div onClick={()=>{jumpTo(item)}} key={item.name} className="left_menu_item_container">
+                            <div key={item.key}>
+                                {item.key!=="dashboard"&&<Divider />}
+                                <div className={activeTab==item.key?"active_menu_tbn":"inactive_menu_tbn"}>
+                                    <div onClick={()=>{jumpTo(item)}} className="left_menu_item_container">
                                         <ListItemButton className="left_menu_item_btn" >
                                             {item.name}
                                             <span className="left_menu_item_icon">
@@ -170,7 +176,7 @@ function UserLayout({children},props) {
                                                 {
                                                     item.children.map((child)=>{
                                                         return (
-                                                            <div onClick={()=>{jumpTo(child)}} className={activeTab==item.name?"active_child_menu_tbn":"inactive_child_menu_tbn"}>
+                                                            <div key={child.key} onClick={()=>{jumpTo(child)}} className={activeChildTab==child.key?"active_child_child_menu_tbn":"inactive_child_child_menu_tbn"}>
                                                                 <ListItemButton sx={{ pl: 4 }}>
                                                                     {child.name}
                                                                 </ListItemButton>
@@ -183,7 +189,7 @@ function UserLayout({children},props) {
                                           </Collapse>
                                             }
                                 </div>
-                            </>
+                            </div>
                             )
                         })
                     }

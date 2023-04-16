@@ -20,9 +20,9 @@ export function object_to_array(object_array){
  */
 export function user_type(type){
     switch(type){
-        case '1':
+        case "1":
             return "user";
-        case '2':
+        case "2":
             return "merchant";
         default:
             return "Cannot identidy user type";
@@ -54,7 +54,6 @@ export function calculate_shopping_cart_number(list){
         list.forEach((item) => {
             total+=Number(item.qty)
         });
-        console.log(total)
         return total
     } else{
         return 0
@@ -123,16 +122,17 @@ export function retrieve_shopping_cart(data){
  */
 export function update_shopping_cart(product,list){
     // console.log('list',list[0].uuid==product.uuid)
-    // const checkExist = list.includes(item=>item.uuid===product.uuid);
     const checkExist = list.findIndex(item=>item.uuid==product.uuid);
 
-    // console.log('checkExist',checkExist)
+    // console.log('product',product,list)
 
     if(checkExist!==-1){
-        list[checkExist].qty+=product.qty;
+        list[checkExist].qty=JSON.stringify(Number(list[checkExist].qty)+Number(product.qty));
     } else{
+        product.qty=JSON.stringify(product.qty)
         list.push(product)
     }
+    // console.log('list',list)
 
     return list;
     // const new_shopping_cart = [];

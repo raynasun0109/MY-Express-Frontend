@@ -12,6 +12,7 @@
                 border: 1px solid $base_color;
 
                 tr{
+                    background-color: white;
                     th, td{
                         @extend .small_font;
                     }
@@ -46,7 +47,9 @@
                     background-color: $red;
                     th{
                         @extend .middle_font;
-                        color:white;
+                        background-color:$base_color;
+                        text-align: center;
+                        color: $dark_grey;
                         font-weight: $heavy_bold;
                     }
                 }

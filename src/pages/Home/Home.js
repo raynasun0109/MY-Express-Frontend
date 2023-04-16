@@ -10,24 +10,24 @@ import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import InputBase from '@mui/material/InputBase';
 import Checkbox from '@mui/material/Checkbox';
 import Loading from '../../components/Loading/Loading.js';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const category=[
     {name:"Clothes",url:"CLOTHES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Clothes_kwckj8.png"},
     {name:"Shoes",url:"SHOES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Shoes_hpsfj7.png"},
-    {name:"Sports",url:"SPORTS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Bags",url:"BAGS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Home Appliances",url:"HOMEAPPLIANCE",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Home_Appliances_a8daz9.png"},
+    {name:"Sports",url:"SPORTS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501445/myshopaholic/Home-icon/sport_widmel.png"},
+    {name:"Bags",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Home",url:"HOME",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Home_Appliances_a8daz9.png"},
     {name:"Pet Supplies",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Health",url:"HEALTH",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Electronics",url:"ELECTRONIC",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Beauty",url:"BEAUTY",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Health",url:"HEALTH",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/health_rs1r61.png"},
+    {name:"Electronics",url:"ELECTRONICS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501449/myshopaholic/Home-icon/electronic_kmvrgl.png"},
+    {name:"Beauty",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
     {name:"Toys",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
     {name:"Furniture",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Phones",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Games",url:"GAMES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Garden",url:"clothes",url:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Garden_tjtnk6.png"},
+    {name:"Phones",url:"PHONES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681643767/myshopaholic/Home-icon/phone_ovi4sn.png"},
+    {name:"Games",url:"GAMES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/game_w6v2vc.png"},
+    {name:"Garden",url:"GARDEN",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Garden_tjtnk6.png"},
     {name:"Accessories",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-
 ]
 function Home(prop) {
    const [products, setProducts] = useState([]);
@@ -48,17 +48,15 @@ function Home(prop) {
       });
     }, []);
 
-    function handleClick(category,id){
-        navigate(`product/${category}/${id}`)
-    }
-  
     function jump(category){
         navigate(`product/${category}`)
-
     }
 
+    // function handleClick(category,id){
+    //     navigate(`product/${category}/${id}`)
+    // }
+
     function handleClickCheckbox(){
-        // console.log('click')
         setChecked(!checked)
     }
 
@@ -88,6 +86,7 @@ function Home(prop) {
 
     return (
         <>
+            <ScrollToTop/>
             <Navigation data={prop.state}/>
             <Carousel/>
             {
@@ -95,7 +94,6 @@ function Home(prop) {
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
           }
             <div className="container">
-                {/* <button onClick={()=>{addCountry('item')}}>myyyyyy</button> */}
                 <div className="first_container">
                     <div className="main_container">
                         <div>
@@ -106,8 +104,8 @@ function Home(prop) {
                             {
                                 products.length > 0 && (
                                     products.map( product =>
-                                        <div onClick={()=>handleClick(product.category,product.uuid)} key={product.uuid} className="products_container_container">
-                                            <ProductCard prop={product}/>
+                                        <div key={product.uuid} className="products_container_container">
+                                            <ProductCard prop={product} category={product.category} uuid={product.uuid}/>
                                         </div>
                                     )
                                 )
@@ -124,7 +122,7 @@ function Home(prop) {
                         {
                             category&&
                             category.map((item)=>
-                            <div className="sec_content_container_block" onClick={()=>jump(item.url)}>
+                            <div key={item.name} className="sec_content_container_block" onClick={()=>jump(item.url)}>
                                 <div className="sec_content_container_block_img">
                                     <img src={item.img}/>
                                 </div>

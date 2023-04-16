@@ -8,6 +8,8 @@
             .merchant_tran_container_bottom_body{
                 border: 1px solid $base_color;
                 tr{ 
+                    background-color: white;
+
                     .merchant_tran_container_status_container{
                         text-align: center;
                         .merchant_tran_container_Shipped{

@@ -19,6 +19,13 @@ $red_shadow:#a55145;
 $dark_grey:rgba(0, 0, 0, 0.6);
 
 //font size
+.large_font{
+    font-size: 54px;
+    line-height: 84px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .big_font{
     font-size: 24px;
     line-height: 36px;

@@ -28,6 +28,7 @@ import MerchantProcessing from './pages/Merchant/MerchantTransaction/MerchantPro
 import MerchantShipped from './pages/Merchant/MerchantTransaction/MerchantShipped/MerchantShipped';
 import MerchantProfile from './pages/Merchant/MerchantProfile/MerchantProfile';
 import ProductCategory from './pages/ProductCategory/ProductCategory';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 import {
   createBrowserRouter,
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />
+  },
+  {
+    path: "about_us",
+    element: <AboutUs />
   },
   {
     path: "register",

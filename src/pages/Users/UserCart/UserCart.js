@@ -45,11 +45,9 @@ function UserCart(prop){
 
     function fetchCookie(){
         setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-        // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
     }
 
     function handleQty (uuid,value,shoppingCart,prop) {
-        // console.log('handleQty',shoppingCart)
         shoppingCart.forEach((item) => {
             if(item.uuid==uuid){
                 item.qty=value
@@ -57,16 +55,9 @@ function UserCart(prop){
      
         })
         dispatch({type:'updateShoppingCart',data:{shopping_cart:shoppingCart,uuid:cookie.uuid}})
-
-        // prop.updateShoppingCart({shopping_cart:shoppingCart,uuid:cookie.uuid});
-        // console.log('shoppingCart',shoppingCart)
     };
 
     function checkout(prop){
-        // const productList=[];
-        // product.qty=qty;
-        // productList.push(product)
-        // console.log('ssss',prop)
         navigate('/checkout', {replace: true,state:{products:prop}})
 
     }
@@ -101,7 +92,7 @@ function UserCart(prop){
                                         {row.price}
                                     </TableCell>
                                     <TableCell>
-                                    <NumericInput min={0} value={row.qty} precision={0} className="number_input"
+                                    <NumericInput min={1} value={row.qty} precision={0} className="number_input"
                                         onChange={(value) => {handleQty(row.uuid,value,prop.state.products.shoppingCart,prop)}}/>
                                     </TableCell>
                                    

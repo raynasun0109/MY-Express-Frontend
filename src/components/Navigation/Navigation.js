@@ -28,32 +28,22 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {connect,useSelector} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {getShoppingCart} from "../../redux/actions/products.js";
-
 import {retrieve_shopping_cart} from '../../utils/functions';
 import { useNavigate,useLocation,Link } from 'react-router-dom';
 import { createMemoryHistory } from "history";
 import {fetchOneShoppingCart} from '../../service/UserService';
 const cookies = new Cookies();
  
-// const user_info=cookies.get('myShopaholic');
-// console.log(999,user_info);
 const Navigation_content = [
   {
-    name:'Home'
+    name:'Home',
+    url:'/'
   },
   {
-    name:'About Us'
+    name:'About Us',
+    url:'/about_us'
   }
 ];
-
-function generate_path (item,user_info){
-  const {name,url}=item;
-  if(name=="Dashboard"){
-      return `${url}/${user_type(user_info.type)}/${user_info.uuid}/dashboard`
-  } else{
-    return url
-  }
-}
 
 function stringToColor(string) {
   let hash = 0;
@@ -122,23 +112,25 @@ function Navigation(prop) {
 
   const setting_content = [
     {
-      name:'Profile',
-      url:`/dashboard/user/${cookie.uuid}/profile`
+        name:'Profile',
+        url:`/dashboard/${user_type(cookie.type)}/${cookie.uuid}/profile`
     },
     {
       name:'Dashboard',
-      url:`/dashboard`
+      url:`/dashboard/${user_type(cookie.type)}/${cookie.uuid}/dashboard`
     },
     {
       name:'Logout',
       url:'/logout'
     }
   ];
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, [anchor]: open });
+    
   };
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -160,7 +152,8 @@ function Navigation(prop) {
     >
       <List>
         {Navigation_content.map((item, index) => (
-          <ListItem key={item.name} disablePadding>
+          <div onClick={()=>jumpTo(item)} key={item.name}>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {item.name % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -168,6 +161,7 @@ function Navigation(prop) {
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
+          </div>
         ))}
       </List>
       <Divider />
@@ -175,22 +169,20 @@ function Navigation(prop) {
   );
 
   function jumpTo(prop){
-    const path=generate_path(prop,cookie);
+    // const path=generate_path(prop,cookie);
     // navigate(path,true)
-    // console.log('path',path)
-    if (path=="/logout"){
-          navigate(path, { replace: true })
+    if (prop.name=="Logout"&&prop.name=="About Us"){
+          navigate(prop.url, { replace: true })
 
   }else{
       // console.log("navigate")
-      navigate(path)
+      navigate(prop.url)
   }
   }
   return (
     <div>
       <AppBar position="static" className="navigation_container">
         <Container maxWidth="xl">
-          {/* {console.log("v",JSON.stringify(cookie),cookies.get('myShopaholic'))} */}
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
@@ -234,14 +226,15 @@ function Navigation(prop) {
             {Navigation_content.map((item,index) => (
               <Button
                 key={item.name}
-                onClick={toggleDrawer('left', false)}
+                onClick={()=>jumpTo(item)}
+                className="desktop_nav_content"
+                // onClick={toggleDrawer('left', false)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {item.name}
               </Button>
             ))}
           </Box>
-          {/* {console.log('nav',prop.state.products)} */}
           {
             cookie.type!=="2" &&
             <Box className="cart_container">
@@ -252,8 +245,6 @@ function Navigation(prop) {
               </Link>
             </Box>
           }
-          {/* {console.log('ddddd',getShoppingCart())} */}
-          {/* {console.log('cookie',cookie.length)} */}
           <Box sx={{ flexGrow: 0 }}>
             {
               cookie
@@ -282,7 +273,7 @@ function Navigation(prop) {
                   onClose={handleCloseUserMenu}
                 >
                   {setting_content.map((setting) => (
-                    <div onClick={()=>{jumpTo(setting)}} key={setting.name}>
+                    <div className="user_setting_container_block" onClick={()=>{jumpTo(setting)}} key={setting.name}>
                       <MenuItem key={setting.name} onClick={handleCloseUserMenu} >
                         <Typography textAlign="center">{setting.name}</Typography>
                       </MenuItem>

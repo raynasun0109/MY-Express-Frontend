@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {getOneProduct} from '../../service/ProductService';
 import Navigation from '../../components/Navigation/Navigation.js';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,useLocation,Link } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './ProductDetail.scss';
 import Button from '@mui/material/Button';
@@ -18,12 +18,14 @@ import ProductCard from '../../components/ProductCard/ProductCard.js';
 import {allProducts,latestProducts} from '../../service/ProductService';
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {addProduct} from "../../redux/actions/products";
-import {updateOneUser,updateOneShoppingCart} from '../../service/UserService';
+import {updateOneUser,updateOneShoppingCart,getOneUser} from '../../service/UserService';
 import Cookies from 'universal-cookie';
 import {retrieve_shopping_cart,update_shopping_cart} from '../../utils/functions';
 import { v4 as uuidv4 } from 'uuid';
 import {connect,useSelector,useDispatch} from "react-redux";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+import { createMemoryHistory } from "history";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const cookies = new Cookies();
 
@@ -48,6 +50,7 @@ function ProductDetail(props){
     const [product, setProduct] = useState({});
     const [recommendProducts, setRecommendProducts] = useState([]);
     const [cookie,setCookie]=useState('')
+    const [currentShoppingCart,setCurrentShoppingCart]=useState([])
 
     const [qty, setQty] = useState(1);
     const dispatch = useDispatch();
@@ -55,6 +58,8 @@ function ProductDetail(props){
 
     let location = useLocation();
     const navigate = useNavigate()
+    let history = createMemoryHistory();
+    const selectedData = useSelector((state) => state.shoppingCart);
 
 
     useEffect(() => {
@@ -64,37 +69,28 @@ function ProductDetail(props){
  
     function fetchCookie(){
         setCookie(cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+        getCurrentShoppingCart(cookies.get('myShopaholic')?cookies.get('myShopaholic').uuid:'')
     }
     function handleQty (value) {
         setQty(value)
     };
 
+    function getCurrentShoppingCart(uuid){
+        // console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+        getOneUser({uuid})
+            .then(res=>{
+                // console.log('res',res)
+                setCurrentShoppingCart(JSON.parse(res.data[0].shopping_cart))
+            })
+    }
+
     function handleAddToCart(){
      
         product['qty']= qty;
-        const shopping_cart=retrieve_shopping_cart(cookie.shopping_cart);
-        console.log('shopping_cart',shopping_cart)
-
-        // console.log('cookie',shopping_cart.length)
-
-        const oldShoppingCart=shopping_cart.length>0?JSON.parse(shopping_cart):[];
-                console.log('oldShoppingCart',oldShoppingCart)
-
-        // const formattedOldShoppingCart=JSON.parse(oldShoppingCart)
-        // console.log('oldShoppingCart',formattedOldShoppingCart)
-
-        const newShoppingCart = update_shopping_cart(product,oldShoppingCart)
-        // const check = check_shopping_cart(product,[])
-        // const formattedShoppingCart=JSON.stringify(newShoppingCart).replace("'","\'");
-        // const formattedShoppingCart=newShoppingCart
-
+        const newShoppingCart = update_shopping_cart(product,currentShoppingCart)
+        // console.log("qty",qty)
         dispatch({type:'updateShoppingCart',data:{shopping_cart:newShoppingCart,uuid:cookie.uuid}})
-
-    }
-//todo 
-    function handleClick(id){
-
-        navigate(`product/${id}`,{replace:true})
+        getCurrentShoppingCart(cookie.uuid)
     }
 
     function buynow(){
@@ -102,7 +98,6 @@ function ProductDetail(props){
         product.qty=qty;
         productList.push(product)
         navigate('/checkout', {replace: true,state:{products:productList}})
-
     }
 
     function fetchProduct(){
@@ -118,15 +113,15 @@ function ProductDetail(props){
 
     return (
         <div>
-            {
-                            // console.log('product',product)
-
+            <ScrollToTop/>{        console.log('currentShoppingCart',currentShoppingCart)
 }
             <Navigation data={props.state}/>
             <div className="product_detail_container">
                 <div className="category_container">
-                    {product&&product.category&& product.category.toLowerCase()}  
-                     <ArrowForwardIosIcon/>
+                    <Link to={`http://${window.location.host}/product/${product.category}`}>
+                        {product&&product.category&& product.category.toLowerCase()}  
+                        <ArrowForwardIosIcon/>
+                     </Link>
                 </div>
                 <div className="product_display_container">
                     <div className="product_display_container_left">
@@ -195,8 +190,8 @@ function ProductDetail(props){
                     {
                         recommendProducts.length > 0 && (
                             recommendProducts.map( product =>
-                                <div onClick={()=>handleClick(product.uuid)} key={product.uuid} className="products_container_container">
-                                    <ProductCard prop={product}/>
+                                <div key={product.uuid} className="products_container_container">
+                                    <ProductCard prop={product} uuid={product.uuid} category={location.pathname.split('/')[2]}/>
                                 </div>
                             )
                         )

@@ -29,7 +29,7 @@ export default function UserProcessing(){
     }
 
     return (
-        <UserLayout key="UserOrders" className="user_order_container">
+        <UserLayout key="UserOrders" className="user_order_container_processing">
             <div className="user_order_container_head">
                 <div className="user_order_container_head_block user_order_container_first_block">Product</div>
                 <div className="user_order_container_head_block user_order_container_block user_order_container_head_cell">Item</div>

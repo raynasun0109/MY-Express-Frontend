@@ -55,4 +55,26 @@
             font-weight: $heavy_bold;
         }
     }
+  
+}
+.desktop_nav_content{
+    font-weight: $heavy_bold!important;
+}
+
+.MuiList-padding{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+.user_setting_container_block{
+    .MuiDivider-root {
+        margin-top: 0!important;
+        margin-bottom: 0!important;
+    }
+    li{
+        p{
+            margin: 10px 0;
+        }
+    }
+      
 }

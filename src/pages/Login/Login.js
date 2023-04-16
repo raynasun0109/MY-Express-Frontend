@@ -16,6 +16,7 @@ import Cookies from 'universal-cookie';
 import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 var CryptoJS = require("crypto-js");
 
@@ -44,7 +45,7 @@ function Login (prop) {
         }
         userLogin(data).then(res => {
           if(res.data.code==1){
-            console.log('login',res)
+          
             cookies.set('myShopaholic',JSON.stringify(res.data.data[0]),{
               maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
            })
@@ -67,6 +68,7 @@ function Login (prop) {
 
     return (
         <div className="login_container">
+          <ScrollToTop/>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
