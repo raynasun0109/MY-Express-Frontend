@@ -9,10 +9,10 @@ export default function ProductCard(prop){
         <a href={`http://${window.location.host}/${path}`}>
             <div className="product_card_container" data-testid='product_card'>
                 <img src={product.image}/>
-                <div className="product_name">
+                <div className="product_name" data-testid='product_name'>
                     {product.name}
                 </div>
-                <div className="product_price">
+                <div className="product_price" data-testid='product_price'>
                     ${product.price}
                 </div>
             </div>

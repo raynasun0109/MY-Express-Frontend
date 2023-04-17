@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,6 +46,9 @@
     ]
   },
   "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+   },
     "transformIgnorePatterns": [
       "/node_modules/(？！@axios)"
     ],
@@ -80,6 +83,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-jest": "^29.5.0",
     "jest": "^27.5.1",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.57.1"
