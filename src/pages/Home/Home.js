@@ -18,7 +18,7 @@ const category=[
     {name:"Sports",url:"SPORTS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501445/myshopaholic/Home-icon/sport_widmel.png"},
     {name:"Bags",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
     {name:"Home",url:"HOME",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Home_Appliances_a8daz9.png"},
-    {name:"Pet Supplies",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Pets",url:"PETS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681736937/myshopaholic/Home-icon/pet_iuw3wu.png"},
     {name:"Health",url:"HEALTH",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/health_rs1r61.png"},
     {name:"Electronics",url:"ELECTRONICS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501449/myshopaholic/Home-icon/electronic_kmvrgl.png"},
     {name:"Beauty",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
