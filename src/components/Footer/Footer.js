@@ -10,7 +10,7 @@ function Footer(){
 
 
     return (
-        <div className="footer_container">
+        <div className="footer_container" >
           <div className="footer_container_top">
             <div className="footer_content_container">
                 <div className="footer_content_container_img">

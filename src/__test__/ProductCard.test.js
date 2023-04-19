@@ -13,7 +13,7 @@ const dummyProduct =
         image:'https://res.cloudinary.com/raynasun0109/image/upload/v1677075804/myshopaholic/products/Adidas-Hybrid-100-Boxing-Gloves-RED_rotsph.jpg'
     }
 
-test("Render Product card name", async () => {
+test("Render Product card component", async () => {
     render(<ProductCard category={dummyProduct.category} uuid={dummyProduct.uuid} prop={dummyProduct}/>)
     const productCard = await waitFor(() => screen.findAllByTestId("product_card"));
     const productCardName = await waitFor(() => screen.findAllByTestId("product_name"));

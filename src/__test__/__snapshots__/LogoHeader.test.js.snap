@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders LogoHeader correctly 1`] = `
+<div
+  className="logo-container"
+>
+  <a
+    href="http://localhost"
+  >
+    <img
+      src="MY-Shopaholic-big-text.png"
+    />
+  </a>
+</div>
+`;

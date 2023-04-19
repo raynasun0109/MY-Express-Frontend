@@ -9,7 +9,7 @@ function AboutUs(props){
     
 
     return (
-        <div>
+        <div data-testid='about_us'>
             <ScrollToTop/>
             <Navigation data={props.state}/>
             <div className="about_us_container">

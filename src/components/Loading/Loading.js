@@ -34,6 +34,7 @@ export default function Loading(prop){
     return(
         <>
             <Dialog
+                data-testid='loading'
                 fullWidth
                 className="loading_container"
                 fullScreen={fullScreen}
