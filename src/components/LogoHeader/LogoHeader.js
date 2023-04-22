@@ -1,5 +1,5 @@
 import './LogoHeader.scss';
-import logo from './../../assets/MY-Shopaholic-big-text.png';
+import logo from './../../assets/MY-Shopaholic-logo.png';
 
 export default function LogoHeader (){
     return(
