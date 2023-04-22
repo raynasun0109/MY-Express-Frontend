@@ -3,17 +3,29 @@
 .login_container{
     margin-top: 50px;
     margin-bottom: 100px;
+    
     &_content{
-        
         border:1px solid $base_color;
         border-radius: $border-radius_container;
+        &_form {
+            .MuiGrid-root{
+                .MuiFormControl-root {
+                    width: 100%;
+                }
+                .form_help_text{
+                    color: $red!important;
+                }
+            }
+        }
         &_login{
             @extend .big_font;
             color:$red;
             font-weight: $heavy_bold;
+            margin-bottom: 20px;
         }
         .login_action_container{
             margin-bottom: 20px;
+            margin-left: 16px;
         }
         .signin_footer{
             @extend .small_font;
@@ -22,6 +34,7 @@
         }
         .login_confirm_btn{
             background-color: $red;
+            @extend .red_button;
         }
         .login_confirm_btn:hover{
             background-color: $red;

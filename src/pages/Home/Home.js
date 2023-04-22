@@ -27,7 +27,7 @@ const category=[
     {name:"Phones",url:"PHONES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681643767/myshopaholic/Home-icon/phone_ovi4sn.png"},
     {name:"Games",url:"GAMES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/game_w6v2vc.png"},
     {name:"Garden",url:"GARDEN",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Garden_tjtnk6.png"},
-    {name:"Accessories",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Baby",url:"BABY",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681997041/myshopaholic/Home-icon/Baby_lt4dvx.png"},
 ]
 function Home(prop) {
    const [products, setProducts] = useState([]);
