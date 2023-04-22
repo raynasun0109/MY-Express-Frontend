@@ -3,9 +3,81 @@
 .category_container{
     &_content{
         display: flex;
-        flex-wrap: wrap;
         padding: 0 $layout_horizontal 100px $layout_horizontal;
+        &_left{
+            &::-webkit-scrollbar {
+                background-color: white;
+                width: 8px;
+              }
+            &::-webkit-scrollbar-track {
+                background-color: white;
+              }
+            &::-webkit-scrollbar-thumb {
+                border-radius:10px;
+                background-color: $red;
+              }
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: 100vh;
+            width: 18%;
+            padding-right: 15px;
+            .category_container_filter{
+                padding:0 10%;
+                &_text{
+                    @extend .middle_font;
+                    font-weight: $heavy_bold;
+                    color:$red;
+                    margin-bottom: 15px;
+                }
+                .category_container_slider_group{
+                    .MuiSlider-thumb,.MuiSlider-track {
+                        color: $red !important;
+                    }
+                    .MuiSlider-rail{
+                        color:$red_shadow;
+                    }
+                }
+                .category_container_reset_btn{
+                    margin: 30px 0;
+                    @extend .red_outline_button;
+                }
+                .category_container_radio_group{
+                    .MuiFormControlLabel-root{
+                        .Mui-checked {
+                            color:$red!important;
+                        }
+                        .MuiTypography-root {
+                            @extend .middle_font; 
+                            color:$dark_grey;
+                        }
+                    }
+                }
+                &_divider{
+                    margin: 30px 0 20px 0;
+                }
+            }
+        }
+        &_right{
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 100px;
+            // padding: 0 $layout_horizontal 100px $layout_horizontal;
+        }
+        
 
+    }
+    .category_name_container{
+        margin-left: 100px;
+        &_link{
+            text-decoration: none;
+            @extend .big_font;
+            text-transform: capitalize;
+            color:$red;
+            font-weight: $heavy_bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: $content_horizontal;
+        }
     }
     &_search{
         display: flex;
