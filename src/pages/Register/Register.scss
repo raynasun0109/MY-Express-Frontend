@@ -1,12 +1,31 @@
 @import './../../config/_styles.scss';
 
 .register_container{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 100px;
     &_content{
-        
         border:1px solid $base_color;
         border-radius: $border-radius_container;
+        .MuiBox-root{
+            .MuiBox-root {
+                .MuiGrid-root {
+                    .form_help_text{
+                        height: 25px;
+                        color: $red!important;
+                    }
+                    .form_help_text_type{
+                        margin-left: 0!important;
+                    }
+                    .form_full_width{
+                        width: 100%;
+                        
+                        .form_help_text_psw{
+                            height: 50px;
+                        }
+                    }
+                }
+            }
+        }
         &_title{
             @extend .big_font;
             color:$red;
@@ -23,6 +42,7 @@
         }
         .register_confirm_btn{
             background-color: $red;
+            @extend .red_button;
         }
         .register_confirm_btn:hover{
             background-color: $red;
@@ -34,3 +54,4 @@
         }
     }
 }
+

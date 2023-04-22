@@ -76,7 +76,7 @@ function ProductDetail(props){
     };
 
     function getCurrentShoppingCart(uuid){
-        console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
+        // console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
         getOneUser({uuid})
             .then(res=>{
                 // console.log('res',res)
