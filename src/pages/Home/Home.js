@@ -43,7 +43,7 @@ function Home(prop) {
    const [checkedBoxErrorText,setCheckedBoxErrorText]=useState("");
 
     useEffect(() => {
-        latestProducts({number:5}).then(res => {
+        latestProducts({number:10}).then(res => {
             setProducts(res.data);
       });
     }, []);
@@ -94,27 +94,7 @@ function Home(prop) {
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
           }
             <div className="container">
-                <div className="first_container">
-                    <div className="main_container">
-                        <div>
-                            <div className="main_title">
-                                What's NEW
-                            </div>
-                            <div className="products_container">
-                            {
-                                products.length > 0 && (
-                                    products.map( product =>
-                                        <div key={product.uuid} className="products_container_container">
-                                            <ProductCard prop={product} category={product.category} uuid={product.uuid}/>
-                                        </div>
-                                    )
-                                )
-                            }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="sec_container">
+            <div className="sec_container">
                     <div className="sec_title">
                         Shop By Category
                     </div>
@@ -135,6 +115,28 @@ function Home(prop) {
                         }
                     </div>
                 </div>
+                <div className="first_container">
+                    <div className="main_title">
+                        What's NEW
+                    </div>
+                    <div className="main_container">
+                        <div>
+                            
+                            <div className="products_container">
+                            {
+                                products.length > 0 && (
+                                    products.map( product =>
+                                        <div key={product.uuid} className="products_container_container">
+                                            <ProductCard prop={product} category={product.category} uuid={product.uuid}/>
+                                        </div>
+                                    )
+                                )
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
                 <div className="third_container">
                     <div className="third_title">
                         SUBSCRIBE AND GET 10% OFF
