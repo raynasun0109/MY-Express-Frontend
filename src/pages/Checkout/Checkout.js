@@ -144,13 +144,13 @@ function Checkout(props){
 
             const newTransaction={
                 uuid:transactionUuid,
-                 merchant_uuid:key,
-                 order_uuid,
-                 product_content:JSON.stringify(value).replace("'","\'"),
-                 status:"Paid",
-                 user_uuid:cookie.uuid,
-                 total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
-                 address:JSON.stringify(address).replace("'","\'")
+                merchant_uuid:key,
+                order_uuid,
+                product_content:JSON.stringify(value).replace("'","\'"),
+                status:"Paid",
+                user_uuid:cookie.uuid,
+                total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
+                address:JSON.stringify(address).replace("'","\'")
             }
             for (let i =0;i<value.length;i++){
                 const data = {
@@ -190,7 +190,8 @@ function Checkout(props){
         const newOrder={
             transaction_uuids:transactionUuidArray,
             user_uuid:cookie.uuid,
-            order_uuid
+            order_uuid,
+            cilentEmail:cookies.email,
         }
 
         // console.log('transactionUuidArray',transactionUuidArray)
