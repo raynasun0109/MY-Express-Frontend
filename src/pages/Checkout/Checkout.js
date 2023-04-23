@@ -150,7 +150,8 @@ function Checkout(props){
                 status:"Paid",
                 user_uuid:cookie.uuid,
                 total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
-                address:JSON.stringify(address).replace("'","\'")
+                address:JSON.stringify(address).replace("'","\'"),
+                client_email:cookie.email,
             }
             for (let i =0;i<value.length;i++){
                 const data = {
@@ -186,12 +187,11 @@ function Checkout(props){
             size++;
 
         })
-
         const newOrder={
             transaction_uuids:transactionUuidArray,
             user_uuid:cookie.uuid,
             order_uuid,
-            cilentEmail:cookies.email,
+            client_email:cookie.email,
         }
 
         // console.log('transactionUuidArray',transactionUuidArray)
@@ -225,6 +225,7 @@ function Checkout(props){
             })
 
         }, 3000); 
+        // order_uuid=uuidv4();
     }
     
     return (

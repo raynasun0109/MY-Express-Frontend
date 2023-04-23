@@ -114,8 +114,7 @@ function Login (prop) {
 
     return (
         <div className="login_container">
-          <ScrollToTop/>{        console.log(okSubmit)
-}
+          <ScrollToTop/>
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
