@@ -17,6 +17,8 @@ import {connect,useSelector,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,refreshShoppingCart} from "../../redux/actions/products.js";
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
 
 var CryptoJS = require("crypto-js");
 
@@ -28,6 +30,13 @@ function Login (prop) {
   const [content,setContent]=useState();
   const [isSetIcon,setIcon]=useState();
   const [isShowLoading,setShowLoading]=useState(false);
+  const [isError, setError] = useState({
+    email:false,password:false
+  });
+  const [errorText, setErrorText] = useState({
+    email:"",password:""
+  });
+  const [okSubmit,setOkSubmit]=useState(false);
 
   const navigate = useNavigate();
 
@@ -35,17 +44,54 @@ function Login (prop) {
 
 
     const handleSubmit = (event) => {
+        setOkSubmit(true);
+
         event.preventDefault();
-        // console.log('hang',prop)
 
         const form = new FormData(event.currentTarget);
-        const data = {
-          email: form.get('email'),
-          password: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(form.get('password'))),
+        const email= form.get('email').trim();
+        const inputPwd=form.get('password');
+        const password=CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(inputPwd));
+        const inputError={};
+        const inputErrorText={};
+
+        // form validation
+        //check email
+        let emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let emailExp = new RegExp(emailReg);
+        if(!email){
+          inputError['email']=true;
+          inputErrorText['email']="Please input your email";
+          setOkSubmit(false);
+        }else{ 
+          inputError['email']=false;
+          inputErrorText['email']="";
         }
+
+        // check password
+        if(!password){
+          inputError['password']=true;
+          inputErrorText['password']="Please input your password";
+          setOkSubmit(false);
+        }else{ 
+          if(email.match(emailExp) === null){
+            inputError['email']=true;
+            inputErrorText['email']="Please input the correct email address";
+            setOkSubmit(false);
+          } else{
+            inputError['email']=false;
+            inputErrorText['email']="";
+          }
+        }
+        setError(inputError);
+        setErrorText(inputErrorText);
+
+        const data = {
+          email,password
+        }
+        if(okSubmit){
         userLogin(data).then(res => {
           if(res.data.code==1){
-          
             cookies.set('myShopaholic',JSON.stringify(res.data.data[0]),{
               maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
            })
@@ -63,12 +109,13 @@ function Login (prop) {
             setLoading(false);
             setShowLoading(true);
           }
-        });
+        });}
       };
 
     return (
         <div className="login_container">
-          <ScrollToTop/>
+          <ScrollToTop/>{        console.log(okSubmit)
+}
           {
             isShowLoading&&
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
@@ -86,42 +133,60 @@ function Login (prop) {
               <div className="login_container_content_login">
                 Login
               </div>
-              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  className="login_input_field"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  className="login_input_field"
-                />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                className="login_confirm_btn"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Confirm
-              </Button>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Grid container spacing={2} className="login_container_content_form">
+                <Grid item xs={12}>
+                  <FormControl variant="standard" error={isError.email}>
+                    <TextField
+                      margin="normal"
+                      // required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                      autoFocus
+                      className="login_input_field"
+                    />
+                  </FormControl>
+                  <FormHelperText className="form_help_text">{isError.email&&errorText.email}</FormHelperText>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl variant="standard" error={isError.password}>
+                    <TextField
+                      margin="normal"
+                      // required
+                      autoFocus
+                      fullWidth
+                      autoFocus
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                      className="login_input_field"
+                    />
+                  </FormControl>
+                  <FormHelperText className="form_help_text form_help_text_psw">{isError.password&&errorText.password}</FormHelperText>
+                </Grid>
+                <Grid item xs={12}>
+
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    className="login_confirm_btn"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Confirm
+                  </Button>
+                </Grid>
               <Grid container className="login_action_container">
                 <Grid item xs>
                   {/** TODO Forgot password */}
@@ -134,6 +199,7 @@ function Login (prop) {
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
+              </Grid>
               </Grid>
             </Box>
           </Box>
