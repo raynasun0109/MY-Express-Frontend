@@ -242,7 +242,7 @@ export default function MerchantProducts(){
         <MerchantLayout className="merchant_container" key="MerchantProducts">
          
             <div className="merchant_container_top">
-                <Button variant="outlined" className="merchant_add_product" onClick={handleOpenAdd}>Add Product</Button>
+                <Button data-testid="add-product" variant="outlined" className="merchant_add_product" onClick={handleOpenAdd}>Add Product</Button>
             </div>
             <TableContainer className="merchant_container_bottom">
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
