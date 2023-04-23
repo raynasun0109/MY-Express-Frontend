@@ -8,7 +8,8 @@ import {connect,useDispatch} from "react-redux";
 import {removeCountry,addCountry} from "../../redux/actions/index.js";
 import {updateShoppingCart,logoutShoppingCart} from "../../redux/actions/products.js";
 import { useNavigate,useLocation } from 'react-router-dom';
- 
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+
 const cookies = new Cookies();
 
 function Logout(){
@@ -33,6 +34,7 @@ function Logout(){
 
     return (
         <div className="logout_container">
+            <ScrollToTop/>
             <div className="logout_title">
                 Logout Succsffully
             </div>

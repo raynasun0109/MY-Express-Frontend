@@ -144,13 +144,14 @@ function Checkout(props){
 
             const newTransaction={
                 uuid:transactionUuid,
-                 merchant_uuid:key,
-                 order_uuid,
-                 product_content:JSON.stringify(value).replace("'","\'"),
-                 status:"Paid",
-                 user_uuid:cookie.uuid,
-                 total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
-                 address:JSON.stringify(address).replace("'","\'")
+                merchant_uuid:key,
+                order_uuid,
+                product_content:JSON.stringify(value).replace("'","\'"),
+                status:"Paid",
+                user_uuid:cookie.uuid,
+                total:JSON.stringify(Number(value[0].price)*(Number(value[0].qty))),
+                address:JSON.stringify(address).replace("'","\'"),
+                client_email:cookie.email,
             }
             for (let i =0;i<value.length;i++){
                 const data = {
@@ -186,11 +187,11 @@ function Checkout(props){
             size++;
 
         })
-
         const newOrder={
             transaction_uuids:transactionUuidArray,
             user_uuid:cookie.uuid,
-            order_uuid
+            order_uuid,
+            client_email:cookie.email,
         }
 
         // console.log('transactionUuidArray',transactionUuidArray)
@@ -224,6 +225,7 @@ function Checkout(props){
             })
 
         }, 3000); 
+        // order_uuid=uuidv4();
     }
     
     return (

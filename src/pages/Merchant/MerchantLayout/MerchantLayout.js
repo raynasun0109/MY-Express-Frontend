@@ -131,9 +131,8 @@ export default function MerchantLayout({children}) {
         const path=generate_path(prop,cookie);
      
         if (path=="/logout"){
-            // navigate(path, { replace: true })
-
-            history.replace(path)
+            navigate(path, { replace: true })
+            // history.replace(path)
         }else{
             navigate(path)
         }
@@ -170,7 +169,7 @@ export default function MerchantLayout({children}) {
                                                 {
                                                     item.children.map((child)=>{
                                                         return (
-                                                            <div onClick={()=>{jumpTo(child)}} className={activeChildTab==child.key?"active_child_child_menu_tbn":"inactive_child_child_menu_tbn"}>
+                                                            <div key={child.key} onClick={()=>{jumpTo(child)}} className={activeChildTab==child.key?"active_child_child_menu_tbn":"inactive_child_child_menu_tbn"}>
                                                                 <ListItemButton sx={{ pl: 4 }}>
                                                                     {child.name}
                                                                 </ListItemButton>

@@ -158,7 +158,7 @@ function MerchantTransaction(){
         const form = new FormData(event.currentTarget);
         const data = {
             uuid: tempUpdate.transaction_uuid,
-            status,
+            status,client_email:tempUpdate.client_email
           }
         //   console.log('handleUpdateProduct',data)
 
@@ -196,7 +196,7 @@ function MerchantTransaction(){
                         ? tranList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         : tranList
                     ).map((row) => (
-                        <TableRow key={row.uuid}>
+                        <TableRow key={row.transaction_uuid}>
                             <TableCell component="th" scope="row">
                                 {row.transaction_uuid}
                             </TableCell>
