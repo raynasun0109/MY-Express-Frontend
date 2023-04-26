@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Copyright correctly 1`] = `
+<p
+  className="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter css-1vl95ex-MuiTypography-root"
+>
+  Copyright © 
+  MY Shopaholic
+   
+  2023
+  .
+</p>
+`;

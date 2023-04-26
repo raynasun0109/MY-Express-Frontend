@@ -167,11 +167,11 @@ export default function Register () {
       };
 
     return (
-      <div className="register_container">{console.log('ok',okSubmit)}
+      <div className="register_container">
         <ScrollToTop/>
         {
           isShowLoading&&
-          <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
+          <Loading data-testid="loading" title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
         }
 
       <Container component="main" maxWidth="xs" className="register_container_content">
@@ -278,6 +278,7 @@ export default function Register () {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               className="register_confirm_btn"
+              data-testid="register-button"
             >
               Register
             </Button>

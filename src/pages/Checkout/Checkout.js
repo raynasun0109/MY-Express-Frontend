@@ -176,9 +176,9 @@ function Checkout(props){
 
             addOneTransaction(newTransaction).then(res => {
                 if(res){
-                    dispatch({type:'cleanShoppingCart',data:{shopping_cart:[]}})
+                    dispatch({type:'cleanShoppingCart',data:{shopping_cart:"[]"}})
                     const oldCookie=cookies.get('myShopaholic');
-                    oldCookie.shopping_cart=JSON.stringify([]);
+                    oldCookie.shopping_cart="[]";
                     console.log("update addOneTransaction succsfully",res)
                 } else{
                     console.log("update addOneTransaction failed")
@@ -204,9 +204,9 @@ function Checkout(props){
                     setLoading(true);
                     setShowLoading(true);
                     const oldCookie=cookies.get('myShopaholic');
-                    oldCookie.shopping_cart=JSON.stringify([]);
+                    oldCookie.shopping_cart="[]";
                     const data={
-                        shoppingCart:JSON.stringify([]),
+                        shopping_cart:"[]",
                         uuid:cookie.uuid
                     }
                     updateOneShoppingCart(data).then(res => {

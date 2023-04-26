@@ -186,12 +186,14 @@ function Navigation(prop) {
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <div key={'left'}>
-                <Button onClick={toggleDrawer('left', true)}>
+                <Button data-testid="drawer-button" onClick={toggleDrawer('left', true)}>
                   <MenuRoundedIcon className="navigation_container_menu_icon"/>
                 </Button>
                 <Drawer
                   anchor={'left'}
                   open={state['left']}
+                  data-testid="drawer"
+                  aria-hidden="false"
                   onClose={toggleDrawer('left', false)}
                 >
                   {list('left')}
@@ -227,6 +229,7 @@ function Navigation(prop) {
               <Button
                 key={item.name}
                 onClick={()=>jumpTo(item)}
+                data-testid={`${item.name}-button`}
                 className="desktop_nav_content"
                 // onClick={toggleDrawer('left', false)}
                 sx={{ my: 2, color: 'white', display: 'block' }}

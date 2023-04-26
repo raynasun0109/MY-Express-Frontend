@@ -149,7 +149,7 @@ function fetchWeeklyTranscation(id){
   const end_time = moment().endOf('week').valueOf();
     getWeeklyTranscation({merchant_uuid:id.uuid,start_time,end_time})
         .then(res => {
-          console.log(res)
+          // console.log(res)
           // setWeeklyOrderAmount(res.data.number)
           setWeeklyList(res.data.list)
         })

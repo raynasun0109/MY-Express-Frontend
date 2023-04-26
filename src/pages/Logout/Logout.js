@@ -22,7 +22,7 @@ function Logout(){
         cookies.remove('myShopaholic');
         dispatch({type:'logoutShoppingCart'})
 
-        console.log('i am logout');
+        // console.log('i am logout');
         // setTimeout(() =>  navigate('/'), 3000);
 
         setTimeout(() => {
