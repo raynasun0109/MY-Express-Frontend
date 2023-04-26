@@ -32,11 +32,10 @@ describe('Logout component Render', () => {
             </Provider>
         );
 
-        expect(screen.getByText('Logout Succsffully')).toBeInTheDocument();
-        expect(screen.getByText('Now redirect to the home page')).toBeInTheDocument();
-        expect(container.querySelector('.logout_loading')).toBeInTheDocument();
-
         await waitFor(() => {
+            expect(screen.getByText('Logout Succsffully')).toBeInTheDocument();
+            expect(screen.getByText('Now redirect to the home page')).toBeInTheDocument();
+            expect(container.querySelector('.logout_loading')).toBeInTheDocument();
             expect(history.location.pathname).toBe('/');
         });
     });
