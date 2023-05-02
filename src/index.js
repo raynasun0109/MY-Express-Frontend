@@ -14,7 +14,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Footer from './components/Footer/Footer';
 import { Provider } from 'react-redux'
 import store from "./redux/stores/index.js";
-import MerchantOrders from './pages/Merchant/MerchantOrders/MerchantOrders';
+// import MerchantOrders from './pages/Merchant/MerchantOrders/MerchantOrders';
 import MerchantProducts from './pages/Merchant/MerchantProducts/MerchantProducts';
 import UserCart from './pages/Users/UserCart/UserCart';
 import Checkout from './pages/Checkout/Checkout';
@@ -104,10 +104,10 @@ const router = createBrowserRouter([
     path: "dashboard/merchant/:id/profile",
     element: <MerchantProfile />
   },
-  {
-    path: "dashboard/merchant/:id/orders",
-    element: <MerchantOrders />
-  },
+  // {
+  //   path: "dashboard/merchant/:id/orders",
+  //   element: <MerchantOrders />
+  // },
   {
     path: "dashboard/merchant/:id/products",
     element: <MerchantProducts />
