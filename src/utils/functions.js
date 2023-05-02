@@ -207,7 +207,14 @@ export function sortTransactionArray(list){
  * Sorted Transaction data for dashboard
  */
 export function sortTransactionData(list){
-    list.sort((a, b) => a.created_at - b.reated_at);
+    console.log('222',list,list.length==0)
+    // return list;
+
+    if(list.length==0){
+        return [];
+    }
+    list.sort((a, b) => a.created_at - b.created_at);
+
     list.forEach((listItem) => {
         listItem.date=moment(JSON.parse(listItem.created_at)).format('YYYY-MM-DD HH:mm')
         listItem.spent=JSON.parse(listItem.product_content)[0].qty*JSON.parse(listItem.product_content)[0].price

@@ -75,13 +75,10 @@ function ProductDetail(props){
         setQty(value)
     };
 
-    function getCurrentShoppingCart(uuid){
-        // console.log('ddd',cookies.get('myShopaholic')?cookies.get('myShopaholic'):'')
-        getOneUser({uuid})
-            .then(res=>{
-                // console.log('res',res)
-                setCurrentShoppingCart(JSON.parse(res.data[0].shopping_cart))
-            })
+    async function getCurrentShoppingCart(uuid) {
+        const res = await getOneUser({uuid});
+        if (res && res.data)
+            setCurrentShoppingCart(JSON.parse(res.data[0].shopping_cart));
     }
 
     function handleAddToCart(){
@@ -100,15 +97,16 @@ function ProductDetail(props){
         navigate('/checkout', {replace: true,state:{products:productList}})
     }
 
-    function fetchProduct(){
-        const productId=location.pathname.split('/')[3];
-        getOneProduct({uuid:productId})
-            .then(res => {
-                setProduct(res.data[0]);
-                latestProducts({number:5,category:res.data[0].category}).then(res => {
-                    setRecommendProducts(res.data);
-              });
-            })
+    async function fetchProduct() {
+        const productId = location.pathname.split('/')[3];
+        const res = await getOneProduct({uuid: productId})
+        if (!res) {
+            return;
+        }
+        setProduct(res.data[0]);
+        latestProducts({number: 5, category: res.data[0].category}).then(res => {
+            setRecommendProducts(res.data);
+        });
     }
 
     return (

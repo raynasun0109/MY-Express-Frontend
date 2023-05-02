@@ -7,6 +7,7 @@ import rootReducer from '../redux/reducers/index';
 import {MemoryRouter as Router} from 'react-router-dom';
 
 const store = createStore(rootReducer);
+jest.useFakeTimers({ legacyFakeTimers: true });
 
 describe('Navigation component', () => {
     it('renders correctly', () => {
