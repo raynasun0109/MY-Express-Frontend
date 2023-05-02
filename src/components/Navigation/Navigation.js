@@ -95,20 +95,18 @@ function Navigation(prop) {
     // setShoppingCart(cookies.get('myShopaholic')?JSON.parse(retrieve_shopping_cart(cookies.get('myShopaholic').shopping_cart)):[])
   }, []);
 
-  function fetchShoppingCart(){
-    if (cookies.get('myShopaholic')){
-      const uuid=cookies.get('myShopaholic').uuid;
-
-      fetchOneShoppingCart({uuid}).then(res => {
-        if(res.status==200){
-            // console.log("fetch ShoppingCart succsfully",res)
-        } else{
-            // console.log("fetch ShoppingCart failed",res)
-        }
-      })
+  async function fetchShoppingCart() {
+    if (cookies.get('myShopaholic')) {
+        const uuid = cookies.get('myShopaholic').uuid;
+        const res = await fetchOneShoppingCart({uuid})
+        // if (res.status == 200) {
+        //     // console.log("fetch ShoppingCart succsfully",res)
+        // } else {
+        //     // console.log("fetch ShoppingCart failed",res)
+        // }
     }
-  
-  }
+
+}
 
   const setting_content = [
     {

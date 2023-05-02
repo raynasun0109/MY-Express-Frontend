@@ -144,14 +144,15 @@ function ProductCategory(props){
                         sx={{ ml: 1, flex: 1 }}
                         defaultValue={searchName}
                         onChange={handleSearchName}
+                        data-testid="category_search_input"
                     />
-                        <div className="category_container_search_btn" onClick={handleSearch}>
+                        <div data-testid="category_search_btn" className="category_container_search_btn" onClick={handleSearch}>
                             <SearchIcon/>
                         </div>
                     </div>
                 <div className="category_name_container">
                     <Link className="category_name_container_link" to={`http://${window.location.host}/product/${category}`}>
-                        {category.toLowerCase()}
+                        {category&&category.toLowerCase()}
                         <ArrowForwardIosIcon/>
                      </Link>
                 </div>

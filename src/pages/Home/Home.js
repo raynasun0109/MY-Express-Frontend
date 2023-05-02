@@ -104,7 +104,7 @@ function Home(prop) {
                             category.map((item)=>
                             <div key={item.name} className="sec_content_container_block" onClick={()=>jump(item.url)}>
                                 <div className="sec_content_container_block_img">
-                                    <img src={item.img}/>
+                                    <img className="sec_content_container_block_img_test" src={item.img} data-testid={`${item.name}`}/>
                                 </div>
                                 <div className="sec_content_container_block_text">
                                     {item.name}

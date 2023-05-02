@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
 function ScrollToTopOnMount() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.scrollTo) {
+            window.scrollTo(0, 0);
+        }
+    }, []);
 
-  return null;
+    return null;
 }
 
 export default ScrollToTopOnMount;

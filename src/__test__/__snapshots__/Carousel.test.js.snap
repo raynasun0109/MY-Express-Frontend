@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Carousel correctly 1`] = `
+<div
+  className="carousel_container css-ohwg9z"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="css-1f8sh1y"
+    style={
+      Object {
+        "height": "470px",
+      }
+    }
+  >
+    <div
+      className="css-1l7c0cy"
+    >
+      <div
+        draggable={false}
+        style={
+          Object {
+            "WebkitTouchCallout": "none",
+            "WebkitUserSelect": "none",
+            "height": "100%",
+            "touchAction": "pan-y",
+            "userSelect": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "height": "470px",
+              }
+            }
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 slide_container css-1ps6pg7-MuiPaper-root"
+            >
+              <img
+                src="https://res.cloudinary.com/raynasun0109/image/upload/v1676386969/myshopaholic/banner_hrgdeh.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-1l7c0cy"
+    >
+      <div
+        draggable={false}
+        style={
+          Object {
+            "WebkitTouchCallout": "none",
+            "WebkitUserSelect": "none",
+            "height": "100%",
+            "touchAction": "pan-y",
+            "userSelect": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "height": "470px",
+              }
+            }
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 slide_container css-1ps6pg7-MuiPaper-root"
+            >
+              <img
+                src="https://res.cloudinary.com/raynasun0109/image/upload/v1676901729/myshopaholic/6_re2lhh.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-1l7c0cy"
+    >
+      <div
+        draggable={false}
+        style={
+          Object {
+            "WebkitTouchCallout": "none",
+            "WebkitUserSelect": "none",
+            "height": "100%",
+            "touchAction": "pan-y",
+            "userSelect": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "height": "470px",
+              }
+            }
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 slide_container css-1ps6pg7-MuiPaper-root"
+            >
+              <img
+                src="https://res.cloudinary.com/raynasun0109/image/upload/v1677075948/myshopaholic/27546418_molhgj.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className=" css-e1mnrr"
+    style={Object {}}
+  >
+    <button
+      aria-label="Next"
+      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium  css-ktslay-MuiButtonBase-root-MuiIconButton-root"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={Object {}}
+      tabIndex={0}
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        data-testid="NavigateNextRoundedIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9.31 6.71c-.39.39-.39 1.02 0 1.41L13.19 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.72 6.7c-.38-.38-1.02-.38-1.41.01z"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    className=" css-zbwuqm"
+    style={Object {}}
+  >
+    <button
+      aria-label="Previous"
+      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium  css-ktslay-MuiButtonBase-root-MuiIconButton-root"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={Object {}}
+      tabIndex={0}
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        data-testid="NavigateBeforeRoundedIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M14.91 6.71a.9959.9959 0 0 0-1.41 0L8.91 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L11.03 12l3.88-3.88c.38-.39.38-1.03 0-1.41z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
