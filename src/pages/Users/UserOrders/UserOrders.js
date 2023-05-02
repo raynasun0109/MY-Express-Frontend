@@ -74,7 +74,7 @@ export default function UserOrders(){
                                 <div className={`user_order_transaction_${item.status} user_order_transaction_ user_order_container_block user_order_transaction_container_block`}>
                                     {item.status}
                                 </div>
-                            {console.log(item.merchant_uuid,JSON.parse(item.product_content))}
+                            {/* {console.log(item.merchant_uuid,JSON.parse(item.product_content))} */}
                             </div>
                         ))
                            

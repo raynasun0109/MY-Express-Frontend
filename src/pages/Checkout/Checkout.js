@@ -67,7 +67,11 @@ function Checkout(props){
     }, []);
  
     function fetchData(){
-        setProductList(location.state.products)
+        if (location.state && location.state.products) {
+            setProductList(location.state.products);
+        } else {
+            // console.log('Error: location.state or location.state.products is null or undefined');
+        }
     }
 
     function fetchCookie(){
@@ -243,9 +247,9 @@ function Checkout(props){
                 </Stepper>
             </Box>
             {
-            activeStep==0 && (
+            activeStep===0 && (
                 <form className="checkout_container_content" id="shippingAddress" onSubmit={handleSubmitAddress} component="form">
-                    <div className="checkout_container_content_title">
+                    <div className="checkout_container_content_title" data-testid="shoppingAddress">
                         Shipping address
                     </div>
                     <Grid container spacing={3} >
@@ -351,6 +355,7 @@ function Checkout(props){
                         </Grid> */}
                     </Grid>
                     <Button
+                        data-testid="nextButton"
                         className="checkout_container_btn_next"
                         variant="contained"
                         type="submit"
@@ -362,7 +367,7 @@ function Checkout(props){
                 </form>
                 )}
               {
-                activeStep==1 && (
+                activeStep===1 && (
                 <div className="checkout_container_content" id="payment">
                     <div className="checkout_container_content_title">
                         Payment method
@@ -425,6 +430,7 @@ function Checkout(props){
                         </Grid>
                     </Grid>
                     <Button
+                        data-testid="nextButton2"
                         className="checkout_container_btn_next"
                         variant="contained"
                         onClick={handleNext}
@@ -436,9 +442,9 @@ function Checkout(props){
                 </div>
                 )}
               {
-                activeStep==2 && (
+                activeStep===2 && (
                 <div className="checkout_container_content">
-                    <div className="checkout_container_content_title">
+                    <div className="checkout_container_content_title" data-testid="orderSummary">
                         Order summary
                     </div>
                     <List disablePadding>
