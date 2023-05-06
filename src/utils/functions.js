@@ -21,8 +21,10 @@ export function object_to_array(object_array){
 export function user_type(type){
     switch(type){
         case "1":
+        case 1:
             return "user";
         case "2":
+        case 2:
             return "merchant";
         default:
             return "Cannot identidy user type";

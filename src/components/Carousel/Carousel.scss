@@ -2,6 +2,18 @@
 
 .carousel_container{
     width: 100%;
+    div{
+        div{
+            div{
+                div{
+                    .MuiPaper-root{
+                        background-color: $base_color;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .slide_container{
@@ -12,3 +24,20 @@
         height: 100%;
     }
 }
+
+@media only screen and (max-width: 1023px) {
+    .carousel_container{
+        div{
+            // height: 400px!important;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .carousel_container{
+        div{
+            // height: 300px!important;
+        }
+    }
+}
+
