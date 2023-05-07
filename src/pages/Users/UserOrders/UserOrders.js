@@ -46,10 +46,10 @@ export default function UserOrders(){
                 </div>
              </div>
          </div>
-         <div className="user_order_container_block user_order_transaction_container_block">
+         <div className="user_order_container_block user_order_transaction_container_block hideOnMobile hideOnTablet">
             {parseData[0].price}
          </div>
-         <div className="user_order_container_block user_order_transaction_container_block">
+         <div className="user_order_container_block user_order_transaction_container_block hideOnMobile hideOnTablet">
             {parseData[0].qty}
          </div>
          <div className="user_order_container_block user_order_transaction_container_block">
@@ -61,7 +61,7 @@ export default function UserOrders(){
     
     return (
         <UserLayout key="UserOrders" className="user_order_container">
-            <div className="user_order_container_head">
+            <div className="user_order_container_head hideOnMobile hideOnTablet">
                 <div className="user_order_container_head_block user_order_container_first_block">Product</div>
                 <div className="user_order_container_head_block user_order_container_block user_order_container_head_cell">Item</div>
                 <div className="user_order_container_head_block user_order_container_block user_order_container_head_cell">Qty</div>

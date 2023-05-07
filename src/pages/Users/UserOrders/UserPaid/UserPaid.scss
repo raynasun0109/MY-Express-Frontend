@@ -1,107 +1,107 @@
-@import '../../../../config/_styles.scss';
+// @import '../../../../config/_styles.scss';
 
-// block size
-.user_order_container_block{
-    width: 12.5%;
-}
-.user_order_container_first_block{
-    width: 50%;
-}
+// // block size
+// .user_order_container_block{
+//     width: 12.5%;
+// }
+// .user_order_container_first_block{
+//     width: 50%;
+// }
 
-.user_order_container{
-    &_head{
-        display: flex;
-        background-color:$base_color;
-        text-align: center;
-        @extend .middle_font;
-        color: $dark_grey;
-        padding: 8px 16px;
-        margin-bottom: 40px;
-    }
+// .user_order_container{
+//     &_head{
+//         display: flex;
+//         background-color:$base_color;
+//         text-align: center;
+//         @extend .middle_font;
+//         color: $dark_grey;
+//         padding: 8px 16px;
+//         margin-bottom: 40px;
+//     }
     
-}
+// }
 
-.user_order_transaction_container{
-    margin-bottom: 30px;
+// .user_order_transaction_container{
+//     margin-bottom: 30px;
 
-    &_head{
-        background-color:$base_color;
-        padding: 8px 16px;
-        .user_order_transaction_head_date{
-            font-weight: $heavy_bold;
-            margin-right: 25px;
-            margin-left: 16px;
-        }
-        .user_order_transaction_head_order{
-            margin-right: 10px;
-            font-weight: $heavy_bold;
-        }
-        span{
-            text-align: center;
-            @extend .middle_font;
-            color: $dark_grey;
-        }
-    }
-    &_body{
-        display: flex;
-        align-items: center;
-        padding: 16px 16px;
-        border: 1px solid $base_color;
-        background-color: white;
-        &_first_block{
-            display: flex;
-        }
-        .user_order_container_block{
-            // border-left: 1px solid $dark_grey; 
-        }
-        .user_order_transaction_Shipped{
-                width: auto;
-              color:rgb(15,93,38)!important;
-              border-radius: 16px;
-              padding:5px 10px;
-              border: 1px rgb(15,93,38) solid;
-              margin: 0 auto;
-        }
-        .user_order_transaction_Processing{
-            width: auto;
-          color:rgb(9,107,222)!important;
-          border-radius: 16px;
-          padding:5px 10px;
-          border: 1px rgb(9,107,222) solid;
-          margin: 0 auto;
-        }
-        .user_order_transaction_Paid{
-            width: auto;
-          color:$pink!important;
-          border-radius: 16px;
-          padding:5px 10px;
-          border: 1px $pink solid;
-          margin: 0 auto;
-        }
-        .user_order_transaction_container_block{
-            text-align: center;
-            @extend .middle_font;
-            color: $dark_grey; 
+//     &_head{
+//         background-color:$base_color;
+//         padding: 8px 16px;
+//         .user_order_transaction_head_date{
+//             font-weight: $heavy_bold;
+//             margin-right: 25px;
+//             margin-left: 16px;
+//         }
+//         .user_order_transaction_head_order{
+//             margin-right: 10px;
+//             font-weight: $heavy_bold;
+//         }
+//         span{
+//             text-align: center;
+//             @extend .middle_font;
+//             color: $dark_grey;
+//         }
+//     }
+//     &_body{
+//         display: flex;
+//         align-items: center;
+//         padding: 16px 16px;
+//         border: 1px solid $base_color;
+//         background-color: white;
+//         &_first_block{
+//             display: flex;
+//         }
+//         .user_order_container_block{
+//             // border-left: 1px solid $dark_grey; 
+//         }
+//         .user_order_transaction_Shipped{
+//                 width: auto;
+//               color:rgb(15,93,38)!important;
+//               border-radius: 16px;
+//               padding:5px 10px;
+//               border: 1px rgb(15,93,38) solid;
+//               margin: 0 auto;
+//         }
+//         .user_order_transaction_Processing{
+//             width: auto;
+//           color:rgb(9,107,222)!important;
+//           border-radius: 16px;
+//           padding:5px 10px;
+//           border: 1px rgb(9,107,222) solid;
+//           margin: 0 auto;
+//         }
+//         .user_order_transaction_Paid{
+//             width: auto;
+//           color:$pink!important;
+//           border-radius: 16px;
+//           padding:5px 10px;
+//           border: 1px $pink solid;
+//           margin: 0 auto;
+//         }
+//         .user_order_transaction_container_block{
+//             text-align: center;
+//             @extend .middle_font;
+//             color: $dark_grey; 
            
-        }
-        .user_order_transaction_text_container{
-            @extend .middle_font;
-            color: $dark_grey; 
-            .user_order_transaction_text_name{
-                font-weight: $heavy_bold;
-                margin-bottom: 15px;
-                text-transform: capitalize;
-            }
-            .user_order_transaction_text_desc{
+//         }
+//         .user_order_transaction_text_container{
+//             @extend .middle_font;
+//             color: $dark_grey; 
+//             .user_order_transaction_text_name{
+//                 font-weight: $heavy_bold;
+//                 margin-bottom: 15px;
+//                 text-transform: capitalize;
+//             }
+//             .user_order_transaction_text_desc{
 
-            }
-        }
-        &_img{
-            width: 100px;
-            height: 100px;
-            margin:0 70px 0 30px;
-        }
+//             }
+//         }
+//         &_img{
+//             width: 100px;
+//             height: 100px;
+//             margin:0 70px 0 30px;
+//         }
 
-    }
-}
+//     }
+// }
 
