@@ -209,7 +209,7 @@ export function sortTransactionArray(list){
  * Sorted Transaction data for dashboard
  */
 export function sortTransactionData(list){
-    console.log('222',list,list.length==0)
+    // console.log('222',list,list.length==0)
     // return list;
 
     if(list.length==0){
@@ -222,4 +222,28 @@ export function sortTransactionData(list){
         listItem.spent=JSON.parse(listItem.product_content)[0].qty*JSON.parse(listItem.product_content)[0].price
     })
     return list;
+}
+
+
+export function formttedJSON(data,key){
+//     function evalJson(jsArray){ eval("function x(){ return "+ jsArray +"; }"); return x(); }
+
+// var yourJson =evalJson(data);
+
+// console.log(yourJson.Topics[1]);
+    const data_string=JSON.stringify(data);
+    const formattedData=JSON.parse(data_string);
+    // return formattedData
+    // const da=eval('('+data+')')[0]
+    // const da=eval('('+data+')' );
+
+    // const da=eval(data)[0]
+    // var jsonObject = eval('(' +"["+ data + "]"+')');
+
+    // console.log(da)
+    for(let i =0;i<data.length-1;i++){
+        data[i].product_content=JSON.parse(JSON.stringify(data[i].product_content));
+    }
+    console.log(data)
+    return formattedData
 }

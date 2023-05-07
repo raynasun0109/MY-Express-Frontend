@@ -35,3 +35,11 @@
 
 }
 
+@media only screen and (max-width: 767px) {
+    .user_profile_container_box .MuiGrid-container .user_profile_container_box_content{
+        margin-bottom: 0!important;
+    }
+    .red_button, .user_profile_container_box .MuiGrid-container .update_confirm_btn{
+        margin-left: 24px
+    }
+}

@@ -28,6 +28,36 @@ export default function UserShipped(){
             })
     }
 
+    function RowContent({content}){
+        let parseData = [{name:'Cannot retrieve data. Please contact the customer service'}]
+        try {
+            parseData=JSON.parse(content)
+        } catch (error) {
+        }
+        return  <>
+        <div className="user_order_container_first_block user_order_transaction_container_body_first_block">
+             <img className="user_order_transaction_container_body_img" src={parseData[0].image}/>
+             <div className="user_order_transaction_text_container">
+                <div className="user_order_transaction_text_name">
+                    {parseData[0].name}
+                </div>
+                <div className="user_order_transaction_text_desc">
+                    {parseData[0].description}
+                </div>
+             </div>
+         </div>
+         <div className="user_order_container_block user_order_transaction_container_block">
+            {parseData[0].price}
+         </div>
+         <div className="user_order_container_block user_order_transaction_container_block">
+            {parseData[0].qty}
+         </div>
+         <div className="user_order_container_block user_order_transaction_container_block">
+            {parseData[0].price&&parseData[0].qty&&Number(parseData[0].price)*parseData[0].qty}
+         </div>
+    </>   
+    }
+
     return (
         <UserLayout key="UserOrders" className="user_order_container_shipped">
             <div className="user_order_container_head">
@@ -48,37 +78,14 @@ export default function UserShipped(){
                     </div>
 
                     {
-                        list.map((item)=>(
-                            <div className="user_order_transaction_container_body">
-                                <div className="user_order_container_first_block user_order_transaction_container_body_first_block">
-                                    <img className="user_order_transaction_container_body_img" src={JSON.parse(item.product_content)[0].image}/>
-                                    <div className="user_order_transaction_text_container">
-                                        <div className="user_order_transaction_text_name">
-                                            {JSON.parse(item.product_content)[0].name}
-                                        </div>
-                                        <div className="user_order_transaction_text_desc">
-                                            {JSON.parse(item.product_content)[0].description}
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div className="user_order_container_block user_order_transaction_container_block">
-                                    {JSON.parse(item.product_content)[0].price}
-                                </div>
-                                <div className="user_order_container_block user_order_transaction_container_block">
-                                    {JSON.parse(item.product_content)[0].qty}
-                                </div>
-                                <div className="user_order_container_block user_order_transaction_container_block">
-                                    {JSON.parse(item.product_content)[0].price*JSON.parse(item.product_content)[0].qty}
-                                </div>
+                       list&& list.map((item)=>(
+                            <div key={item.uuid} className="user_order_transaction_container_body">
+                                 <RowContent content={item.product_content} />
                                 <div className={`user_order_transaction_${item.status} user_order_transaction_ user_order_container_block user_order_transaction_container_block`}>
                                     {item.status}
                                 </div>
-                            {console.log(item.merchant_uuid,JSON.parse(item.product_content))}
                             </div>
                         ))
-                           
-                        
                     }
                 </div>
             ))
