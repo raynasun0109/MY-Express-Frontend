@@ -17,12 +17,13 @@
                         @extend .middle_font;
                     }
                     .number_input{
-                        width:60px;
+                        width:90px;
                     }
                     .user_cart_container_body_img_container{
                         display: flex;
 
                         img{
+                            height: 100%;
                             width:120px;
                             margin-right: 20px;
                         }
@@ -109,11 +110,14 @@
         flex-direction: column-reverse;
     }
     .user_cart_container_left {
-        width: 100% !important;
+        width: calc(100% - 56px) !important;
+        margin-left: 56px;
+
     }
     .user_cart_container_right {
-        width: calc(100% - 40px);
+        width: calc(100% - 40px - 56px);
         margin-bottom: 30px;
+        margin-left: 56px;
     }
 }
 
