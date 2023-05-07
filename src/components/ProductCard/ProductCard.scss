@@ -20,14 +20,31 @@ a{
         margin: 10px 5px 5px;
         height: 35px;
         font-weight: 700;
-        
-    
     }
     .product_price{
         @extend .middle_font;
         color:$red;
         margin:5px;
-        
-        
+    }
+}
+@media only screen and (max-width: 414px) {
+    .product_card_container img {
+        width: 150px;
+        height: 150px;
+    }
+    .products_container_container {
+        width: 164px;
+        height: 245px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .product_card_container img {
+        width: 100px;
+        height: 100px;
+    }
+    .products_container_container {
+        width: 114px!important;
+        height: 195px!important;
     }
 }

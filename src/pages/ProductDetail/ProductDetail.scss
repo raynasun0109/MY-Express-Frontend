@@ -2,15 +2,24 @@
 
 .product_detail_container{
     margin: $content_horizontal $layout_horizontal;
+    .category_container{
+        &_link{
+            text-decoration: none;
+            @extend .big_font;
+            text-transform: capitalize;
+            color:$red;
+            font-weight: $heavy_bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: $content_horizontal;
+        }
+    }
     &_accordin{
         box-shadow: none!important;
-        // width: max-content!important;
         &_content{
-            //border-top: 1px solid $red;
             padding: 8px 50px 16px!important;
         }
         &_title{
-                   
             .MuiAccordionSummary-content {
                
                 .MuiTypography-root{
@@ -37,18 +46,7 @@
         font-weight: 700;
         margin:0 0 10px 0;
     }
-    .category_name_container{
-        &_link{
-            text-decoration: none;
-            @extend .big_font;
-            text-transform: capitalize;
-            color:$red;
-            font-weight: $heavy_bold;
-            display: flex;
-            align-items: center;
-            margin-bottom: $content_horizontal;
-        }
-    }
+  
     .product_display_container{
         display: flex;
         &_left{
@@ -104,5 +102,34 @@
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .product_detail_container .category_container_link {
+        margin-bottom: 30px;
+    }
+    .product_detail_container {
+        margin: 50px 30px;
+    }
+    .product_detail_container .product_display_container {
+        flex-direction: column;
+    }
+    .product_detail_container .product_display_container_left {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .product_detail_container .product_display_container_right {
+        box-sizing: border-box;
+    }
+}
+@media only screen and (max-width: 280px) {
+    .product_detail_container .product_display_container_right_btn_container {
+        flex-direction: column;
+    }
+
+    .product_detail_container .product_display_container_right_btn_container .add_to_cart {
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 }
