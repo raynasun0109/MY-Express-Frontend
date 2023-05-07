@@ -16,21 +16,6 @@
                     th, td{
                         @extend .middle_font;
                     }
-                    // .merchant_container_bottom_body_btn_container{
-                    //     text-align: center;
-                    //     .merchant_update_btn, .merchant_delete_btn{
-                    //         @extend .small_font;
-                    //         text-transform: capitalize;
-                    //         border:1.5px solid $red;
-                    //         color:$red;
-                    //         margin-bottom: 10px;
-                    //     }
-                    //     .merchant_update_btn:hover,.merchant_delete_btn:hover{
-                    //         border:1.5px solid $red;
-                    //         background-color: $red;
-                    //         color:white;
-                    //     }
-                    // }
                     .number_input{
                         width:60px;
                     }
@@ -88,6 +73,59 @@
             margin-bottom: 20px;
 
         }
+
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .user_cart_container_left {
+        width: 50% !important;
+        margin: 0 auto;
+    }
+    .user_cart_container_right {
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .user_cart_container_left {
+        width: 60% !important;
+        margin: 0 auto;
+    }
+    .user_cart_container_right {
+        padding: 20px;
+    }
+    .user_cart_container_right .user_cart_checkout_btn{
+        font-size: 14px;
+        line-height: 16px;
+    }
+    .user_cart_container_right_title{
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .user_cart_container {
+        flex-direction: column-reverse;
+    }
+    .user_cart_container_left {
+        width: 100% !important;
+    }
+    .user_cart_container_right {
+        width: calc(100% - 40px);
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .user_cart_container_right {
+        width: calc(100% - 40px - 56px);
+        margin-left: 56px;
+    }
+    .user_cart_container_left{
+        width: calc(100% - 56px)!important;
+        margin-left: 56px;
+
 
     }
 }
