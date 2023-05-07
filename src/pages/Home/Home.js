@@ -22,7 +22,7 @@ const category=[
     {name:"Health",url:"HEALTH",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/health_rs1r61.png"},
     {name:"Electronics",url:"ELECTRONICS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501449/myshopaholic/Home-icon/electronic_kmvrgl.png"},
     {name:"Beauty",url:"BEAUTY",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681892707/myshopaholic/Home-icon/beauty_h0hfwv.png"},
-    {name:"Toys",url:"TOYS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Toys",url:"TOYS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1683447580/myshopaholic/Home-icon/%E7%BA%BF%E6%80%A7%E9%A3%8E%E8%BD%A6%E5%9B%BE%E6%A0%87_exm6kd.png"},
     {name:"Furniture",url:"FURNITURE",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681832562/myshopaholic/Home-icon/furniture_jds8vm.png"},
     {name:"Phones",url:"PHONES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681643767/myshopaholic/Home-icon/phone_ovi4sn.png"},
     {name:"Games",url:"GAMES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/game_w6v2vc.png"},

@@ -9,14 +9,7 @@
         .MuiGrid-container {
             .update_confirm_btn{
                 @extend .red_button;
-                // background-color: $red;
-                // text-transform: capitalize;
-                // @extend .middle_font;
-                // padding: 10px 20px;
             }
-            // .update_confirm_btn:hover{
-            //     background-color: $red_shadow;
-            // }
 
             .MuiGrid-item {
                 margin: auto;
@@ -41,3 +34,4 @@
     }
 
 }
+
