@@ -105,3 +105,41 @@
         }
     }
 }
+
+@media only screen and (max-width: 1023px) {
+    .category_container_content_left {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .category_container .category_name_container {
+        margin-left: 45px;
+    }
+    .category_container_search {
+        width: 80%;
+        margin: 50px auto 50px auto;
+    }
+    .category_container_content {
+        padding: 0 30px 100px 30px;
+        &_left {
+            width: 60%;
+        }
+        &_right {
+            margin-left: 10px;
+        }
+    }
+    .category_container_content_left {
+        width: 150%;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .category_container{
+        &_content{
+            &_left{
+                overflow-x: scroll;
+            }
+        }
+    }
+}

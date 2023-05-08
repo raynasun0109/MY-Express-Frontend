@@ -46,3 +46,22 @@
         }
     }
 }
+
+@media only screen and (max-width: 599px) {
+    .login_container{
+        .MuiContainer-root {
+            max-width: 80%;
+        }
+    }
+}
+
+@media only screen and (max-width: 463px) {
+    .login_action_container {
+        display: flex;
+        flex-direction: column!important;
+        align-items: center;
+        .MuiGrid-item {
+            margin-bottom: 15px;
+        }
+    }
+}

@@ -92,7 +92,10 @@
                 text-transform: capitalize;
             }
             .user_order_transaction_text_desc{
-
+                white-space: pre-wrap;
+                overflow: hidden;
+                height: 90px;
+                text-overflow: ellipsis;
             }
         }
         &_img{
@@ -104,3 +107,37 @@
     }
 }
 
+@media only screen and (max-width: 767px) {
+    .user_order_transaction_container {
+        width: 80%;
+        margin: 0 auto 30px auto;
+    }
+
+    .user_order_transaction_container_head {
+        display: flex;
+        flex-direction: column;
+    }
+    .user_order_transaction_container_body{
+        &_first_block{
+            flex-direction: column;
+            img{
+                width: 50px;
+                height: 50px;
+                margin: 0 20px 10px 0px;
+            }
+        }
+        
+        .user_order_transaction_text_container{
+            .user_order_transaction_text_name{
+                margin-bottom: 0;
+            }
+        }
+    }
+  
+}
+
+@media only screen and (max-width: 280px) {
+    .user_order_transaction_container {
+        margin: 0 auto 30px 56px;
+    }
+}

@@ -23,7 +23,7 @@ export default function CarouselComponent(props)
         {
             name: "Random Name #2",
             description: "Hello World!",
-            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1676901729/myshopaholic/6_re2lhh.jpg"
+            url:"https://res.cloudinary.com/raynasun0109/image/upload/v1683376630/myshopaholic/slider_odp2af.jpg"
 
         },
         {
@@ -34,7 +34,7 @@ export default function CarouselComponent(props)
     return (
         <Carousel
             className={'carousel_container'}
-            height={'470px'}
+            // height={'470px'}
             fullHeightHover={false}
             indicators={false}
             PrevIcon={<NavigateBeforeRoundedIcon/>}

@@ -170,7 +170,7 @@ function MerchantShipped(){
 
     return (
         <MerchantLayout>
-             <TableContainer className="merchant_tran_container_bottom">
+             <TableContainer className="merchant_tran_shipped_container_bottom">
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead className="merchant_tran_container_bottom_table_head">
                         <TableRow className="merchant_tran_container_bottom_table_row">

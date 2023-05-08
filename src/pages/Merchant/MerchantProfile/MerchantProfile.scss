@@ -1,6 +1,6 @@
 @import '../../../config/_styles.scss';
 
-.user_profile_container{
+.merchant_profile_container{
     padding: $content_horizontal;
     box-sizing: border-box;
     background-color: white;
@@ -11,10 +11,8 @@
         .MuiGrid-container {
             .update_confirm_btn{
                 @extend .red_button;
-                // background-color: $red;
-                // text-transform: capitalize;
-                // @extend .middle_font;
-                // padding: 10px 20px;
+                margin-left: 24px
+
             }
             // .update_confirm_btn:hover{
             //     background-color: $red_shadow;
@@ -23,7 +21,7 @@
             .MuiGrid-item {
                 margin: auto;
             }
-            .user_profile_container_box_content{
+            .merchant_profile_container_box_content{
                 display: flex;
                 align-items: center;
                 margin-bottom: 30px;
@@ -42,4 +40,46 @@
         }
     }
 
+}
+@media only screen and (max-width: 1023px) {
+    .merchant_profile_container {
+        margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .merchant_profile_container {
+        padding: 30px 40px;
+        margin-left: 0;
+
+    }
+    .merchant_profile_container_box .MuiGrid-container .merchant_profile_container_box_content{
+        margin-bottom: 0;
+    }
+    .merchant_profile_container_box .MuiGrid-container .merchant_profile_container_box_content_input {
+        width: 100%;
+    }
+    .red_button, .merchant_profile_container_box .MuiGrid-container .update_confirm_btn{
+        margin-left: 24px
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .merchant_profile_container {
+        padding: 35px 20px;
+    }
+
+    .merchant_profile_container_box .MuiGrid-container .merchant_profile_container_box_content {
+        flex-direction: column;
+    }
+
+    .merchant_profile_container_box .MuiGrid-container .merchant_profile_container_box_content_title {
+        margin-right: auto;
+    }
+    .merchant_profile_container_box_content_type{
+        flex-direction: row!important;
+        .merchant_profile_container_box_content_title{
+            margin-right: 0!important;
+        }
+    }
 }

@@ -16,14 +16,14 @@ const category=[
     {name:"Clothes",url:"CLOTHES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Clothes_kwckj8.png"},
     {name:"Shoes",url:"SHOES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Shoes_hpsfj7.png"},
     {name:"Sports",url:"SPORTS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501445/myshopaholic/Home-icon/sport_widmel.png"},
-    {name:"Bags",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Bags",url:"BAGS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
     {name:"Home",url:"HOME",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Home_Appliances_a8daz9.png"},
-    {name:"Pet Supplies",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Pet Supplies",url:"PET",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681736937/myshopaholic/Home-icon/pet_iuw3wu.png"},
     {name:"Health",url:"HEALTH",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/health_rs1r61.png"},
     {name:"Electronics",url:"ELECTRONICS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501449/myshopaholic/Home-icon/electronic_kmvrgl.png"},
-    {name:"Beauty",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Toys",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
-    {name:"Furniture",url:"clothes",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Bags_h6gmza.png"},
+    {name:"Beauty",url:"BEAUTY",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681892707/myshopaholic/Home-icon/beauty_h0hfwv.png"},
+    {name:"Toys",url:"TOYS",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1683447580/myshopaholic/Home-icon/%E7%BA%BF%E6%80%A7%E9%A3%8E%E8%BD%A6%E5%9B%BE%E6%A0%87_exm6kd.png"},
+    {name:"Furniture",url:"FURNITURE",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681832562/myshopaholic/Home-icon/furniture_jds8vm.png"},
     {name:"Phones",url:"PHONES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681643767/myshopaholic/Home-icon/phone_ovi4sn.png"},
     {name:"Games",url:"GAMES",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681501444/myshopaholic/Home-icon/game_w6v2vc.png"},
     {name:"Garden",url:"GARDEN",img:"https://res.cloudinary.com/raynasun0109/image/upload/v1681416917/myshopaholic/Home-icon/Garden_tjtnk6.png"},
@@ -120,7 +120,7 @@ function Home(prop) {
                         What's NEW
                     </div>
                     <div className="main_container">
-                        <div>
+                        <div className="main_container_products">
                             
                             <div className="products_container">
                             {

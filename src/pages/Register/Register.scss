@@ -55,3 +55,24 @@
     }
 }
 
+@media only screen and (max-width: 599px) {
+    .register_action_container{
+        .MuiGrid-root{
+            margin: 0 auto;
+        }
+    }
+    .register_container{
+        .MuiContainer-root{
+            max-width: 80%;
+            .MuiBox-root {
+                .MuiGrid-root {
+                    .MuiGrid-item {
+                        .MuiFormControl-root {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
