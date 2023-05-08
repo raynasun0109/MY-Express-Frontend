@@ -81,7 +81,7 @@ export default function MerchantProfile(){
             last_name: form.get('last_name'),
             type:cookie.type
           }
-          console.log(data)
+        //   console.log(data)
           updateOneUser(data).then(res => {
               
             if(res.status==200){
@@ -110,13 +110,13 @@ export default function MerchantProfile(){
             <Loading title={title} content={content} isLoading={isLoading} isSetIcon={isSetIcon}/>
           }
             {/* {console.log(CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse('123456')),CryptoJS.enc.Base64.parse("MTIzNDU2").toString(CryptoJS.enc.Utf8) */}
-            <div className="user_profile_container">
-            <form component="form" className="user_profile_container_box" onSubmit={handleUpdateUser}>
+            <div className="merchant_profile_container">
+            <form component="form" className="merchant_profile_container_box" onSubmit={handleUpdateUser}>
                 <Grid container spacing={3} >
                     <Grid item xs={12} sm={6}>
 
-                    <div className="user_profile_container_box_content">
-                        <div className="user_profile_container_box_content_title">
+                    <div className="merchant_profile_container_box_content">
+                        <div className="merchant_profile_container_box_content_title">
                             First Name:
                         </div>
                         <TextField
@@ -127,14 +127,14 @@ export default function MerchantProfile(){
                             name="first_name"
                             defaultValue={cookie.first_name}
                             autoFocus
-                            className="user_profile_container_box_content_input"
+                            className="merchant_profile_container_box_content_input"
                         />
                     </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
 
-                    <div className="user_profile_container_box_content" >
-                        <div className="user_profile_container_box_content_title">
+                    <div className="merchant_profile_container_box_content" >
+                        <div className="merchant_profile_container_box_content_title">
                             Last Name:
                         </div>
                         <TextField
@@ -145,14 +145,14 @@ export default function MerchantProfile(){
                             defaultValue={cookie.last_name}
                             name="last_name"
                             autoFocus
-                            className="user_profile_container_box_content_input"
+                            className="merchant_profile_container_box_content_input"
                         />
                     </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
 
-                    <div className="user_profile_container_box_content">
-                        <div className="user_profile_container_box_content_title">
+                    <div className="merchant_profile_container_box_content merchant_profile_container_box_content_type">
+                        <div className="merchant_profile_container_box_content_title">
                             Type:
                         </div>
                         <div className="user_profile_container_box_content_type">
@@ -163,8 +163,8 @@ export default function MerchantProfile(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
 
-                    <div className="user_profile_container_box_content">
-                        <div className="user_profile_container_box_content_title">
+                    <div className="merchant_profile_container_box_content">
+                        <div className="merchant_profile_container_box_content_title">
                             Email:
                         </div>
                         <TextField
@@ -175,14 +175,14 @@ export default function MerchantProfile(){
                             name="email"
                             autoFocus
                             defaultValue={cookie.email}
-                            className="user_profile_container_box_content_input"
+                            className="merchant_profile_container_box_content_input"
                         />
                     </div>
                     </Grid>
                     <Grid item xs={12}>
 
-                    <div className="user_profile_container_box_content">
-                        <div className="user_profile_container_box_content_title">
+                    <div className="merchant_profile_container_box_content">
+                        <div className="merchant_profile_container_box_content_title">
                             Password:
                         </div>
                         {
@@ -191,7 +191,7 @@ export default function MerchantProfile(){
                             name="password"
                             id="outlined-adornment-password"
                             type={showPassword ? 'text' : 'password'}
-                            className="user_profile_container_box_content_input"
+                            className="merchant_profile_container_box_content_input"
                             defaultValue={psd}
                             endAdornment={
                             <InputAdornment position="end">

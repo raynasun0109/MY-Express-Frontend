@@ -59,3 +59,26 @@
         }
     }
 }
+
+@media only screen and (max-width: 767px) {
+    .about_us_container .content_container {
+        padding: 0 150px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .about_us_container .person_intro_container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about_us_container .person_intro_container_left {
+        margin-right: 0;
+    }
+
+    .about_us_container .person_intro_container_right {
+        text-align: center;
+    }
+    .about_us_container .content_container {
+        padding: 0 50px;
+    }
+}

@@ -93,3 +93,34 @@
     }
 
 }
+
+@media only screen and (max-width: 1023px) {
+    .checkout_container {
+        padding: 0 100px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .checkout_container {
+        padding: 0 30px;
+    }
+    .checkout_container_content {
+        padding: 30px 40px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .checkout_container {
+        padding: 0 20px;
+    }
+    .checkout_container_content {
+        padding: 20px;
+        .MuiGrid-root{
+            .MuiGrid-root{
+                .MuiTypography-root {
+                    word-break: break-word;
+                }
+            }
+        }
+    }
+}

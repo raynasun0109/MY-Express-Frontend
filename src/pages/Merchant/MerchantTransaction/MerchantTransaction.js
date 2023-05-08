@@ -246,6 +246,7 @@ function MerchantTransaction(){
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                className="merchant_pagination_container"
                 />
                 <Modal
                 className="merchant_tran_container"
