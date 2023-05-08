@@ -169,7 +169,7 @@ exports[`Renders footer correctly 1`] = `
   </div>
   <div>
     <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter css-1vl95ex-MuiTypography-root"
+      className="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter copyright_container css-1vl95ex-MuiTypography-root"
     >
       Copyright © 
       MY Shopaholic

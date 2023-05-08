@@ -12,7 +12,7 @@ exports[`Renders Carousel correctly 1`] = `
     className="css-1f8sh1y"
     style={
       Object {
-        "height": "470px",
+        "height": undefined,
       }
     }
   >
@@ -42,7 +42,7 @@ exports[`Renders Carousel correctly 1`] = `
           <div
             style={
               Object {
-                "height": "470px",
+                "height": undefined,
               }
             }
           >
@@ -83,7 +83,7 @@ exports[`Renders Carousel correctly 1`] = `
           <div
             style={
               Object {
-                "height": "470px",
+                "height": undefined,
               }
             }
           >
@@ -91,7 +91,7 @@ exports[`Renders Carousel correctly 1`] = `
               className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 slide_container css-1ps6pg7-MuiPaper-root"
             >
               <img
-                src="https://res.cloudinary.com/raynasun0109/image/upload/v1676901729/myshopaholic/6_re2lhh.jpg"
+                src="https://res.cloudinary.com/raynasun0109/image/upload/v1683376630/myshopaholic/slider_odp2af.jpg"
               />
             </div>
           </div>
@@ -124,7 +124,7 @@ exports[`Renders Carousel correctly 1`] = `
           <div
             style={
               Object {
-                "height": "470px",
+                "height": undefined,
               }
             }
           >
