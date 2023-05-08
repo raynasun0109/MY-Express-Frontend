@@ -7,7 +7,7 @@
         padding:$content_horizontal;
         display: flex;
         &_left{
-            width: 25%;
+            width: 22%;
             margin-right:50px;
             border-radius: $border-radius_container;
             &_menu{
@@ -57,7 +57,7 @@
         }
         &_right{
             // background-color: white;
-            width:100%;
+            width: calc(100% - 50px - 22%);
             // margin-left: 40px;
 
         }
@@ -116,7 +116,7 @@
 }
 @media only screen and (max-width: 767px) {
     .merchant_layout_container_content_right {
-        margin-left: -65px;
+        width: calc(100% - 65px);
     }
 }
 @media only screen and (max-width: 414px) {
