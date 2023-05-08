@@ -23,9 +23,6 @@ import {connect} from "react-redux";
 import {removeCountry,addCountry} from "../../../redux/actions/index.js";
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -282,7 +279,7 @@ function UserLayout({children},props) {
                         ))}
                         </List>
                         <Divider />
-                    </Drawer>
+                </Drawer>
                  <List className="user_layout_container_content_left_menu hideOnTablet hideOnMobile" >
                     {setting_content.map((item)=>{
                         return (
@@ -290,32 +287,25 @@ function UserLayout({children},props) {
                                 {item.key!=="dashboard"&&<Divider />}
                                 <div className={activeTab==item.key?"active_menu_tbn":"inactive_menu_tbn"}>
                                     <div onClick={()=>{jumpTo(item)}} className="left_menu_item_container">
-                                    <ListItemButton
-                                sx={{
-                                minHeight: 48,
-                                justifyContent: open ? 'initial' : 'center',
-                                px: 2.5,
-                                }}
-                            >
-                                <ListItemIcon
-                                sx={{
-                                    minWidth: 0,
-                                    mr: open ? 3 : 'auto',
-                                    justifyContent: 'center',
-                                }}
-                                >
-                                    {item.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={item.name} />
-                            </ListItemButton>
-
-                                        {/* <ListItemButton className="left_menu_item_btn" >
-                                        {item.icon} {item.name}
-                                            <span className="left_menu_item_icon">
-                                                {item.collapse &&<ExpandMore/>}
-                                            </span>
-                                        </ListItemButton> */}
-                                    </div>
+                                        <ListItemButton
+                                            sx={{
+                                            minHeight: 48,
+                                            justifyContent: open ? 'initial' : 'center',
+                                            px: 2.5,
+                                            }}
+                                        >
+                                            <ListItemIcon
+                                            sx={{
+                                                minWidth: 0,
+                                                mr: open ? 3 : 'auto',
+                                                justifyContent: 'center',
+                                            }}
+                                            >
+                                                {item.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={item.name} />
+                                        </ListItemButton>
+                                </div>
                                     {item.collapse &&
                                         <Collapse in={true} timeout="auto" unmountOnExit>
                                             <Divider />

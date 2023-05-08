@@ -7,18 +7,32 @@
         padding:$content_horizontal;
         display: flex;
         &_left{
-            width: 15%;
+            width: 25%;
             margin-right:50px;
             border-radius: $border-radius_container;
             &_menu{
+                .inactive_menu_tbn{
+                    .left_menu_item_container{
+                        .MuiButtonBase-root {
+                            .MuiListItemIcon-root {
+                                margin-right: 15px;
+                            }
+                        }
+                    }
+                }
                 .active_menu_tbn{
                     background: $red;
                     color:white;
                     font-weight: $heavy_bold;
                     .left_menu_item_container{
                         .MuiButtonBase-root {
+                            .MuiListItemIcon-root {
+                                margin-right: 15px;
+                            }
                             .left_menu_item_icon{
                                 color:white;
+                                // margin-right: 15px;
+
                             }
                         }
                     }
@@ -42,8 +56,9 @@
             }
         }
         &_right{
-            background-color: white;
+            // background-color: white;
             width:100%;
+            // margin-left: 40px;
 
         }
     }
@@ -67,3 +82,53 @@
 
     }
 }
+
+@media only screen and (max-width: 1023px) {
+    .merchant_layout_container_content_left{
+        position: relative;
+        margin-right: 0;
+    }
+    .mobile_menu_container{
+        box-shadow: $shadow_big;
+        margin-left: -30px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        bottom: 0;
+        .MuiPaper-root {
+            border-top-right-radius: $border-radius_card;
+            border-bottom-right-radius: $border-radius_card;
+            position: relative;
+            // margin-top: 130.35px;
+        }
+    }
+    .merchant_layout_container_content{
+        padding: 30px;
+        // flex-direction: column;
+
+    }
+
+    // .inactive_child_child_menu_tbn div {
+    //     padding: 15px 0 15px 70px!important;
+    // }
+    
+    
+}
+@media only screen and (max-width: 767px) {
+    .merchant_layout_container_content_right {
+        margin-left: -65px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .merchant_layout_container_content_right {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .merchant_layout_container_content_right {
+        width: 80%;
+        margin-left: calc(40% - 65px);
+    }
+}
+
